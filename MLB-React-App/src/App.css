@@ -21,6 +21,8 @@ body {
   align-items: center;
   gap: 2rem;
   padding: 0 1 rem;
+  position: fixed;
+  width: 12%;
 }
 
 .nav a {
@@ -79,6 +81,5 @@ table {
 }
 
 .container {
-  margin-top: 5rem;
   text-align: center;
 }

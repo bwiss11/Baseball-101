@@ -127,7 +127,7 @@ async function Function(firstName, lastName) {
   //   yearStats = playerStats.stats[0].splits[year];
   // }
   //   }
-  return playerStats.stats[0].splits;
+  return [playerStats.stats[0].splits, headshot];
 }
 
 // let careerStats = await Function("Adley", "Rutschman");

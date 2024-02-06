@@ -1,14 +1,18 @@
 import React from "react";
 import { useTable } from "react-table";
 
-function TableHeader(take) {
+function TableHeader(props) {
   console.log("logging in tableheader");
+  let take = props.stats.stats;
+  let headshot = props.headshot.headshot;
   //   console.log(take.stats.stats[3].stat.gamesPlayed);
   // take is player's year by year data
-  console.log(take.stats.stats);
-  for (let year in take.stats.stats) {
-    console.log(take.stats.stats[year]);
-    console.log(take.stats.stats[0].stat.hits);
+  console.log("take is ", take);
+  console.log(headshot);
+  console.log("take year is ", take[0]);
+  for (let year in take) {
+    console.log(take[year]);
+    console.log(take[0].stat.hits);
   }
   //const data = "";
   //   console.log(myData);
@@ -30,13 +34,13 @@ function TableHeader(take) {
   //   ]);
   const data = React.useMemo(() => [
     {
-      season: take.stats.stats[0].season,
-      hits: take.stats.stats[0].stat.hits,
-      homeRuns: take.stats.stats[0].stat.homeRuns,
-      rbi: take.stats.stats[0].stat.rbi,
-      avg: take.stats.stats[0].stat.avg,
-      obp: take.stats.stats[0].stat.obp,
-      ops: take.stats.stats[0].stat.ops,
+      season: take[0].season,
+      hits: take[0].stat.hits,
+      homeRuns: take[0].stat.homeRuns,
+      rbi: take[0].stat.rbi,
+      avg: take[0].stat.avg,
+      obp: take[0].stat.obp,
+      ops: take[0].stat.ops,
     },
   ]);
   const columns = React.useMemo(
@@ -111,39 +115,44 @@ function TableHeader(take) {
   //     []
   //   );
 
+  console.log("headshot is ", headshot);
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
 
   return (
-    <div className="App">
-      <div className="container">
-        <table {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>
-                    {column.render("Header")}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
+    <>
+      <img src={headshot}></img>
+      <div className="App">
+        <div className="container">
+          <table {...getTableProps()}>
+            <thead>
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => (
+                    <th {...column.getHeaderProps()}>
+                      {column.render("Header")}
+                    </th>
                   ))}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row) => {
+                prepareRow(row);
+                return (
+                  <tr {...row.getRowProps()}>
+                    {row.cells.map((cell) => (
+                      <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
