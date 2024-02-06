@@ -1,7 +1,8 @@
 import React from "react";
+import TableHeader from "../components/TableHeader";
 
 const Home = () => {
-  return <div>Home</div>;
+  return <TableHeader style={{ textAlign: "center" }} />;
 };
 
 export default Home;
