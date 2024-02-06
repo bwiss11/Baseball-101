@@ -1,26 +1,49 @@
 import React from "react";
 import { useTable } from "react-table";
 
-const TableHeader = () => {
+function TableHeader(take) {
+  console.log("logging in tableheader");
+  //   console.log(take.stats.stats[3].stat.gamesPlayed);
+  // take is player's year by year data
+  console.log(take.stats.stats);
+  for (let year in take.stats.stats) {
+    console.log(take.stats.stats[year]);
+    console.log(take.stats.stats[0].stat.hits);
+  }
   //const data = "";
+  //   console.log(myData);
+  //   console.log("loggin in tableheader");
+  //   console.log(myData[3].stat);
+  //   const data = React.useMemo(() => myData, []);
+  //   const data = React.useMemo(() => take.stats.stats[0], []);
+  //   const data = React.useMemo(() => [
+  //     {
+  //       year: 2021,
+  //       hits: 183,
+  //       hrs: 36,
+  //       rbis: 98,
+  //       avg: 0.295,
+  //       obp: 0.398,
+  //       slg: 0.544,
+  //       ops: 0.942,
+  //     },
+  //   ]);
   const data = React.useMemo(() => [
     {
-      year: 2022,
-      hits: 200,
-      hrs: 34,
-      rbis: 112,
-      avg: 0.305,
-      obp: 0.411,
-      slg: 0.566,
-      ops: 0.977,
+      season: take.stats.stats[0].season,
+      hits: take.stats.stats[0].stat.hits,
+      homeRuns: take.stats.stats[0].stat.homeRuns,
+      rbi: take.stats.stats[0].stat.rbi,
+      avg: take.stats.stats[0].stat.avg,
+      obp: take.stats.stats[0].stat.obp,
+      ops: take.stats.stats[0].stat.ops,
     },
   ]);
-
   const columns = React.useMemo(
     () => [
       {
         Header: "Year",
-        accessor: "year",
+        accessor: "season",
       },
       {
         Header: "Hits",
@@ -28,11 +51,11 @@ const TableHeader = () => {
       },
       {
         Header: "Home Runs",
-        accessor: "hrs",
+        accessor: "homeRuns",
       },
       {
         Header: "RBIs",
-        accessor: "rbis",
+        accessor: "rbi",
       },
       {
         Header: "Batting Average",
@@ -43,16 +66,50 @@ const TableHeader = () => {
         accessor: "obp",
       },
       {
-        Header: "Slugging Percentage",
-        accessor: "slg",
-      },
-      {
-        Header: "On Base + Slugging",
+        Header: "On Base Plus Slugging",
         accessor: "ops",
       },
     ],
     []
   );
+
+  //   const columns = React.useMemo(
+  //     () => [
+  //       {
+  //         Header: "Year",
+  //         accessor: "year",
+  //       },
+  //       {
+  //         Header: "Hits",
+  //         accessor: "hits",
+  //       },
+  //       {
+  //         Header: "Home Runs",
+  //         accessor: "hrs",
+  //       },
+  //       {
+  //         Header: "RBIs",
+  //         accessor: "rbis",
+  //       },
+  //       {
+  //         Header: "Batting Average",
+  //         accessor: "avg",
+  //       },
+  //       {
+  //         Header: "On Base Percentage",
+  //         accessor: "obp",
+  //       },
+  //       {
+  //         Header: "Slugging Percentage",
+  //         accessor: "slg",
+  //       },
+  //       {
+  //         Header: "On Base + Slugging",
+  //         accessor: "ops",
+  //       },
+  //     ],
+  //     []
+  //   );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
@@ -88,6 +145,6 @@ const TableHeader = () => {
       </div>
     </div>
   );
-};
+}
 
 export default TableHeader;
