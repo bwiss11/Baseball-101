@@ -8,7 +8,11 @@ console.log(myData);
 
 const Home = () => {
   return (
-    <TableHeader stats={{ stats: myData }} style={{ textAlign: "center" }} />
+    <TableHeader
+      textAlign="center"
+      stats={{ stats: myData }}
+      style={{ textAlign: "center" }}
+    />
   );
 };
 

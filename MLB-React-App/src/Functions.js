@@ -115,6 +115,8 @@ async function Function(firstName, lastName) {
     return playerPic;
   }
   let headshot = await getHeadshot();
+  console.log("loggin headshot");
+  console.log(headshot);
   //   console.log(playerStats.stats[0].splits);
   //   for (year in playerStats.stats[0].splits) {
   //     console.log(playerStats.stats[0])
