@@ -122,7 +122,7 @@ function TableHeader(props) {
 
   return (
     <>
-      <img src={headshot}></img>
+      <img className="headshotHolder" src={headshot}></img>
       <div className="App">
         <div className="container">
           <table {...getTableProps()}>

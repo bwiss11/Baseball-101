@@ -2,7 +2,7 @@ import React from "react";
 import TableHeader from "../components/TableHeader";
 import Function from "../Functions";
 
-let myData = await Function("Gunnar", "Henderson");
+let myData = await Function("Corbin", "Carroll");
 console.log("logging in Home");
 console.log(myData);
 

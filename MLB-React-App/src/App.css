@@ -22,7 +22,7 @@ body {
   gap: 2rem;
   padding: 0 1 rem;
   position: fixed;
-  width: 12%;
+  width: 0%;
 }
 
 .nav a {
@@ -39,6 +39,7 @@ body {
 }
 
 li {
+  background-color: #333;
   border: solid 1px;
   border-color: white;
   padding: 1rem;
@@ -82,4 +83,14 @@ table {
 
 .container {
   text-align: center;
+}
+
+.headshotHolder {
+  -webkit-filter: drop-shadow(1px 1px 0 black) drop-shadow(-1px -1px 0 black);
+  filter: drop-shadow(500px 5px 0 black);
+  opacity: 1;
+}
+
+.headshotHolder img {
+  opacity: 0.5;
 }
