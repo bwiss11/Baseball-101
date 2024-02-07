@@ -4,7 +4,7 @@
 //   event.preventDefault(); // prevent form submission
 
 // Gets the player's information and year, returns all players from that year
-async function Function(firstName, lastName) {
+async function fetchData(firstName, lastName) {
   const inputFirstName = firstName; //document.getElementById('inputfirstname').value;
   const inputLastName = lastName; //document.getElementById('inputlastname').value;
   const searchYear = 2022; //document.getElementById('year-dropdown').value;
@@ -115,8 +115,6 @@ async function Function(firstName, lastName) {
     return playerPic;
   }
   let headshot = await getHeadshot();
-  console.log("loggin headshot");
-  console.log(headshot);
   //   console.log(playerStats.stats[0].splits);
   //   for (year in playerStats.stats[0].splits) {
   //     console.log(playerStats.stats[0])
@@ -250,4 +248,4 @@ async function Function(firstName, lastName) {
 // form.reset()
 
 // });
-export default Function;
+export default fetchData;
