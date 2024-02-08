@@ -21,30 +21,27 @@ const Home = () => {
     console.log(data);
     return (
       <>
-        <table>
-          <thead>
-            <TableHeader />
-          </thead>
-          <tbody>
-            <TableRow
-              fullData={{
-                season: data[0][0].season,
-                hits: data[0][0].stat.hits,
-                rbis: data[0][0].stat.rbi,
-                homeruns: data[0][0].stat.homeRuns,
-                avg: data[0][0].stat.avg,
-                obp: data[0][0].stat.obp,
-                slg: data[0][0].stat.slg,
-                ops: data[0][0].stat.ops,
-              }}
-            />
-            {/* <tr>
-                <td>{data ? data[0][0].season : ""}</td>
-                <td>{data ? data[0][0].stat.avg : ""}</td>
-                <td>{data ? data[0][0].stat.avg : ""}</td>
-              </tr> */}
-          </tbody>
-        </table>
+        <div style={{ marginTop: 200 }}>
+          <table>
+            <thead>
+              <TableHeader />
+            </thead>
+            <tbody>
+              <TableRow
+                fullData={{
+                  season: data[0][0].season,
+                  hits: data[0][0].stat.hits,
+                  rbis: data[0][0].stat.rbi,
+                  homeruns: data[0][0].stat.homeRuns,
+                  avg: data[0][0].stat.avg,
+                  obp: data[0][0].stat.obp,
+                  slg: data[0][0].stat.slg,
+                  ops: data[0][0].stat.ops,
+                }}
+              />
+            </tbody>
+          </table>
+        </div>
       </>
     );
   }

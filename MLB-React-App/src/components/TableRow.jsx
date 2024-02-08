@@ -1,8 +1,7 @@
 import React from "react";
 
 const TableRow = (props) => {
-  //   console.log(props.data[0]);
-  console.log(props);
+  console.log("tableRow props", props);
   return (
     <tr>
       <td>{props.fullData.season}</td>
