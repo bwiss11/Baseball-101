@@ -1,7 +1,47 @@
-// const form = document.getElementById('player-search-form-ajax');
+// Converts full team name to abbreviation
+function teamAbbreviator(fullName) {
+  const teamMap = new Map([
+    ["New York Yankees", "NYY"],
+    ["Boston Red Sox", "BOS"],
+    ["Tampa Bay Rays", "TB"],
+    ["Baltimore Orioles", "BAL"],
+    ["Toronto Blue Jays", "TOR"],
+    ["Kansas City Royals", "KC"],
+    ["Chicago White Sox", "CWS"],
+    ["Minnesota Twins", "MIN"],
+    ["Cleveland Guardians", "CLE"],
+    ["Detroit Tigers", "DET"],
+    ["Houston Astros", "HOU"],
+    ["Los Angeles Angels", "LAA"],
+    ["Texas Rangers", "TEX"],
+    ["Seattle Mariners", "SEA"],
+    ["Oakland Athletics"],
+    ["Atlanta Braves", "ATL"],
+    ["Philadelphia Phillies", "PHI"],
+    ["Miami Marlins", "MIA"],
+    ["New York Mets", "NYM"],
+    ["Washington Nationals", "WAS"],
+    ["Milwaukee Brewers", "MIL"],
+    ["Chicago Cubs", "CHI"],
+    ["Cincinnati Reds", "CIN"],
+    ["Pittsburgh Pirates", "PIT"],
+    ["St. Louis Cardinals", "STL"],
+    ["Los Angeles Dodgers", "LAD"],
+    ["Arizona Diamondbacks", "ARI"],
+    ["San Diego Padres", "SD"],
+    ["San Francisco Giants", "SF"],
+    ["Colorado Rockies", "COL"],
+    ["Multiple", "MULT"],
+  ]);
+  return teamMap.get(fullName);
+}
 
-// form.addEventListener('submit', async (event) => {
-//   event.preventDefault(); // prevent form submission
+function randomPlayerGenerator() {
+  const players = ["Paul Goldschmidt", "Nolan Arenado", "Mike Trout"];
+  let randomPlayer =
+    players[Math.floor(Math.floor(Math.random() * players.length))];
+  return randomPlayer.split(" ");
+}
 
 // Gets the player's information and year, returns all players from that year
 async function fetchData(firstName, lastName) {
@@ -47,10 +87,11 @@ async function fetchData(firstName, lastName) {
   }
   let playerStats = await getPlayerInfo();
 
-  // Gets player data to be displayed next to headshot
+  //   Gets player data to be displayed next to headshot
   let name = playerStats.fullName;
   let position = playerStats.primaryPosition.abbreviation;
   let team = playerStats.stats[0].splits.slice(-1)[0].team.name;
+
   let number = playerStats.primaryNumber;
 
   let teamsDict = {
@@ -125,6 +166,7 @@ async function fetchData(firstName, lastName) {
   //   yearStats = playerStats.stats[0].splits[year];
   // }
   //   }
+
   return [playerStats.stats[0].splits, headshot];
 }
 
@@ -248,4 +290,4 @@ async function fetchData(firstName, lastName) {
 // form.reset()
 
 // });
-export default fetchData;
+export { randomPlayerGenerator, teamAbbreviator, fetchData };

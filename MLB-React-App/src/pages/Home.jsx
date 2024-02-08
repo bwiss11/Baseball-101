@@ -1,14 +1,18 @@
 import React from "react";
 import TableHeader from "../components/TableHeader";
 import TableRow from "../components/TableRow";
-import fetchStats from "../Functions";
+import PlayerPic from "../components/PlayerPic";
+import { fetchData, randomPlayerGenerator } from "../Functions";
 import { useState, useEffect } from "react";
 
 const Home = () => {
   const [data, setData] = useState(undefined);
 
   const fetchInfo = () => {
-    return fetchStats("Mike", "Trout").then((res) => {
+    let player = randomPlayerGenerator();
+    let firstName = player[0];
+    let lastName = player[1];
+    return fetchData(firstName, lastName).then((res) => {
       setData(res);
     });
   };
@@ -18,10 +22,10 @@ const Home = () => {
   }, []);
 
   if (data) {
-    console.log(data);
     return (
       <>
-        <div style={{ marginTop: 200 }}>
+        <PlayerPic pic={{ url: data[1] }} />
+        <div>
           <table>
             <thead>
               <TableHeader />
@@ -29,8 +33,10 @@ const Home = () => {
             <tbody>
               {data[0].map((index) => (
                 <TableRow
+                  key={index.season}
                   fullData={{
                     season: index.season,
+                    team: index.team.name,
                     hits: index.stat.hits,
                     rbis: index.stat.rbi,
                     homeruns: index.stat.homeRuns,

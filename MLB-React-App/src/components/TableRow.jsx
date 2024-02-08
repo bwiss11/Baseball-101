@@ -1,10 +1,11 @@
 import React from "react";
+import { teamAbbreviator } from "../Functions";
 
 const TableRow = (props) => {
-  console.log("tableRow props", props);
   return (
     <tr>
       <td>{props.fullData.season}</td>
+      <td>{teamAbbreviator(props.fullData.team)}</td>
       <td>{props.fullData.hits}</td>
       <td>{props.fullData.rbis}</td>
       <td>{props.fullData.homeruns}</td>

@@ -5,6 +5,7 @@ function TableHeader() {
   return (
     <tr>
       <th>Year</th>
+      <th>Team</th>
       <th>Hits</th>
       <th>RBIs</th>
       <th>Home Runs</th>
