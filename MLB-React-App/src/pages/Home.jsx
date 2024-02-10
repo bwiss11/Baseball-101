@@ -25,17 +25,6 @@ const Home = () => {
     //   slg: "440",
     //   ops: ".770",
     // },
-    // {
-    //   year: "2012",
-    //   team: "LAA",
-    //   hits: "23",
-    //   rbis: "36",
-    //   hrs: "42",
-    //   avg: ".340",
-    //   obp: ".330",
-    //   slg: "490",
-    //   ops: ".890",
-    // },
   ]);
 
   //   const [tableData, setTableData] = useState([
@@ -44,49 +33,48 @@ const Home = () => {
   //     { name: "Andrew", age: 31 },
   // ]);
 
-  const [newRow, setNewRow] = useState({
-    // year: "",
-    // team: "",
-    // hits: "",
-    // hrs: "",
-    // rbis: "",
-    // avg: "",
-    // obp: "",
-    // slg: "",
-    // ops: "",
-  });
+  //   const [newRow, setNewRow] = useState({});
+  // year: "",
+  // team: "",
+  // hits: "",
+  // hrs: "",
+  // rbis: "",
+  // avg: "",
+  // obp: "",
+  // slg: "",
+  // ops: "",
 
   //   let rows = [{"2011", "ARI", "27", "16", "5", ".220", "330", "440", ".770"];
-  const addRow = () => {
-    console.log("adding row", count, data[0][count]);
-    console.log("length is", data[0].length);
-    let yearTeam = "";
-    if (!data[0][count].team) {
-      yearTeam = "Total";
-    } else {
-      yearTeam = teamAbbreviator(data[0][count].team.name);
-    }
-    if (count < data[0].length) {
-      setTableData([...tableData, newRow]);
-      setNewRow({
-        year: data[0][count].season,
-        team: yearTeam,
-        hits: data[0][count].stat.hits,
-        hrs: data[0][count].stat.homeRuns,
-        rbis: data[0][count].stat.rbi,
-        avg: data[0][count].stat.avg,
-        obp: data[0][count].stat.obp,
-        slg: data[0][count].stat.slg,
-        ops: data[0][count].stat.ops,
-      });
-    } else {
-    }
-  };
+  //   const addRow = () => {
+  //     console.log("adding row", count, data[0][count]);
+  //     console.log("length is", data[0].length);
+  //     let yearTeam = "";
+  //     if (!data[0][count].team) {
+  //       yearTeam = "Total";
+  //     } else {
+  //       yearTeam = teamAbbreviator(data[0][count].team.name);
+  //     }
+  //     if (count < data[0].length) {
+  //       setTableData([...tableData, newRow]);
+  //       setNewRow({
+  //         year: data[0][count].season,
+  //         team: yearTeam,
+  //         hits: data[0][count].stat.hits,
+  //         hrs: data[0][count].stat.homeRuns,
+  //         rbis: data[0][count].stat.rbi,
+  //         avg: data[0][count].stat.avg,
+  //         obp: data[0][count].stat.obp,
+  //         slg: data[0][count].stat.slg,
+  //         ops: data[0][count].stat.ops,
+  //       });
+  //     } else {
+  //       console.log("count over length");
+  //     }
+  //   };
 
   let max = 100;
 
   const increment = () => {
-    addRow();
     setCount(count + 1);
   };
 
@@ -99,14 +87,62 @@ const Home = () => {
     // player = ["Josh", "Naylor"];
     let firstName = player[0];
     let lastName = player[1];
-    return fetchData(firstName, lastName).then((res) => {
-      setData(res);
-    });
+    console.log("in fetch info");
+    return fetchData(firstName, lastName);
   };
 
+  // Runs only when page is reloaded
   useEffect(() => {
-    fetchInfo();
+    console.log("fetching data");
+    fetchInfo().then((res) => {
+      setData(res);
+      console.log("res ", res);
+    });
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      console.log("count changed");
+      console.log("adding row", count, data[0][count - 1]);
+      let yearTeam = "";
+      if (!data[0][count - 1].team) {
+        yearTeam = "Total";
+      } else {
+        yearTeam = teamAbbreviator(data[0][count - 1].team.name);
+      }
+      if (count < data[0].length + 1) {
+        // setNewRow({
+        //   year: data[0][count].season,
+        //   team: yearTeam,
+        //   hits: data[0][count].stat.hits,
+        //   hrs: data[0][count].stat.homeRuns,
+        //   rbis: data[0][count].stat.rbi,
+        //   avg: data[0][count].stat.avg,
+        //   obp: data[0][count].stat.obp,
+        //   slg: data[0][count].stat.slg,
+        //   ops: data[0][count].stat.ops,
+        // });
+        let newRow = {
+          year: data[0][count - 1].season,
+          team: yearTeam,
+          hits: data[0][count - 1].stat.hits,
+          hrs: data[0][count - 1].stat.homeRuns,
+          rbis: data[0][count - 1].stat.rbi,
+          avg: data[0][count - 1].stat.avg,
+          obp: data[0][count - 1].stat.obp,
+          slg: data[0][count - 1].stat.slg,
+          ops: data[0][count - 1].stat.ops,
+        };
+        setTableData([...tableData, newRow]);
+      } else {
+        console.log("count over length");
+      }
+    }
+  }, [count]);
+
+  useEffect(() => {
+    console.log("tableData changed to", tableData);
+  }, [tableData]);
 
   if (data) {
     console.log("data", data);
@@ -117,7 +153,7 @@ const Home = () => {
         <div>{count}</div>
         <div className="holder">
           <ul className="ulHint">
-            <li onClick={increment} className="liHint">
+            <li onClick={() => setCount(count + 1)} className="liHint">
               Hint
             </li>
           </ul>
