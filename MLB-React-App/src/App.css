@@ -84,13 +84,20 @@ td {
   border-radius: 3px;
 }
 
-.headshotHolder {
-  margin: auto;
+.hidden {
   filter: contrast(0%) brightness(0%);
 }
 
-.headshotHolder img {
+.hidden img {
   opacity: 0.5;
+}
+
+.reveal {
+  filter: none;
+}
+
+.hidden img {
+  opacity: 1;
 }
 
 .holder {
@@ -118,20 +125,42 @@ td {
   grid-template-columns: 1fr 1fr; */
 }
 
-.liHint {
+.ulRevealPlayer {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+button {
   /* display: inline-block; */
   /* width: 20%;
   height: 5%; */
   color: white;
-  margin-left: 100px;
   cursor: pointer;
+  background-color: #333;
+  border-color: green;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 40%;
+  height: 15%;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
   /* cursor: pointer;
   background-color: #333;
   border: solid 1px;
   border-color: white; */
 }
 
-.liHint:hover {
+.hintButton {
+  margin-left: 100px;
+}
+
+button:hover {
   color: black;
   background-color: rgb(59, 237, 178);
+}
+
+.revealPlayerButton {
+  margin-right: 50px;
 }

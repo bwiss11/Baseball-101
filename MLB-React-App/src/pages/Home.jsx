@@ -13,97 +13,38 @@ import { useState, useEffect } from "react";
 const Home = () => {
   const [data, setData] = useState(undefined);
   const [count, setCount] = useState(0);
-  const [tableData, setTableData] = useState([
-    // {
-    //   year: "2011",
-    //   team: "ARI",
-    //   hits: "27",
-    //   rbis: "16",
-    //   hrs: "5",
-    //   avg: ".220",
-    //   obp: ".330",
-    //   slg: "440",
-    //   ops: ".770",
-    // },
-  ]);
-
-  //   const [tableData, setTableData] = useState([
-  //     { name: "Alias", age: 34 },
-  //     { name: "John", age: 32 },
-  //     { name: "Andrew", age: 31 },
-  // ]);
-
-  //   const [newRow, setNewRow] = useState({});
-  // year: "",
-  // team: "",
-  // hits: "",
-  // hrs: "",
-  // rbis: "",
-  // avg: "",
-  // obp: "",
-  // slg: "",
-  // ops: "",
-
-  //   let rows = [{"2011", "ARI", "27", "16", "5", ".220", "330", "440", ".770"];
-  //   const addRow = () => {
-  //     console.log("adding row", count, data[0][count]);
-  //     console.log("length is", data[0].length);
-  //     let yearTeam = "";
-  //     if (!data[0][count].team) {
-  //       yearTeam = "Total";
-  //     } else {
-  //       yearTeam = teamAbbreviator(data[0][count].team.name);
-  //     }
-  //     if (count < data[0].length) {
-  //       setTableData([...tableData, newRow]);
-  //       setNewRow({
-  //         year: data[0][count].season,
-  //         team: yearTeam,
-  //         hits: data[0][count].stat.hits,
-  //         hrs: data[0][count].stat.homeRuns,
-  //         rbis: data[0][count].stat.rbi,
-  //         avg: data[0][count].stat.avg,
-  //         obp: data[0][count].stat.obp,
-  //         slg: data[0][count].stat.slg,
-  //         ops: data[0][count].stat.ops,
-  //       });
-  //     } else {
-  //       console.log("count over length");
-  //     }
-  //   };
+  const [tableData, setTableData] = useState([]);
+  const [isClickable, setIsClickable] = useState(false);
+  const [reveal, setReveal] = useState("hidden");
 
   let max = 100;
+
+  const revealPlayer = () => {
+    if (reveal !== "reveal") setReveal("reveal");
+    else setReveal("hidden");
+  };
 
   const increment = () => {
     setCount(count + 1);
   };
-
-  //   useEffect(() => {
-  //     addRow();
-  //   }, []);
 
   const fetchInfo = () => {
     let player = randomPlayerGenerator();
     // player = ["Josh", "Naylor"];
     let firstName = player[0];
     let lastName = player[1];
-    console.log("in fetch info");
     return fetchData(firstName, lastName);
   };
 
   // Runs only when page is reloaded
   useEffect(() => {
-    console.log("fetching data");
     fetchInfo().then((res) => {
       setData(res);
-      console.log("res ", res);
     });
   }, []);
 
   useEffect(() => {
     if (data) {
-      console.log("count changed");
-      console.log("adding row", count, data[0][count - 1]);
       let yearTeam = "";
       if (!data[0][count - 1].team) {
         yearTeam = "Total";
@@ -111,17 +52,6 @@ const Home = () => {
         yearTeam = teamAbbreviator(data[0][count - 1].team.name);
       }
       if (count < data[0].length + 1) {
-        // setNewRow({
-        //   year: data[0][count].season,
-        //   team: yearTeam,
-        //   hits: data[0][count].stat.hits,
-        //   hrs: data[0][count].stat.homeRuns,
-        //   rbis: data[0][count].stat.rbi,
-        //   avg: data[0][count].stat.avg,
-        //   obp: data[0][count].stat.obp,
-        //   slg: data[0][count].stat.slg,
-        //   ops: data[0][count].stat.ops,
-        // });
         let newRow = {
           year: data[0][count - 1].season,
           team: yearTeam,
@@ -137,12 +67,11 @@ const Home = () => {
       } else {
         console.log("count over length");
       }
+      if (count == data[0].length) {
+        setIsClickable(true);
+      }
     }
   }, [count]);
-
-  useEffect(() => {
-    console.log("tableData changed to", tableData);
-  }, [tableData]);
 
   if (data) {
     console.log("data", data);
@@ -150,14 +79,25 @@ const Home = () => {
     max = data[0].length;
     return (
       <>
-        <div>{count}</div>
         <div className="holder">
           <ul className="ulHint">
-            <li onClick={() => setCount(count + 1)} className="liHint">
+            <button
+              disabled={isClickable}
+              onClick={() => setCount(count + 1)}
+              className="hintButton"
+            >
               Hint
-            </li>
+            </button>
           </ul>
-          <PlayerPic pic={{ url: data[1] }} />
+          <PlayerPic
+            className="playerPic"
+            props={{ url: data[1], revealState: { reveal } }}
+          />
+          <ul className="ulRevealPlayer">
+            <button onClick={revealPlayer} className="revealPlayerButton">
+              <a>Reveal</a>
+            </button>
+          </ul>
         </div>
         <table>
           <thead>
@@ -181,77 +121,6 @@ const Home = () => {
         </table>
       </>
     );
-
-    // console.log("max is", max);
-    // console.log(data[0][0]);
-    // return (
-    //   <>
-    //     <div>
-    //       <button onClick={increment}>Hint</button>
-    //       <div>{count}</div>
-    //     </div>
-    //     <div>{data[0][max - count].season}</div>
-    //     <PlayerPic pic={{ url: data[1] }} />
-    /* //     <div>
-    //       <table>
-    //         <thead>
-    //           <TableHeader />
-    //         </thead>
-    //         <tbody>
-    //           {rows.map((rowData, index) => { */
-    //             <tr>
-    //               <td>HITHERE</td>
-    //             </tr>;
-    //           })}
-    //         </tbody>
-    //         {/* {data[0].map((index) => (
-    //         //     <TableRow
-    //         //       key={index.season}
-    //         //       fullData={{
-    //         //         season: index.season,
-    //         //         team: index.team.name,
-    //         //         hits: index.stat.hits,
-    //         //         rbis: index.stat.rbi,
-    //         //         homeruns: index.stat.homeRuns,
-    //         //         avg: index.stat.avg,
-    //         //         obp: index.stat.obp,
-    //         //         slg: index.stat.slg,
-    //         //         ops: index.stat.ops,
-    //         //       }}
-    //         //     />
-    //         //   ))} */}
-    //       </table>
-    //     </div>
-    //   </>
-    //   // <TableRow
-    //   //     fullData={{
-    //   //       season: data[0][0].season,
-    //   //       hits: data[0][0].stat.hits,
-    //   //       rbis: data[0][0].stat.rbi,
-    //   //       homeruns: data[0][0].stat.homeRuns,
-    //   //       avg: data[0][0].stat.avg,
-    //   //       obp: data[0][0].stat.obp,
-    //   //       slg: data[0][0].stat.slg,
-    //   //       ops: data[0][0].stat.ops,
-    //   //     }}
-    //   //   />
-    //   //   <TableRow
-    //   //     fullData={{
-    //   //       season: data[0][1].season,
-    //   //       hits: data[0][1].stat.hits,
-    //   //       rbis: data[0][1].stat.rbi,
-    //   //       homeruns: data[0][1].stat.homeRuns,
-    //   //       avg: data[0][1].stat.avg,
-    //   //       obp: data[0][1].stat.obp,
-    //   //       slg: data[0][1].stat.slg,
-    //   //       ops: data[0][1].stat.ops,
-    //   //     }}
-    //   //   />
-    //   //         </tbody>
-    //   //       </table>
-    //   //     </div>
-    //   //   </>
-    // );
   }
 };
 
