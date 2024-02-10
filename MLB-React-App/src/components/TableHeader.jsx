@@ -7,8 +7,8 @@ function TableHeader() {
       <th>Year</th>
       <th>Team</th>
       <th>Hits</th>
-      <th>RBIs</th>
       <th>Home Runs</th>
+      <th>RBIs</th>
       <th>Average</th>
       <th>On Base Percentage</th>
       <th>Slugging Percentage</th>

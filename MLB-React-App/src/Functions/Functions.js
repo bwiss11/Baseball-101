@@ -10,6 +10,7 @@ function teamAbbreviator(fullName) {
     ["Chicago White Sox", "CWS"],
     ["Minnesota Twins", "MIN"],
     ["Cleveland Guardians", "CLE"],
+    ["Cleveland Indians", "CLE"],
     ["Detroit Tigers", "DET"],
     ["Houston Astros", "HOU"],
     ["Los Angeles Angels", "LAA"],
@@ -33,11 +34,113 @@ function teamAbbreviator(fullName) {
     ["Colorado Rockies", "COL"],
     ["Multiple", "MULT"],
   ]);
-  return teamMap.get(fullName);
+  if (teamMap.get(fullName)) {
+    return teamMap.get(fullName);
+  } else {
+    return "Total";
+  }
 }
 
 function randomPlayerGenerator() {
-  const players = ["Paul Goldschmidt", "Nolan Arenado", "Mike Trout"];
+  const players = [
+    "Shohei Ohtani",
+    "Matt Olson",
+    "Yandy Díaz",
+    "Matt Chapman",
+    "Corey Seager",
+    "Yordan Alvarez",
+    "Juan Soto",
+    "MJ Melendez",
+    "Rafael Devers",
+    "Julio Rodríguez",
+    "Mookie Betts",
+    "Kyle Schwarber",
+    "Austin Riley",
+    "Tommy Pham",
+    "Ke'Bryan Hayes",
+    "Vladimir Guerrero Jr.",
+    "Adolis García",
+    "Gunnar Henderson",
+    "Fernando Tatis Jr.",
+    "Jake Burger",
+    "Max Kepler",
+    "Brandon Nimmo",
+    "Spencer Torkelson",
+    "Marcell Ozuna",
+    "Maikel Garcia",
+    "Bryce Harper",
+    "Josh Jung",
+    "Christian Yelich",
+    "Randy Arozarena",
+    "Seiya Suzuki",
+    "Ryan Mountcastle",
+    "Paul Goldschmidt",
+    "Teoscar Hernández",
+    "William Contreras",
+    "Jorge Soler",
+    "Willson Contreras",
+    "Francisco Lindor",
+    "Max Muncy",
+    "Ketel Marte",
+    "J.D. Davis",
+    "Triston Casas",
+    "Manny Machado",
+    "Bryan Reynolds",
+    "Michael Harris II",
+    "Eloy Jiménez",
+    "Ryan McMahon",
+    "Bobby Witt Jr.",
+    "Anthony Santander",
+    "Andrew Vaughn",
+    "Shea Langeliers",
+    "Carlos Correa",
+    "Eugenio Suárez",
+    "Trent Grisham",
+    "Kyle Tucker",
+    "Bo Bichette",
+    "Josh Bell",
+    "Salvador Perez",
+    "Leody Taveras",
+    "Kerry Carpenter",
+    "José Ramírez",
+    "Freddie Freeman",
+    "Corbin Carroll",
+    "Trea Turner",
+    "Bryan De La Cruz",
+    "Ian Happ",
+    "Brandon Drury",
+    "Nathaniel Lowe",
+    "J.T. Realmuto",
+    "Gleyber Torres",
+    "Lourdes Gurriel Jr.",
+    "DJ LeMahieu",
+    "Randal Grichuk",
+    "Justin Turner",
+    "Pete Alonso",
+    "Cal Raleigh",
+    "Jonathan India",
+    "Joey Meneses",
+    "Alec Bohm",
+    "Austin Hays",
+    "Wander Franco",
+    "Tyler Stephenson",
+    "Jordan Walker",
+    "Dansby Swanson",
+    "Will Smith",
+    "David Peralta",
+    "Alex Verdugo",
+    "Jonah Heim",
+    "Tommy Edman",
+    "Josh Naylor",
+    "Luis Robert Jr.",
+    "Matt Vierling",
+    "Josh Lowe",
+    "Lars Nootbaar",
+    "Harold Ramírez",
+    "Luis Rengifo",
+    "Masataka Yoshida",
+  ];
+
   let randomPlayer =
     players[Math.floor(Math.floor(Math.random() * players.length))];
   return randomPlayer.split(" ");
@@ -145,6 +248,11 @@ async function fetchData(firstName, lastName) {
   let teamRoster = await getTeam();
   var playerPic = "";
 
+  let espnInputPlayer = inputPlayer
+    .replace("í", "i")
+    .replace("é", "e")
+    .replace("á", "a");
+
   // Goes through list of team's players and finds the headshot for the player whose name matches the input, assigns the headshot to be dynamically displayed on the Results page
   async function getHeadshot() {
     for (let i = 0; i < teamRoster.team.athletes.length; i++) {
@@ -166,7 +274,7 @@ async function fetchData(firstName, lastName) {
   //   yearStats = playerStats.stats[0].splits[year];
   // }
   //   }
-
+  console.log(playerStats.stats[0].splits);
   return [playerStats.stats[0].splits, headshot];
 }
 
