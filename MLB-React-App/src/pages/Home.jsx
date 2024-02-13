@@ -16,16 +16,17 @@ const Home = () => {
   const [tableData, setTableData] = useState([]);
   const [isClickable, setIsClickable] = useState(false);
   const [reveal, setReveal] = useState("hidden");
+  const [answer, setAnswer] = useState("");
 
   let max = 100;
 
   const revealPlayer = () => {
-    if (reveal !== "reveal") setReveal("reveal");
-    else setReveal("hidden");
-  };
-
-  const increment = () => {
-    setCount(count + 1);
+    if (reveal !== "reveal") {
+      setReveal("reveal");
+      console.log("res is", data[0][0].player.fullName);
+      console.log("setting answer ");
+      setAnswer(data[0][0].player.fullName);
+    } else setReveal("hidden");
   };
 
   const fetchInfo = () => {
@@ -43,6 +44,7 @@ const Home = () => {
     });
   }, []);
 
+  // runs when count state variable changes
   useEffect(() => {
     if (data) {
       let yearTeam = "";
@@ -79,6 +81,9 @@ const Home = () => {
     max = data[0].length;
     return (
       <>
+        <div className="answerHolderHolder">
+          <div className="answerHolder">{answer}</div>
+        </div>
         <div className="holder">
           <ul className="ulHint">
             <button

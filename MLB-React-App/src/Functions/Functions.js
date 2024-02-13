@@ -16,14 +16,14 @@ function teamAbbreviator(fullName) {
     ["Los Angeles Angels", "LAA"],
     ["Texas Rangers", "TEX"],
     ["Seattle Mariners", "SEA"],
-    ["Oakland Athletics"],
+    ["Oakland Athletics", "OAK"],
     ["Atlanta Braves", "ATL"],
     ["Philadelphia Phillies", "PHI"],
     ["Miami Marlins", "MIA"],
     ["New York Mets", "NYM"],
     ["Washington Nationals", "WAS"],
     ["Milwaukee Brewers", "MIL"],
-    ["Chicago Cubs", "CHI"],
+    ["Chicago Cubs", "CHC"],
     ["Cincinnati Reds", "CIN"],
     ["Pittsburgh Pirates", "PIT"],
     ["St. Louis Cardinals", "STL"],
@@ -43,102 +43,144 @@ function teamAbbreviator(fullName) {
 
 function randomPlayerGenerator() {
   const players = [
-    "Shohei Ohtani",
-    "Matt Olson",
-    "Yandy Díaz",
-    "Matt Chapman",
-    "Corey Seager",
-    "Yordan Alvarez",
-    "Juan Soto",
-    "MJ Melendez",
-    "Rafael Devers",
-    "Julio Rodríguez",
+    "Ronald Acuna Jr.",
     "Mookie Betts",
-    "Kyle Schwarber",
-    "Austin Riley",
-    "Tommy Pham",
-    "Ke'Bryan Hayes",
-    "Vladimir Guerrero Jr.",
-    "Adolis García",
-    "Gunnar Henderson",
-    "Fernando Tatis Jr.",
-    "Jake Burger",
-    "Max Kepler",
-    "Brandon Nimmo",
-    "Spencer Torkelson",
-    "Marcell Ozuna",
-    "Maikel Garcia",
-    "Bryce Harper",
-    "Josh Jung",
-    "Christian Yelich",
-    "Randy Arozarena",
-    "Seiya Suzuki",
-    "Ryan Mountcastle",
-    "Paul Goldschmidt",
-    "Teoscar Hernández",
-    "William Contreras",
-    "Jorge Soler",
-    "Willson Contreras",
-    "Francisco Lindor",
-    "Max Muncy",
-    "Ketel Marte",
-    "J.D. Davis",
-    "Triston Casas",
-    "Manny Machado",
-    "Bryan Reynolds",
-    "Michael Harris II",
-    "Eloy Jiménez",
-    "Ryan McMahon",
-    "Bobby Witt Jr.",
-    "Anthony Santander",
-    "Andrew Vaughn",
-    "Shea Langeliers",
-    "Carlos Correa",
-    "Eugenio Suárez",
-    "Trent Grisham",
-    "Kyle Tucker",
-    "Bo Bichette",
-    "Josh Bell",
-    "Salvador Perez",
-    "Leody Taveras",
-    "Kerry Carpenter",
-    "José Ramírez",
     "Freddie Freeman",
+    "Matt Olson",
+    "Corey Seager",
+    "Juan Soto",
+    "Shohei Ohtani",
+    "Julio Rodriguez",
     "Corbin Carroll",
+    "Marcus Semien",
+    "J.P. Crawford",
+    "Francisco Lindor",
+    "Kyle Tucker",
+    "Yandy Diaz",
+    "Jose Ramirez",
+    "Austin Riley",
+    "Bobby Witt Jr.",
+    "Aaron Judge",
+    "Xander Bogaerts",
+    "Gunnar Henderson",
+    "Ketel Marte",
+    "Ozzie Albies",
+    "Luis Arraez",
+    "Yordan Alvarez",
+    "Brandon Nimmo",
     "Trea Turner",
-    "Bryan De La Cruz",
-    "Ian Happ",
-    "Brandon Drury",
-    "Nathaniel Lowe",
-    "J.T. Realmuto",
-    "Gleyber Torres",
-    "Lourdes Gurriel Jr.",
-    "DJ LeMahieu",
-    "Randal Grichuk",
-    "Justin Turner",
-    "Pete Alonso",
-    "Cal Raleigh",
-    "Jonathan India",
-    "Joey Meneses",
-    "Alec Bohm",
-    "Austin Hays",
-    "Wander Franco",
-    "Tyler Stephenson",
-    "Jordan Walker",
-    "Dansby Swanson",
-    "Will Smith",
-    "David Peralta",
-    "Alex Verdugo",
-    "Jonah Heim",
-    "Tommy Edman",
-    "Josh Naylor",
+    "Adley Rutschman",
+    "Bo Bichette",
     "Luis Robert Jr.",
-    "Matt Vierling",
+    "Rafael Devers",
+    "Alex Bregman",
+    "Isaac Paredes",
+    "William Contreras",
+    "Ha-Seong Kim",
+    "Cody Bellinger",
+    "Jose Altuve",
+    "Christian Yelich",
+    "Wander Franco",
+    "TJ Friedl",
+    "Bryson Stott",
+    "Nico Hoerner",
+    "Bryce Harper",
+    "Adolis Garcia",
+    "Willson Contreras",
+    "Cal Raleigh",
+    "Brandon Marsh",
+    "Spencer Steer",
+    "Will Smith",
+    "Marcell Ozuna",
     "Josh Lowe",
-    "Lars Nootbaar",
-    "Harold Ramírez",
-    "Luis Rengifo",
-    "Masataka Yoshida",
+    "Paul Goldschmidt",
+    "Manny Machado",
+    "Mike Trout",
+    "Nolan Arenado",
+    "Andres Gimenez",
+    "J.T. Realmuto",
+    "Carlos Correa",
+    "Jeff McNeil",
+    "Dansby Swanson",
+    "Pete Alonso",
+    "George Springer",
+    "Michael Harris II",
+    "Nathaniel Lowe",
+    "Tommy Edman",
+    "Bryan Reynolds",
+    "Jake Cronenworth",
+    "Eugenio Suarez",
+    "Jose Abreu",
+    "Taylor Ward",
+    "Steven Kwan",
+    "Sean Murphy",
+    "Amed Rosario",
+    "Vladimir Guerrero Jr.",
+    "Kyle Schwarber",
+    "Alejandro Kirk",
+    "Elvis Andrus",
+    "Fernando Tatis Jr.",
+    "Cedric Mullins",
+    "Brandon Lowe",
+    "Brandon Crawford",
+    "Tyler O'Neill",
+    "Starling Marte",
+    "Jorge Polanco",
+    "Salvador Perez",
+    "Tim Anderson",
+    "Max Muncy",
+    "Buster Posey",
+    "Ty France",
+    "Willy Adames",
+    "Jeimer Candelario",
+    "Teoscar Hernandez",
+    "Nick Castellanos",
+    "Javier Baez",
+    "Jonathan India",
+    "Justin Turner",
+    "Yasmani Grandal",
+    "Mike Zunino",
+    "Kris Bryant",
+    "DJ LeMahieu",
+    "Mike Yastrzemski",
+    "Anthony Rendon",
+    "Michael Conforto",
+    "Dominic Smith",
+    "Brandon Belt",
+    "Cavan Biggio",
+    "Luke Voit",
+    "Wil Myers",
+    "Ronald Acuna Jr.",
+    "Trevor Story",
+    "Nelson Cruz",
+    "Donovan Solano",
+    "Eloy Jimenez",
+    "Kyle Lewis",
+    "Trent Grisham",
+    "Austin Nola",
+    "Ke'Bryan Hayes",
+    "Jose Iglesias",
+    "Jackie Bradley Jr.",
+    "Chris Taylor",
+    "Clint Frazier",
+    "Brian Anderson",
+    "Miguel Rojas",
+    "Mark Canha",
+    "Yoan Moncada",
+    "Jonathan Villar",
+    "Matt Chapman",
+    "Josh Donaldson",
+    "Carlos Santana",
+    "Gleyber Torres",
+    "Austin Meadows",
+    "Jorge Soler",
+    "Trey Mancini",
+    "Mitch Garver",
+    "J.D. Martinez",
+    "Anthony Rizzo",
+    "Ramon Laureano",
+    "Gio Urshela",
+    "Kevin Newman",
   ];
 
   let randomPlayer =
@@ -148,8 +190,8 @@ function randomPlayerGenerator() {
 
 // Gets the player's information and year, returns all players from that year
 async function fetchData(firstName, lastName) {
-  const inputFirstName = firstName; //document.getElementById('inputfirstname').value;
-  const inputLastName = lastName; //document.getElementById('inputlastname').value;
+  const inputFirstName = firstName;
+  const inputLastName = lastName;
   const searchYear = 2022; //document.getElementById('year-dropdown').value;
   async function getPlayers(year) {
     let response = await fetch(
@@ -168,7 +210,10 @@ async function fetchData(firstName, lastName) {
 
   // First fills out dict from id:name (doing name:id first missed a few entries for some reason)
   for (let i = 0; i < players.length; i++) {
-    idToNameDict[players[i].id] = players[i].fullName;
+    idToNameDict[players[i].id] = players[i].fullName
+      .replace("í", "i")
+      .replace("é", "e")
+      .replace("á", "a");
   }
 
   // Fills out dictionary for going from name to player ID
@@ -253,149 +298,44 @@ async function fetchData(firstName, lastName) {
     .replace("é", "e")
     .replace("á", "a");
 
+  // async function getHeadshotOld() {
+  //   for (let i = 0; i < teamRoster.team.athletes.length; i++) {
+  //     if (teamRoster.team.athletes[i].fullName == espnInputPlayer) {
+  //       playerPic = teamRoster.team.athletes[i].headshot.href;
+  //       break;
+  //     }
+  //   }
+  //   return playerPic;
+  // }
+
   // Goes through list of team's players and finds the headshot for the player whose name matches the input, assigns the headshot to be dynamically displayed on the Results page
   async function getHeadshot() {
-    for (let i = 0; i < teamRoster.team.athletes.length; i++) {
-      if (teamRoster.team.athletes[i].fullName == inputPlayer) {
-        playerPic = teamRoster.team.athletes[i].headshot.href;
+    let playerPic = "";
+    let response = await fetch(
+      "https://sports.core.api.espn.com/v3/sports/baseball/mlb/athletes?limit=18000"
+    );
+    let data = await response.json();
+
+    for (let i = 0; i < data.count; i++) {
+      if (data.items[i].fullName == espnInputPlayer) {
+        playerId = data.items[i].id;
         break;
       }
     }
+
+    if (playerId) {
+      playerPic =
+        "https://a.espncdn.com/combiner/i?img=/i/headshots/mlb/players/full/" +
+        playerId +
+        ".png&w=350&h=254";
+    }
+
     return playerPic;
   }
+
   let headshot = await getHeadshot();
-  //   console.log(playerStats.stats[0].splits);
-  //   for (year in playerStats.stats[0].splits) {
-  //     console.log(playerStats.stats[0])
-  // }
-  //   for (let year in playerStats.stats[0].splits) {
-  //     console.log(playerStats.stats[0].splits[year]);
-  // if (playerStats.stats[0].splits[year].season == searchYear) {
-  //   yearStats = playerStats.stats[0].splits[year];
-  // }
-  //   }
-  console.log(playerStats.stats[0].splits);
+
   return [playerStats.stats[0].splits, headshot];
 }
 
-// let careerStats = await Function("Adley", "Rutschman");
-
-//const headshotsection = document.querySelector(".ajax-section .headshot");
-
-// Clears section if there is already an old picture being displayed
-//headshotsection.innerHTML = ''
-
-// Adds the player's headshot
-// const pic = document.createElement("div");
-// pic.classList.add("headshot");
-// const markuppic = `
-// <div class="container">
-//   <div>
-//     <img src=${headshot}>
-//   </div>
-//   <div id="playerinfo">
-//     #${number} ${name} <br><br>  ${position} - ${team}
-//   </div>
-// </div>
-// `;
-// pic.innerHTML = markuppic
-// headshotsection.appendChild(pic)
-
-// Adds the player's statistics to a table to be displayed
-// const statssection = document.querySelector(".ajax-section .stats");
-
-// Clears section if there is already old stats being displayed
-// statssection.innerHTML = ''
-// Gets the player's stats from the year that was searched
-// for (year in playerStats.stats[0].splits) {
-//     console.log(playerStats.stats[0])
-//   if (playerStats.stats[0].splits[year].season == searchYear) {
-//     yearStats = playerStats.stats[0].splits[year]
-// }
-//   }
-
-// if (position == 'P') {
-
-//   // Player stats for pitchers
-//   // Breaks players information into individual variables
-//   let inningsPitched = yearStats.stat.inningsPitched
-//   let wins =  yearStats.stat.wins
-//   let losses = yearStats.stat.losses
-//   let saves = yearStats.stat.saves
-//   let era = yearStats.stat.era
-//   let whip = yearStats.stat.whip
-//   let strikeouts = yearStats.stat.strikeOuts
-//   let strikeoutsPer9 = yearStats.stat.strikeoutsPer9Inn
-//   let oppOps = yearStats.stat.ops
-
-// const table = document.createElement("table");
-// table.classList.add("stats");
-// const markupstats = `
-// <br>
-//       <th>Name</th>
-//       <th>Innings Pitched</th>
-//       <th>Win - Loss</th>
-//       <th>Saves</th>
-//       <th>Earned Run Average</th>
-//       <th>WHIP</th>
-//       <th>Strikeouts</th>
-//       <th>Strikeouts Per 9</th>
-//       <th>Opponent OPS</th>
-//     <tr>
-//       <td>${name}</td>
-//       <td>${inningsPitched}</td>
-//       <td>${wins} - ${losses}</td>
-//       <td>${saves}</td>
-//       <td>${era}</td>
-//       <td>${whip}</td>
-//       <td>${strikeouts}</td>
-//       <td>${strikeoutsPer9}</td>
-//       <td>${oppOps}</td>
-//     </tr>
-// <br>
-// `;
-// table.innerHTML = markupstats;
-// statssection.appendChild(table);
-// } else {
-//   // Player stats for non-pitchers
-//   // Breaks players information into individual variables
-//   let hits =  yearStats.stat.hits
-//   let avg = yearStats.stat.avg
-//   let obp = yearStats.stat.obp
-//   let slg = yearStats.stat.slg
-//   let rbis = yearStats.stat.rbi
-//   let hrs = yearStats.stat.homeRuns
-//   let ops = yearStats.stat.ops
-// // Fills out table with player's stats
-// const table = document.createElement("table");
-// table.classList.add("stats");
-// const markupstats = `
-// <br>
-//       <th>Name</th>
-//       <th>Hits</th>
-//       <th>Home Runs</th>
-//       <th>RBIs</th>
-//       <th>Batting Average</th>
-//       <th>On Base Percentage</th>
-//       <th>Slugging Percentage</th>
-//       <th>On Base + Slugging</th>
-//     <tr>
-//       <td>${name}</td>
-//       <td>${hits}</td>
-//       <td>${hrs}</td>
-//       <td>${rbis}</td>
-//       <td>${avg}</td>
-//       <td>${obp}</td>
-//       <td>${slg}</td>
-//       <td>${ops}</td>
-//     </tr>
-// <br>
-// `;
-// table.innerHTML = markupstats;
-// statssection.appendChild(table);
-// }
-
-// form.reset()
-
-// });
 export { randomPlayerGenerator, teamAbbreviator, fetchData };
