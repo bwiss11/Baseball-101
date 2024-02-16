@@ -2,11 +2,14 @@ import React from "react";
 import TableHeader from "../components/TableHeader";
 import TableRow from "../components/TableRow";
 import PlayerPic from "../components/PlayerPic";
+import SearchBar from "../components/SearchBar";
+import SearchResultsList from "../components/SearchResultsList";
 import AddTableRow from "../Functions/AddTableRow";
 import {
   fetchData,
   randomPlayerGenerator,
   teamAbbreviator,
+  players,
 } from "../Functions/Functions";
 import { useState, useEffect } from "react";
 
@@ -17,24 +20,33 @@ const Home = () => {
   const [isClickable, setIsClickable] = useState(false);
   const [reveal, setReveal] = useState("hidden");
   const [answer, setAnswer] = useState("");
+  const [results, setResults] = useState([]);
 
   let max = 100;
 
   const revealPlayer = () => {
     if (reveal !== "reveal") {
       setReveal("reveal");
-      console.log("res is", data[0][0].player.fullName);
-      console.log("setting answer ");
       setAnswer(data[0][0].player.fullName);
     } else setReveal("hidden");
   };
 
   const fetchInfo = () => {
-    let player = randomPlayerGenerator();
-    // player = ["Josh", "Naylor"];
+    let player = randomPlayerGenerator(players);
     let firstName = player[0];
     let lastName = player[1];
     return fetchData(firstName, lastName);
+  };
+
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    console.log("query is", query);
+    setSearchQuery(query);
+    const filteredResults = players.filter((result) =>
+      result.toLowerCase().includes(query.toLowerCase())
+    );
+    console.log("search results", filteredResults);
+    setSearchResults(filteredResults);
   };
 
   // Runs only when page is reloaded
@@ -81,6 +93,13 @@ const Home = () => {
     max = data[0].length;
     return (
       <>
+        <div>
+          <div className="search-bar-container">
+            <SearchBar setResults={setResults} />
+            <SearchResultsList results={results} />
+          </div>
+        </div>
+
         <div className="answerHolderHolder">
           <div className="answerHolder">{answer}</div>
         </div>

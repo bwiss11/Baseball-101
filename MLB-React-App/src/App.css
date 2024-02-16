@@ -179,3 +179,12 @@ button:hover {
   align-items: center;
   justify-content: center;
 }
+
+.search-bar-container {
+  margin: auto;
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+}
