@@ -104,7 +104,7 @@ const Home = () => {
           <div className="answerHolder">{answer}</div>
         </div>
         <div className="holder">
-          <ul className="ulHint">
+          <div className="divHint">
             <button
               disabled={isClickable}
               onClick={() => setCount(count + 1)}
@@ -112,16 +112,18 @@ const Home = () => {
             >
               Hint
             </button>
-          </ul>
-          <PlayerPic
-            className="playerPic"
-            props={{ url: data[1], revealState: { reveal } }}
-          />
-          <ul className="ulRevealPlayer">
+          </div>
+          <div className="playerPicHolder">
+            <PlayerPic
+              className="playerPic"
+              props={{ url: data[1], revealState: { reveal } }}
+            />
+          </div>
+          <div className="divRevealPlayer">
             <button onClick={revealPlayer} className="revealPlayerButton">
               <a>Reveal</a>
             </button>
-          </ul>
+          </div>
         </div>
         <table>
           <thead>

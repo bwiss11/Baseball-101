@@ -105,10 +105,9 @@ td {
   grid-template-columns: 1fr 1fr 1fr;
   margin: auto;
   width: 80%;
-  text-align: center;
 }
 
-.ulHint {
+.divHint {
   /* display: flex; */
   /* justify-content: space-evenly; */
   /* margin-right: 30rem; */
@@ -117,18 +116,15 @@ td {
   display: flex;
   align-items: center;
   list-style: none;
-
-  /* background-color: green;
-  list-style: none;
-  border-color: black;
-  display: grid;
-  grid-template-columns: 1fr 1fr; */
+  justify-content: center;
+  /* background-color: black; */
 }
 
-.ulRevealPlayer {
+.divRevealPlayer {
   display: flex;
   align-items: center;
   list-style: none;
+  justify-content: center;
 }
 
 button {
@@ -153,7 +149,8 @@ button {
 }
 
 .hintButton {
-  margin-left: 100px;
+  min-width: 5rem;
+  max-width: 10rem;
 }
 
 button:hover {
@@ -162,16 +159,21 @@ button:hover {
 }
 
 .revealPlayerButton {
-  margin-right: 50px;
+  min-width: 5rem;
+  max-width: 10rem;
 }
 
 .answerHolder {
   min-height: 40px;
   height: 40px;
-  color: black;
+  color: white;
   font-weight: 800;
   font-size: 36px;
-  width: 25%;
+  width: 50%;
+  margin-top: 1rem;
+  -webkit-text-stroke-width: 0.075rem;
+  -webkit-text-stroke-color: black;
+  font-family: helvetica;
 }
 
 .answerHolderHolder {
@@ -187,4 +189,9 @@ button:hover {
   flex-direction: column;
   align-items: center;
   min-width: 200px;
+  position: relative;
+}
+
+.playerPicHolder {
+  justify-content: center;
 }

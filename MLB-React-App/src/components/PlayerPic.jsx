@@ -1,8 +1,13 @@
 import React from "react";
+import "./PlayerPic.css";
 
 const PlayerPic = (props) => {
   return (
-    <img className={props.props.revealState.reveal} src={props.props.url}></img>
+    <img
+      id="hi"
+      className={props.props.revealState.reveal}
+      src={props.props.url}
+    ></img>
   );
 };
 
