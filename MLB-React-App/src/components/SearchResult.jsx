@@ -1,11 +1,17 @@
 import React from "react";
-import "./SearchResult.css";
+import "../css/SearchResult.css";
 
-const SearchResult = ({ result }) => {
+const SearchResult = ({ result, setResults, setInput }) => {
   return (
     <div
       className="search-result"
-      onClick={(e) => alert(`You selected ${result}!`)}
+      onClick={(e) => {
+        alert(`You selected ${result}!`);
+        setResults([]);
+        // setClear(true);
+        // console.log("setting clear to true");
+        setInput("");
+      }}
     >
       {result}
     </div>

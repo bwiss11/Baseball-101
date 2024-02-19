@@ -7,12 +7,10 @@ function TableHeader() {
       <th>Year</th>
       <th>Team</th>
       <th>Hits</th>
-      <th>Home Runs</th>
+      <th>HRs</th>
       <th>RBIs</th>
-      <th>Average</th>
-      <th>On Base Percentage</th>
-      <th>Slugging Percentage</th>
-      <th>On Base + Slugging</th>
+      <th>AVG / OBP / SLG</th>
+      <th>OPS</th>
     </tr>
   );
   //   console.log("logging in tableheader");

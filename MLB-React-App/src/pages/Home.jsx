@@ -21,6 +21,8 @@ const Home = () => {
   const [reveal, setReveal] = useState("hidden");
   const [answer, setAnswer] = useState("");
   const [results, setResults] = useState([]);
+  const [input, setInput] = useState("");
+  const [clear, setClear] = useState(false);
 
   let max = 100;
 
@@ -40,12 +42,10 @@ const Home = () => {
 
   const handleSearch = (e) => {
     const query = e.target.value;
-    console.log("query is", query);
     setSearchQuery(query);
     const filteredResults = players.filter((result) =>
       result.toLowerCase().includes(query.toLowerCase())
     );
-    console.log("search results", filteredResults);
     setSearchResults(filteredResults);
   };
 
@@ -55,6 +55,10 @@ const Home = () => {
       setData(res);
     });
   }, []);
+
+  useEffect(() => {
+    // console.log("setting input to", input);
+  }, [input]);
 
   // runs when count state variable changes
   useEffect(() => {
@@ -95,8 +99,16 @@ const Home = () => {
       <>
         <div>
           <div className="search-bar-container">
-            <SearchBar setResults={setResults} />
-            <SearchResultsList results={results} />
+            <SearchBar
+              setResults={setResults}
+              setInput={setInput}
+              input={input}
+            />
+            <SearchResultsList
+              results={results}
+              setResults={setResults}
+              setInput={setInput}
+            />
           </div>
         </div>
 
@@ -137,9 +149,9 @@ const Home = () => {
                 <td>{row.hits}</td>
                 <td>{row.hrs}</td>
                 <td>{row.rbis}</td>
-                <td>{row.avg}</td>
-                <td>{row.obp}</td>
-                <td>{row.slg}</td>
+                <td>
+                  {row.avg} / {row.obp} / {row.slg}
+                </td>
                 <td>{row.ops}</td>
               </tr>
             ))}

@@ -1,12 +1,19 @@
 import React from "react";
-import "./SearchResultsList.css";
+import "../css/SearchResultsList.css";
 import SearchResult from "./SearchResult";
 
-const SearchResultsList = ({ results }) => {
+const SearchResultsList = ({ results, setResults, setInput }) => {
   return (
     <div className="results-list">
       {results.map((result, id) => {
-        return <SearchResult key={id} result={result} />;
+        return (
+          <SearchResult
+            key={id}
+            result={result}
+            setResults={setResults}
+            setInput={setInput}
+          />
+        );
       })}
     </div>
   );

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // Converts full team name to abbreviation
 function teamAbbreviator(fullName) {
   const teamMap = new Map([
@@ -336,5 +338,9 @@ async function fetchData(firstName, lastName) {
 
   return [playerStats.stats[0].splits, headshot];
 }
+
+// function handleInput(value, setInput) {
+//   setInput(value);
+// }
 
 export { randomPlayerGenerator, teamAbbreviator, fetchData, players };
