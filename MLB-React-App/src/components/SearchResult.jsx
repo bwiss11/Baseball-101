@@ -1,15 +1,13 @@
 import React from "react";
 import "../css/SearchResult.css";
 
-const SearchResult = ({ result, setResults, setInput }) => {
+const SearchResult = ({ result, setResults, setInput, setGuess }) => {
   return (
     <div
       className="search-result"
       onClick={(e) => {
-        alert(`You selected ${result}!`);
         setResults([]);
-        // setClear(true);
-        // console.log("setting clear to true");
+        setGuess(result);
         setInput("");
       }}
     >

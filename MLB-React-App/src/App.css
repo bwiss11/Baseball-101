@@ -183,12 +183,6 @@ button:hover {
   font-family: helvetica;
 }
 
-.answerHolderHolder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .search-bar-container {
   margin: auto;
   width: 25%;
@@ -201,4 +195,12 @@ button:hover {
 
 .playerPicHolder {
   justify-content: center;
+}
+
+.answerReveal {
+  opacity: 1;
+}
+
+.answerHidden {
+  opacity: 0;
 }

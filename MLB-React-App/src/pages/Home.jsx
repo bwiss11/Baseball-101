@@ -22,43 +22,42 @@ const Home = () => {
   const [answer, setAnswer] = useState("");
   const [results, setResults] = useState([]);
   const [input, setInput] = useState("");
-  const [clear, setClear] = useState(false);
+  const [guess, setGuess] = useState("blank");
+  const [answerReveal, setAnswerReveal] = useState("answerHidden");
 
   let max = 100;
 
   const revealPlayer = () => {
     if (reveal !== "reveal") {
       setReveal("reveal");
-      setAnswer(data[0][0].player.fullName);
+      setAnswerReveal("answerReveal");
     } else setReveal("hidden");
   };
 
   const fetchInfo = () => {
+    console.log("fetching data");
     let player = randomPlayerGenerator(players);
     let firstName = player[0];
     let lastName = player[1];
     return fetchData(firstName, lastName);
   };
 
-  const handleSearch = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-    const filteredResults = players.filter((result) =>
-      result.toLowerCase().includes(query.toLowerCase())
-    );
-    setSearchResults(filteredResults);
-  };
-
   // Runs only when page is reloaded
   useEffect(() => {
     fetchInfo().then((res) => {
       setData(res);
+      setAnswer(res[0][0].player.fullName);
     });
   }, []);
 
   useEffect(() => {
-    // console.log("setting input to", input);
-  }, [input]);
+    if (
+      guess.replace("í", "i").replace("é", "e").replace("á", "a") ==
+      answer.replace("í", "i").replace("é", "e").replace("á", "a")
+    ) {
+      revealPlayer();
+    }
+  }, [guess]);
 
   // runs when count state variable changes
   useEffect(() => {
@@ -108,12 +107,13 @@ const Home = () => {
               results={results}
               setResults={setResults}
               setInput={setInput}
+              setGuess={setGuess}
             />
           </div>
         </div>
 
-        <div className="answerHolderHolder">
-          <div className="answerHolder">{answer}</div>
+        <div className="answerHolder">
+          <div className={answerReveal}>{answer}</div>
         </div>
         <div className="holder">
           <div className="divHint">
