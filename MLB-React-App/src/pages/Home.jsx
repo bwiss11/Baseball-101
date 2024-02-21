@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import TableHeader from "../components/TableHeader";
 import TableRow from "../components/TableRow";
 import PlayerPic from "../components/PlayerPic";
@@ -24,8 +24,16 @@ const Home = () => {
   const [input, setInput] = useState("");
   const [guess, setGuess] = useState("blank");
   const [answerReveal, setAnswerReveal] = useState("answerHidden");
+  const [score, setScore] = useState(101);
+  const [loading, setLoading] = useState(true);
 
   let max = 100;
+
+  useEffect(() => {
+    const removeLoader = () => setLoading(false);
+    window.addEventListener("load", removeLoader);
+    return window.removeEventListener("load", removeLoader);
+  }, []);
 
   const revealPlayer = () => {
     if (reveal !== "reveal") {
@@ -56,6 +64,9 @@ const Home = () => {
       answer.replace("í", "i").replace("é", "e").replace("á", "a")
     ) {
       revealPlayer();
+    } else if (guess != "blank") {
+      console.log("guess is ", guess);
+      setScore(score - 15);
     }
   }, [guess]);
 
@@ -90,10 +101,15 @@ const Home = () => {
     }
   }, [count]);
 
+  useEffect(() => {
+    console.log("Loading?", loading);
+  }, [loading]);
+
   if (data) {
     console.log("data", data);
 
     max = data[0].length;
+
     return (
       <>
         <div>
@@ -119,17 +135,26 @@ const Home = () => {
           <div className="divHint">
             <button
               disabled={isClickable}
-              onClick={() => setCount(count + 1)}
+              onClick={() => {
+                setCount(count + 1);
+                if (count == 0) {
+                  setScore(score - 1);
+                } else {
+                  setScore(score - 5);
+                }
+              }}
               className="hintButton"
             >
               Hint
             </button>
           </div>
           <div className="playerPicHolder">
-            <PlayerPic
-              className="playerPic"
-              props={{ url: data[1], revealState: { reveal } }}
-            />
+            {loading && (
+              <PlayerPic
+                className="playerPic"
+                props={{ url: data[1], revealState: { reveal } }}
+              />
+            )}
           </div>
           <div className="divRevealPlayer">
             <button onClick={revealPlayer} className="revealPlayerButton">
@@ -157,6 +182,7 @@ const Home = () => {
             ))}
           </tbody>
         </table>
+        <div className="score">{score}</div>
       </>
     );
   }

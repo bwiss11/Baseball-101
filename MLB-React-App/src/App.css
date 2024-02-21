@@ -204,3 +204,7 @@ button:hover {
 .answerHidden {
   opacity: 0;
 }
+
+.score {
+  font-size: 6rem;
+}
