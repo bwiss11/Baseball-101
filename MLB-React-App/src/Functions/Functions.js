@@ -42,7 +42,8 @@ function teamAbbreviator(fullName) {
     return "Total";
   }
 }
-const players = [
+
+const hitters = [
   "Ronald Acuna Jr.",
   "Mookie Betts",
   "Freddie Freeman",
@@ -249,9 +250,170 @@ const players = [
   "Francisco Cervelli",
 ];
 
+const pitchers = [
+  "Gerrit Cole",
+  "Blake Snell",
+  "Logan Webb",
+  "Sonny Gray",
+  "Kyle Bradish",
+  "Kodai Senga",
+  "Zac Gallen",
+  "Zack Wheeler",
+  "Jordan Montgomery",
+  "Jesus Luzardo",
+  "Shohei Ohtani",
+  "George Kirby",
+  "Merrill Kelly",
+  "Braxton Garrett",
+  "Justin Steele",
+  "Clayton Kershaw",
+  "Tanner Scott",
+  "Corbin Burnes",
+  "Tanner Bibee",
+  "Zach Eflin",
+  "Justin Verlander",
+  "Eduardo Rodriguez",
+  "Kevin Gausman",
+  "Sandy Alcantara",
+  "Spencer Strider",
+  "Luis Castillo",
+  "Pablo Lopez",
+  "Mike Clevinger",
+  "Michael King",
+  "Max Scherzer",
+  "Chris Martin",
+  "Josiah Gray",
+  "Charlie Morton",
+  "Dylan Cease",
+  "Aaron Nola",
+  "Alek Manoah",
+  "Max Fried",
+  "Carlos Rodon",
+  "Martin Perez",
+  "Julio Urias",
+  "Tony Gonsolin",
+  "Yu Darvish",
+  "Brady Singer",
+  "Tyler Anderson",
+  "Nestor Cortes",
+  "Triston McKenzie",
+  "Shane McClanahan",
+  "Daniel Bard",
+  "Cristian Javier",
+  "Framber Valdez",
+  "Jeffrey Springs",
+  "Kyle Wright",
+  "Shane Bieber",
+  "Walker Buehler",
+  "Robbie Ray",
+  "Wade Miley",
+  "Gerrit Cole",
+  "Brandon Woodruff",
+  "Ranger Suarez",
+  "Lance Lynn",
+  "Tyler Mahle",
+  "Nathan Eovaldi",
+  "Jacob deGrom",
+  "Lucas Giolito",
+  "Anthony DeSclafani",
+  "Chris Bassitt",
+  "Freddy Peralta",
+  "John Means",
+  "Cal Quantrill",
+  "Frankie Montas",
+  "Kyle Gibson",
+  "Hyun Jin Ryu",
+  "Antonio Senzatela",
+  "Trevor Bauer",
+  "Dinelson Lamet",
+  "Kyle Freeland",
+  "Zach Plesac",
+  "Dallas Keuchel",
+  "Kyle Hendricks",
+  "Dylan Bundy",
+  "Patrick Corbin",
+  "German Marquez",
+  "Brad Keller",
+  "Zach Davies",
+  "Carlos Carrasco",
+  "Kenta Maeda",
+  "Mike Minor",
+  "Stephen Strasburg",
+  "Jack Flaherty",
+  "Michael Soroka",
+  "Zack Greinke",
+  "Jon Gray",
+  "Marcus Stroman",
+  "Anibal Sanchez",
+  "Jake Odorizzi",
+  "Matthew Boyd",
+  "Liam Hendriks",
+  "Chris Sale",
+  "Corey Kluber",
+  "Luis Severino",
+  "Jameson Taillon",
+  "David Price",
+  "Blake Treinen",
+  "Miles Mikolas",
+  "Noah Syndergaard",
+  "Jose Berrios",
+  "Mike Foltynewicz",
+  "Trevor Williams",
+  "Cole Hamels",
+  "Mike Fiers",
+  "Gio Gonzalez",
+  "Ervin Santana",
+  "Andrew Cashner",
+  "Zack Godley",
+  "Chase Anderson",
+  "Drew Pomeranz",
+  "James Paxton",
+  "Jason Vargas",
+  "Archie Bradley",
+  "Corey Knebel",
+  "Craig Kimbrel",
+  "Michael Fulmer",
+  "J.A. Happ",
+  "Alex Wood",
+  "Jimmy Nelson",
+  "Johnny Cueto",
+  "Tanner Roark",
+  "Masahiro Tanaka",
+  "Carlos Martinez",
+  "Jon Lester",
+  "Jose Quintana",
+  "Rick Porcello",
+  "Madison Bumgarner",
+  "Julio Teheran",
+  "Aaron Sanchez",
+  "Zack Britton",
+  "Dan Straily",
+  "Jose Fernandez",
+  "Danny Duffy",
+  "Rich Hill",
+  "Chris Tillman",
+  "Ian Kennedy",
+  "Jake Arrieta",
+  "John Lackey",
+  "Felix Hernandez",
+  "Matt Harvey",
+  "Chris Archer",
+  "Yovani Gallardo",
+  "Jaime Garcia",
+  "Wei-Yin Chen",
+  "Dellin Betances",
+  "Shelby Miller",
+  "Marco Estrada",
+  "Wade Davis",
+  "Jordan Zimmermann",
+];
+
+const players = hitters.concat(pitchers);
+
 function randomPlayerGenerator(players) {
   let randomPlayer =
     players[Math.floor(Math.floor(Math.random() * players.length))];
+  console.log("random player is", randomPlayer);
   return randomPlayer.split(" ");
 }
 
@@ -365,16 +527,6 @@ async function fetchData(firstName, lastName) {
     .replace("é", "e")
     .replace("á", "a");
 
-  // async function getHeadshotOld() {
-  //   for (let i = 0; i < teamRoster.team.athletes.length; i++) {
-  //     if (teamRoster.team.athletes[i].fullName == espnInputPlayer) {
-  //       playerPic = teamRoster.team.athletes[i].headshot.href;
-  //       break;
-  //     }
-  //   }
-  //   return playerPic;
-  // }
-
   // Goes through list of team's players and finds the headshot for the player whose name matches the input, assigns the headshot to be dynamically displayed on the Results page
   async function getHeadshot() {
     let playerPic = "";
@@ -402,7 +554,11 @@ async function fetchData(firstName, lastName) {
 
   let headshot = await getHeadshot();
 
-  return [playerStats.stats[0].splits, headshot];
+  return [
+    playerStats.stats[0].splits,
+    headshot,
+    playerStats.stats[0].group.displayName,
+  ];
 }
 
 // function handleInput(value, setInput) {
