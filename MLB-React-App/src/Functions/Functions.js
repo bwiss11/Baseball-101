@@ -1,4 +1,7 @@
 import { useState } from "react";
+import MLBtoESPNID from "../MLBtoESPNID.json";
+
+console.log(" dict", MLBtoESPNID);
 
 // Converts full team name to abbreviation
 function teamAbbreviator(fullName) {
@@ -419,140 +422,59 @@ function randomPlayerGenerator(players) {
 
 // Gets the player's information and year, returns all players from that year
 async function fetchData(firstName, lastName) {
-  const inputFirstName = firstName;
-  const inputLastName = lastName;
-  const searchYear = 2022; //document.getElementById('year-dropdown').value;
-  async function getPlayers(year) {
-    let response = await fetch(
-      "https://statsapi.mlb.com/api/v1/sports/1/players?season=" + year
+  async function getPlayer() {
+    let response2 = await fetch(
+      "https://statsapi.mlb.com/api/v1/people/search?names=" + lastName
     );
-    let data = await response.json();
-    return data.people;
+    let data2 = await response2.json().then((res) => {
+      let id = "";
+      console.log("data2", res.people.length, res.people);
+      for (let i = 0; i < res.people.length; i++) {
+        if (
+          res.people[i].fullName
+            .replace("í", "i")
+            .replace("é", "e")
+            .replace("á", "a") ==
+          firstName + " " + lastName
+        ) {
+          id = res.people[i].id;
+          return id;
+          break;
+        }
+      }
+    });
+
+    // actually returning id above, this just makes it wait til data2 resolves
+    return data2;
   }
 
-  // Assigns list of all the players to a variable
-  let players = await getPlayers(searchYear);
+  let MLBId = await getPlayer();
+  let ESPNId = MLBtoESPNID[MLBId];
+  let headshot = await getHeadshot(ESPNId);
 
-  // Creates two dictionaries, one for going from player ID to their name and vice versa
-  var idToNameDict = new Object();
-  var nameToIdDict = new Object();
-
-  // First fills out dict from id:name (doing name:id first missed a few entries for some reason)
-  for (let i = 0; i < players.length; i++) {
-    idToNameDict[players[i].id] = players[i].fullName
-      .replace("í", "i")
-      .replace("é", "e")
-      .replace("á", "a");
-  }
-
-  // Fills out dictionary for going from name to player ID
-  for (const [key, value] of Object.entries(idToNameDict)) {
-    nameToIdDict[value] = key;
-  }
-
-  // Gets the player's information
-  let inputPlayer = inputFirstName + " " + inputLastName;
-  let playerId = nameToIdDict[inputPlayer];
+  // Gets a player's information from their MLB ID
   async function getPlayerInfo() {
     let response = await fetch(
       "https://statsapi.mlb.com/api/v1/people?personIds=" +
-        playerId +
+        MLBId +
         "&hydrate=stats(group=[batting],type=[yearByYear])"
     );
     let data = await response.json();
     return data.people[0];
   }
+
   let playerStats = await getPlayerInfo();
 
-  //   Gets player data to be displayed next to headshot
-  let name = playerStats.fullName;
-  let position = playerStats.primaryPosition.abbreviation;
-  let team = playerStats.stats[0].splits.slice(-1)[0].team.name;
-
-  let number = playerStats.primaryNumber;
-
-  let teamsDict = {
-    "Arizona Diamondbacks": "29",
-    "Atlanta Braves": "15",
-    "Baltimore Orioles": "1",
-    "Boston Red Sox": "2",
-    "Chicago Cubs": "16",
-    "Chicago White Sox": "4",
-    "Cincinnati Reds": "17",
-    "Cleveland Guardians": "5",
-    "Colorado Rockies": "27",
-    "Detroit Tigers": "6",
-    "Houston Astros": "18",
-    "Kansas City Royals": "7",
-    "Los Angeles Angels": "3",
-    "Los Angeles Dodgers": "19",
-    "Miami Marlins": "28",
-    "Milwaukee Brewers": "8",
-    "Minnesota Twins": "9",
-    "New York Mets": "21",
-    "New York Yankees": "10",
-    "Oakland Athletics": "11",
-    "Philadelphia Phillies": "22",
-    "Pittsburgh Pirates": "23",
-    "San Diego Padres": "25",
-    "San Francisco Giants": "26",
-    "Seattle Mariners": "12",
-    "St. Louis Cardinals": "24",
-    "Tampa Bay Rays": "30",
-    "Texas Rangers": "13",
-    "Toronto Blue Jays": "14",
-    "Washington Nationals": "20",
-  };
-
-  // Gets player's team's ESPN API number from teamsDict
-  let teamNumber = teamsDict[team];
-
-  // Retrieves the roster of the player's team from ESPN's API
-  async function getTeam() {
-    let response = await fetch(
-      "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/teams/" +
-        teamNumber +
-        "?enable=roster"
-    );
-    let data = await response.json();
-    return data;
-  }
-
-  // Assigns the player's team's roster to a variable and establishes variable to hold link to player's headshot
-  let teamRoster = await getTeam();
-  var playerPic = "";
-
-  let espnInputPlayer = inputPlayer
-    .replace("í", "i")
-    .replace("é", "e")
-    .replace("á", "a");
-
-  // Goes through list of team's players and finds the headshot for the player whose name matches the input, assigns the headshot to be dynamically displayed on the Results page
-  async function getHeadshot() {
+  // Gets a player's headshot from their ESPN ID
+  async function getHeadshot(ESPNId) {
     let playerPic = "";
-    let response = await fetch(
-      "https://sports.core.api.espn.com/v3/sports/baseball/mlb/athletes?limit=18000"
-    );
-    let data = await response.json();
 
-    for (let i = 0; i < data.count; i++) {
-      if (data.items[i].fullName == espnInputPlayer) {
-        playerId = data.items[i].id;
-        break;
-      }
-    }
-
-    if (playerId) {
-      playerPic =
-        "https://a.espncdn.com/combiner/i?img=/i/headshots/mlb/players/full/" +
-        playerId +
-        ".png&w=350&h=254";
-    }
-
+    playerPic =
+      "https://a.espncdn.com/combiner/i?img=/i/headshots/mlb/players/full/" +
+      ESPNId +
+      ".png&w=350&h=254";
     return playerPic;
   }
-
-  let headshot = await getHeadshot();
 
   return [
     playerStats.stats[0].splits,
@@ -560,9 +482,5 @@ async function fetchData(firstName, lastName) {
     playerStats.stats[0].group.displayName,
   ];
 }
-
-// function handleInput(value, setInput) {
-//   setInput(value);
-// }
 
 export { randomPlayerGenerator, teamAbbreviator, fetchData, players };
