@@ -24,6 +24,7 @@ const Home = () => {
   const [input, setInput] = useState("");
   const [guess, setGuess] = useState("blank");
   const [answerReveal, setAnswerReveal] = useState("answerHidden");
+  const [scoreFinal, setScoreFinal] = useState("scoreNotFinal");
   const [score, setScore] = useState(101);
   const [loading, setLoading] = useState(true);
   const [position, setPosition] = useState("");
@@ -37,10 +38,26 @@ const Home = () => {
   }, []);
 
   const revealPlayer = () => {
+    console.log(scoreFinal, reveal);
     if (reveal !== "reveal") {
       setReveal("reveal");
       setAnswerReveal("answerReveal");
-    } else setReveal("hidden");
+    }
+    if (scoreFinal == "scoreNotFinal") {
+      console.log("settingFinal");
+      setScoreFinal("scoreFinal");
+    }
+  };
+
+  const revealPlayerLoss = () => {
+    if (scoreFinal == "scoreNotFinal") {
+      if (reveal !== "reveal") {
+        setReveal("reveal");
+        setAnswerReveal("answerReveal");
+      }
+      setScore(0);
+      setScoreFinal("scoreZero");
+    }
   };
 
   const fetchInfo = () => {
@@ -65,11 +82,21 @@ const Home = () => {
 
   useEffect(() => {
     if (
-      guess.replace("í", "i").replace("é", "e").replace("á", "a") ==
-      answer.replace("í", "i").replace("é", "e").replace("á", "a")
+      guess
+        .replace("í", "i")
+        .replace("é", "e")
+        .replace("á", "a")
+        .replace("ó", "o") ==
+        answer
+          .replace("í", "i")
+          .replace("é", "e")
+          .replace("á", "a")
+          .replace("ó", "o") &&
+      scoreFinal == "scoreNotFinal"
     ) {
       revealPlayer();
-    } else if (guess != "blank") {
+      setScoreFinal("scoreFinal");
+    } else if (guess != "blank" && scoreFinal == "scoreNotFinal") {
       console.log("guess is ", guess);
       setScore(score - 15);
     }
@@ -153,23 +180,27 @@ const Home = () => {
               />
             </div>
           </div>
-
+          <div id="score" className={scoreFinal}>
+            {score}
+          </div>
           <div className="answerHolder">
             <div className={answerReveal}>{answer}</div>
           </div>
           <div className="holder">
-            <div className="divHint">
+            <div className="divHintReveal">
               <button
+                className="hintButton"
                 disabled={isClickable}
                 onClick={() => {
-                  setCount(count + 1);
-                  if (count == 0) {
-                    setScore(score - 1);
-                  } else {
-                    setScore(score - 5);
+                  if (scoreFinal == "scoreNotFinal" && score > 0) {
+                    setCount(count + 1);
+                    if (count == 0) {
+                      setScore(score - 1);
+                    } else {
+                      setScore(score - 5);
+                    }
                   }
                 }}
-                className="hintButton"
               >
                 Hint
               </button>
@@ -182,8 +213,8 @@ const Home = () => {
                 />
               )}
             </div>
-            <div className="divRevealPlayer">
-              <button onClick={revealPlayer} className="revealPlayerButton">
+            <div className="divHintReveal">
+              <button onClick={revealPlayerLoss} className="revealButton">
                 <a>Reveal</a>
               </button>
             </div>
@@ -208,7 +239,6 @@ const Home = () => {
               ))}
             </tbody>
           </table>
-          <div className="score">{score}</div>
         </>
       );
     } else {
@@ -229,25 +259,29 @@ const Home = () => {
               />
             </div>
           </div>
-
+          <div id="score" className={scoreFinal}>
+            {score}
+          </div>
           <div className="answerHolder">
             <div className={answerReveal}>{answer}</div>
           </div>
           <div className="holder">
-            <div className="divHint">
+            <div className="divHintReveal">
               <button
+                className="hintButton"
                 disabled={isClickable}
                 onClick={() => {
-                  setCount(count + 1);
-                  if (count == 0) {
-                    setScore(score - 1);
-                  } else {
-                    setScore(score - 5);
+                  if (scoreFinal == "scoreNotFinal" && score > 0) {
+                    setCount(count + 1);
+                    if (count == 0) {
+                      setScore(score - 1);
+                    } else {
+                      setScore(score - 5);
+                    }
                   }
                 }}
-                className="hintButton"
               >
-                Hint
+                Hide
               </button>
             </div>
             <div className="playerPicHolder">
@@ -258,8 +292,8 @@ const Home = () => {
                 />
               )}
             </div>
-            <div className="divRevealPlayer">
-              <button onClick={revealPlayer} className="revealPlayerButton">
+            <div className="divHintReveal">
+              <button onClick={revealPlayerLoss} className="revealButton">
                 <a>Reveal</a>
               </button>
             </div>
@@ -285,7 +319,6 @@ const Home = () => {
               ))}
             </tbody>
           </table>
-          <div className="score">{score}</div>
         </>
       );
     }

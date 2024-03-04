@@ -1,4 +1,5 @@
 body {
+  font-family: serif;
   margin: 0;
   min-height: 100vh;
   height: 100%;
@@ -9,32 +10,6 @@ body {
     rgb(60, 90, 190, 100),
     rgb(150, 150, 255, 100)
   );
-}
-
-.nav {
-  background-color: #333;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  /* align-items: center; */
-  gap: 2rem;
-  padding: 0 1 rem;
-  position: fixed;
-  width: 0%;
-  margin-left: 10px;
-}
-
-.nav a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.nav ul {
-  padding: 0;
-  margin: 1;
-  list-style: none;
-  display: flex;
-  gap: 1rem;
 }
 
 li {
@@ -95,12 +70,12 @@ td {
   opacity: 0.5;
 }
 
-.reveal {
-  filter: none;
+img {
+  filter: drop-shadow(0px 0px 0px 5px #fff);
 }
 
-.hidden img {
-  opacity: 1;
+.reveal {
+  filter: none;
 }
 
 .holder {
@@ -108,26 +83,21 @@ td {
   grid-template-columns: 1fr 1fr 1fr;
   margin: auto;
   width: 80%;
+  min-width: 90%;
 }
 
-.divHint {
-  /* display: flex; */
-  /* justify-content: space-evenly; */
-  /* margin-right: 30rem; */
-  /* padding: 0; */
-  /* background-color: green; */
+.divHintReveal {
   display: flex;
   align-items: center;
   list-style: none;
   justify-content: center;
-  /* background-color: black; */
 }
 
-.divRevealPlayer {
+.RevealHolder {
   display: flex;
-  align-items: center;
-  list-style: none;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 button {
@@ -136,26 +106,37 @@ button {
   height: 5%; */
   color: white;
   cursor: pointer;
-  background-color: #333;
-  border-color: green;
+  background-color: rgb(23, 52, 120);
+  border-color: black;
   border-width: 3px;
   border-style: solid;
   border-radius: 5px;
-  width: 40%;
+  width: 30%;
   height: 15%;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 20px;
   /* cursor: pointer;
   background-color: #333;
   border: solid 1px;
   border-color: white; */
 }
 
+#score {
+  margin-top: 3rem;
+}
+
 .hintButton {
   min-height: 2rem;
-  min-width: 5rem;
+  min-width: 6rem;
   max-width: 10rem;
   font-size: 1rem;
+  font-weight: 800;
+}
+
+.revealButton {
+  min-height: 2rem;
+  min-width: 6rem;
+  max-width: 10rem;
+  font-size: 1rem;
+  font-weight: 800;
 }
 
 button:hover {
@@ -205,6 +186,41 @@ button:hover {
   opacity: 0;
 }
 
-.score {
-  font-size: 6rem;
+.scoreNotFinal {
+  font-family: Helvetica;
+  font-size: 3rem;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-weight: 900;
+  color: rgb(23, 52, 220);
+  text-transform: uppercase;
+  text-shadow: -3px 3px 0px white, 3px 3px 0 white, 3px -3px 0 white,
+    -3px -3px 0 white;
+}
+
+.scoreFinal {
+  font-family: Helvetica;
+  font-size: 3rem;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-weight: 900;
+  color: rgb(59, 237, 178);
+  text-transform: uppercase;
+  text-shadow: -3px 3px 0px black, 3px 3px 0 black, 3px -3px 0 black,
+    -3px -3px 0 black;
+}
+
+.scoreZero {
+  font-family: Helvetica;
+  font-size: 3rem;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-weight: 900;
+  color: rgb(237, 77, 59);
+  text-transform: uppercase;
+  text-shadow: -3px 3px 0px black, 3px 3px 0 black, 3px -3px 0 black,
+    -3px -3px 0 black;
 }

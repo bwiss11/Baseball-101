@@ -434,7 +434,8 @@ async function fetchData(firstName, lastName) {
           res.people[i].fullName
             .replace("í", "i")
             .replace("é", "e")
-            .replace("á", "a") ==
+            .replace("á", "a")
+            .replace("ó", "o") ==
           firstName + " " + lastName
         ) {
           id = res.people[i].id;

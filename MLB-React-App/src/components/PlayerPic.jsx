@@ -3,7 +3,11 @@ import "../css/PlayerPic.css";
 
 const PlayerPic = (props) => {
   return (
-    <img className={props.props.revealState.reveal} src={props.props.url}></img>
+    <img
+      style={{ borderColor: "white", borderWidth: "2px" }}
+      className={props.props.revealState.reveal}
+      src={props.props.url}
+    ></img>
   );
 };
 
