@@ -281,7 +281,7 @@ const Home = () => {
                   }
                 }}
               >
-                Hide
+                Hint
               </button>
             </div>
             <div className="playerPicHolder">

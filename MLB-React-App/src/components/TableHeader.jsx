@@ -19,11 +19,11 @@ function TableHeader(props) {
       <tr>
         <th>Year</th>
         <th>Team</th>
-        <th>IP</th>
+        <th id="IP">IP</th>
         <th>Win - Loss</th>
         <th>ERA</th>
         <th>WHIP</th>
-        <th>K</th>
+        <th id="K">K</th>
         <th>BB</th>
       </tr>
     );
