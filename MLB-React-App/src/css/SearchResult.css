@@ -1,0 +1,11 @@
+.search-result {
+  border-color: black;
+  margin-top: 0.2rem;
+  padding: 0.3rem;
+}
+
+.search-result:hover {
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}

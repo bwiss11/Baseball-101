@@ -1,14 +1,15 @@
 import { useState } from "react";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import { Route, Routes } from "react-router-dom";
+import React, { Suspense } from "react";
 // import "./App.css";
 
 function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<About />} />
