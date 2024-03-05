@@ -32,5 +32,14 @@ The screenshots below show the following gameplay:
 
 ## Mobile/Desktop Functionality
 The app has been optimized for both mobile and desktop gameplay:
-<img src="https://github.com/bwiss11/Baseball-101/assets/79183545/ac1f7343-9c2b-49a6-a30d-24b5edbbbc4a">
-<img src="https://github.com/bwiss11/Baseball-101/assets/79183545/670db983-cba7-4b02-88c5-22bc18877adb">
+<br>
+<br>
+<img src="https://github.com/bwiss11/Baseball-101/assets/79183545/ac1f7343-9c2b-49a6-a30d-24b5edbbbc4a" width=175>
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+<img src="https://github.com/bwiss11/Baseball-101/assets/79183545/670db983-cba7-4b02-88c5-22bc18877adb" width=500>
