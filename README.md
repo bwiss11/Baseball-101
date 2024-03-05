@@ -11,7 +11,7 @@ The basic rules of the game are as follows:
 <br>&emsp;&emsp;b. Each additional press of the "Hint" button will subtract 5 points from the user's score.
 4. If at any point, the user thinks they know which player the data belongs to, they can type in the player's name in the search bar at the top.
 <br>&emsp;&emsp;a. Clicking the player's name submits the guess
-<br>&emsp;&emsp;b. If the guess is correct, the player's name and image is displayed and the score is locked in.
+<br>&emsp;&emsp;b. If the guess is correct, the player's name and image are displayed and the score is locked in.
 <br>&emsp;&emsp;c. If the guess is incorrect, nothing is revealed and 15 points are subtracted.
 5. If the user is stumped, they can click the "Reveal", and the player's name and image will be shown.
 <br>&emsp;&emsp;a. Clicking the "Reveal" button will drop the user's score to 0.
