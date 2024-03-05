@@ -3,6 +3,8 @@
 ## Introduction
 Baseball 101 provides the user with the task of guessing a player as quickly as possible as their statistics are displayed year-by-year.
 
+**The app is hosted on Netlify and can be played [at this link](https://baseball-101.netlify.app)**
+
 ## How to Play
 The basic rules of the game are as follows:
 1. The user is initially displayed with nothing but the silhouette of the player's image, and their score is set to 101.
@@ -34,7 +36,7 @@ The screenshots below show the following gameplay:
 The app has been optimized for both mobile and desktop gameplay:
 <br>
 <br>
-<img src="https://github.com/bwiss11/Baseball-101/assets/79183545/ac1f7343-9c2b-49a6-a30d-24b5edbbbc4a" width=175>
+<img src="https://github.com/bwiss11/Baseball-101/assets/79183545/ac1f7343-9c2b-49a6-a30d-24b5edbbbc4a" width=20%>
 &emsp;
 &emsp;
 &emsp;
@@ -42,4 +44,4 @@ The app has been optimized for both mobile and desktop gameplay:
 &emsp;
 &emsp;
 &emsp;
-<img src="https://github.com/bwiss11/Baseball-101/assets/79183545/670db983-cba7-4b02-88c5-22bc18877adb" width=500>
+<img src="https://github.com/bwiss11/Baseball-101/assets/79183545/670db983-cba7-4b02-88c5-22bc18877adb" width=60%>
