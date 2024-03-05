@@ -140,11 +140,11 @@ button {
 }
 
 #IP {
-  min-width: 2rem;
+  min-width: 4rem;
 }
 
 #K {
-  min-width: 2rem;
+  min-width: 3rem;
 }
 
 button:hover {
