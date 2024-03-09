@@ -424,13 +424,22 @@ function randomPlayerGenerator(players) {
     .replace("ú", "u");
 
   console.log("Player is", randomPlayer);
-  // return randomPlayer.split(" ");
   return randomPlayer;
 }
 
 // Gets the player's information and year, returns all players from that year
 async function fetchData(playerName) {
-  let lastName = playerName.split(" ")[1];
+  let suffixSet = new Set(["Jr.", "Sr.", "II", "III", "IV", "V"]);
+
+  // Sets last name, handles players with more than 2 names (Jr., II, Jung Ho Kang, etc.)
+  let lastName = "";
+  if (suffixSet.has(playerName.split(" ").slice(-1)[0])) {
+    lastName = playerName.split(" ")[1];
+  } else {
+    lastName = playerName.split(" ").slice(-1)[0];
+  }
+
+  console.log("last name is ", lastName);
   async function getPlayer() {
     let response2 = await fetch(
       "https://statsapi.mlb.com/api/v1/people/search?names=" + lastName
@@ -442,17 +451,17 @@ async function fetchData(playerName) {
         return 669257;
       }
       for (let i = 0; i < res.people.length; i++) {
-        // console.log(
-        //   res.people[i].fullName
-        //     .replace("í", "i")
-        //     .replace("í", "i")
-        //     .replace("é", "e")
-        //     .replace("é", "e")
-        //     .replace("á", "a")
-        //     .replace("ó", "o")
-        //     .replace("ú", "u")
-        //     .replace("ñ", "n")
-        // );
+        console.log(
+          res.people[i].fullName
+            .replace("í", "i")
+            .replace("í", "i")
+            .replace("é", "e")
+            .replace("é", "e")
+            .replace("á", "a")
+            .replace("ó", "o")
+            .replace("ú", "u")
+            .replace("ñ", "n")
+        );
         if (
           res.people[i].fullName
             .replace("í", "i")
