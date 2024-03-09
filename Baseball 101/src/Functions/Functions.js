@@ -418,11 +418,14 @@ function randomPlayerGenerator(players) {
   //   Math.floor(Math.floor(Math.random() * players.length))
   // ]
   //   .replace("í", "i")
+  //   .replace("í", "i")
+  //   .replace("é", "e")
   //   .replace("é", "e")
   //   .replace("á", "a")
   //   .replace("ó", "o");
-  let randomPlayer = "Avisail Garcia";
-  console.log("random player is", randomPlayer);
+
+  let randomPlayer = "Tanner Bibee";
+  console.log("Player is", randomPlayer);
   return randomPlayer.split(" ");
 }
 
@@ -436,16 +439,6 @@ async function fetchData(firstName, lastName) {
       let id = "";
       console.log("data2", res.people.length, res.people);
       for (let i = 0; i < res.people.length; i++) {
-        console.log(
-          res.people[i].fullName
-            .replace("í", "i")
-            .replace("í", "i")
-            .replace("é", "e")
-            .replace("é", "e")
-            .replace("á", "a")
-            .replace("ó", "o"),
-          firstName + " " + lastName
-        );
         if (
           res.people[i].fullName
             .replace("í", "i")
