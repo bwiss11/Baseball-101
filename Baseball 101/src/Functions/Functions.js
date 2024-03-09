@@ -421,7 +421,7 @@ function randomPlayerGenerator(players) {
   //   .replace("é", "e")
   //   .replace("á", "a")
   //   .replace("ó", "o");
-  let randomPlayer = "Andres Gimenez";
+  let randomPlayer = "Avisail Garcia";
   console.log("random player is", randomPlayer);
   return randomPlayer.split(" ");
 }
@@ -439,6 +439,7 @@ async function fetchData(firstName, lastName) {
         console.log(
           res.people[i].fullName
             .replace("í", "i")
+            .replace("í", "i")
             .replace("é", "e")
             .replace("é", "e")
             .replace("á", "a")
@@ -447,6 +448,7 @@ async function fetchData(firstName, lastName) {
         );
         if (
           res.people[i].fullName
+            .replace("í", "i")
             .replace("í", "i")
             .replace("é", "e")
             .replace("é", "e")

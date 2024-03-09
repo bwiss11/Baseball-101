@@ -84,17 +84,19 @@ const Home = () => {
   useEffect(() => {
     if (
       guess
-      .replace("í", "i")
-      .replace("é", "e")
-      .replace("é", "e")
-      .replace("á", "a")
-      .replace("ó", "o") ==
-        answer
+        .replace("í", "i")
         .replace("í", "i")
         .replace("é", "e")
         .replace("é", "e")
         .replace("á", "a")
-        .replace("ó", "o") &&
+        .replace("ó", "o") ==
+        answer
+          .replace("í", "i")
+          .replace("í", "i")
+          .replace("é", "e")
+          .replace("é", "e")
+          .replace("á", "a")
+          .replace("ó", "o") &&
       scoreFinal == "scoreNotFinal"
     ) {
       revealPlayer();
