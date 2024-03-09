@@ -414,20 +414,20 @@ const pitchers = [
 const players = hitters.concat(pitchers);
 
 function randomPlayerGenerator(players) {
-  // let randomPlayer = players[
-  //   Math.floor(Math.floor(Math.random() * players.length))
-  // ]
-  //   .replace("í", "i")
-  //   .replace("í", "i")
-  //   .replace("é", "e")
-  //   .replace("é", "e")
-  //   .replace("á", "a")
-  //   .replace("ó", "o")
-  //   .replace("ú", "u");
+  let randomPlayer = players[
+    Math.floor(Math.floor(Math.random() * players.length))
+  ]
+    .replace("í", "i")
+    .replace("í", "i")
+    .replace("é", "e")
+    .replace("é", "e")
+    .replace("á", "a")
+    .replace("ó", "o")
+    .replace("ú", "u");
 
-  let randomPlayer = "Ronald Acuna Jr.";
   console.log("Player is", randomPlayer);
   // return randomPlayer.split(" ");
+  return "Brad Keller";
   return randomPlayer;
 }
 
@@ -440,19 +440,23 @@ async function fetchData(playerName) {
     );
     let data2 = await response2.json().then((res) => {
       let id = "";
+      // Special handling for Will Smith (catcher) so that Will Smith (pitcher) is not returned
+      if (playerName == "Will Smith") {
+        return 669257;
+      }
       console.log("data2", res.people.length, res.people);
       for (let i = 0; i < res.people.length; i++) {
-        console.log(
-          res.people[i].fullName
-            .replace("í", "i")
-            .replace("í", "i")
-            .replace("é", "e")
-            .replace("é", "e")
-            .replace("á", "a")
-            .replace("ó", "o")
-            .replace("ú", "u")
-            .replace("ñ", "n")
-        );
+        // console.log(
+        //   res.people[i].fullName
+        //     .replace("í", "i")
+        //     .replace("í", "i")
+        //     .replace("é", "e")
+        //     .replace("é", "e")
+        //     .replace("á", "a")
+        //     .replace("ó", "o")
+        //     .replace("ú", "u")
+        //     .replace("ñ", "n")
+        // );
         if (
           res.people[i].fullName
             .replace("í", "i")
@@ -465,7 +469,7 @@ async function fetchData(playerName) {
             .replace("ñ", "n") == playerName
         ) {
           id = res.people[i].id;
-          console.log("returning id of ", id);
+          console.log("returning id of ", id, typeof id);
           return id;
         }
       }
