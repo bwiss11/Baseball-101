@@ -1,8 +1,6 @@
 import { useState } from "react";
 import MLBtoESPNID from "../MLBtoESPNID.json";
 
-console.log(" dict", MLBtoESPNID);
-
 // Converts full team name to abbreviation
 function teamAbbreviator(fullName) {
   const teamMap = new Map([
@@ -427,7 +425,6 @@ function randomPlayerGenerator(players) {
 
   console.log("Player is", randomPlayer);
   // return randomPlayer.split(" ");
-  return "Brad Keller";
   return randomPlayer;
 }
 
@@ -444,7 +441,6 @@ async function fetchData(playerName) {
       if (playerName == "Will Smith") {
         return 669257;
       }
-      console.log("data2", res.people.length, res.people);
       for (let i = 0; i < res.people.length; i++) {
         // console.log(
         //   res.people[i].fullName
@@ -469,7 +465,6 @@ async function fetchData(playerName) {
             .replace("ñ", "n") == playerName
         ) {
           id = res.people[i].id;
-          console.log("returning id of ", id, typeof id);
           return id;
         }
       }

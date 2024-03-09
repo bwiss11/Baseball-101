@@ -70,7 +70,6 @@ const Home = () => {
   // Runs only when page is reloaded
   useEffect(() => {
     fetchInfo().then((res) => {
-      console.log("result is", res);
       setData(res);
       setAnswer(res[0][0].player.fullName);
       if (res[2] == "pitching") {
@@ -114,7 +113,6 @@ const Home = () => {
   // runs when count state variable changes
   useEffect(() => {
     if (data) {
-      console.log("data", data);
       let yearTeam = "";
       if (!data[0][count - 1].team) {
         yearTeam = "Total";
