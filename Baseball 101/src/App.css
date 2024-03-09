@@ -34,7 +34,7 @@ th {
   padding: 0.5vw 1vw 0.5vw 1vw;
   height: 1.5rem;
   text-align: center;
-  font-size: 1.7vmax;
+  font-size: 1.75vmax;
 }
 
 tr {
@@ -139,7 +139,7 @@ button {
 }
 
 #IP {
-  min-width: 3.5rem;
+  min-width: 3.25rem;
 }
 
 #K {
