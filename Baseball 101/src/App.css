@@ -44,7 +44,7 @@ tr {
   border-left: 1px solid;
   /* border-color: black; */
   text-align: center;
-  font-size: 1.8vmax;
+  font-size: 1.5vmax;
 }
 
 table {
@@ -139,19 +139,19 @@ button {
 }
 
 #IP {
-  min-width: 4rem;
+  min-width: 3.5rem;
 }
 
 #K {
-  min-width: 3rem;
+  min-width: 2.75rem;
 }
 
 #OPS {
-  min-width: 4rem;
+  min-width: 3.5rem;
 }
 
 #WL {
-  min-width: 5.25rem;
+  min-width: 4.5rem;
 }
 
 button:hover {
