@@ -20,7 +20,7 @@ function TableHeader(props) {
         <th>Year</th>
         <th>Team</th>
         <th id="IP">IP</th>
-        <th>Win - Loss</th>
+        <th id="WL">W - L</th>
         <th>ERA</th>
         <th>WHIP</th>
         <th id="K">K</th>
