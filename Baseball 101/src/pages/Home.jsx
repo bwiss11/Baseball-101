@@ -62,9 +62,9 @@ const Home = () => {
 
   const fetchInfo = () => {
     let player = randomPlayerGenerator(players);
-    let firstName = player[0];
-    let lastName = player[1];
-    return fetchData(firstName, lastName);
+    // let firstName = player[0];
+    // let lastName = player[1];
+    return fetchData(player);
   };
 
   // Runs only when page is reloaded
@@ -89,7 +89,8 @@ const Home = () => {
         .replace("é", "e")
         .replace("á", "a")
         .replace("ó", "o")
-        .replace("ú", "u") ==
+        .replace("ú", "u")
+        .replace("ñ", "n") ==
         answer
           .replace("í", "i")
           .replace("í", "i")
@@ -97,7 +98,8 @@ const Home = () => {
           .replace("é", "e")
           .replace("á", "a")
           .replace("ó", "o")
-          .replace("ú", "u") &&
+          .replace("ú", "u")
+          .replace("ñ", "n") &&
       scoreFinal == "scoreNotFinal"
     ) {
       revealPlayer();

@@ -414,24 +414,26 @@ const pitchers = [
 const players = hitters.concat(pitchers);
 
 function randomPlayerGenerator(players) {
-  let randomPlayer = players[
-    Math.floor(Math.floor(Math.random() * players.length))
-  ]
-    .replace("í", "i")
-    .replace("í", "i")
-    .replace("é", "e")
-    .replace("é", "e")
-    .replace("á", "a")
-    .replace("ó", "o")
-    .replace("ú", "u");
+  // let randomPlayer = players[
+  //   Math.floor(Math.floor(Math.random() * players.length))
+  // ]
+  //   .replace("í", "i")
+  //   .replace("í", "i")
+  //   .replace("é", "e")
+  //   .replace("é", "e")
+  //   .replace("á", "a")
+  //   .replace("ó", "o")
+  //   .replace("ú", "u");
 
-  // let randomPlayer = "Odubel Herrera";
+  let randomPlayer = "Ronald Acuna Jr.";
   console.log("Player is", randomPlayer);
-  return randomPlayer.split(" ");
+  // return randomPlayer.split(" ");
+  return randomPlayer;
 }
 
 // Gets the player's information and year, returns all players from that year
-async function fetchData(firstName, lastName) {
+async function fetchData(playerName) {
+  let lastName = playerName.split(" ")[1];
   async function getPlayer() {
     let response2 = await fetch(
       "https://statsapi.mlb.com/api/v1/people/search?names=" + lastName
@@ -449,6 +451,7 @@ async function fetchData(firstName, lastName) {
             .replace("á", "a")
             .replace("ó", "o")
             .replace("ú", "u")
+            .replace("ñ", "n")
         );
         if (
           res.people[i].fullName
@@ -458,10 +461,11 @@ async function fetchData(firstName, lastName) {
             .replace("é", "e")
             .replace("á", "a")
             .replace("ó", "o")
-            .replace("ú", "u") ==
-          firstName + " " + lastName
+            .replace("ú", "u")
+            .replace("ñ", "n") == playerName
         ) {
           id = res.people[i].id;
+          console.log("returning id of ", id);
           return id;
         }
       }
