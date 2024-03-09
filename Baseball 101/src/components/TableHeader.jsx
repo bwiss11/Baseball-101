@@ -11,7 +11,7 @@ function TableHeader(props) {
         <th>HRs</th>
         <th>RBIs</th>
         <th>AVG / OBP / SLG</th>
-        <th>OPS</th>
+        <th id="OPS">OPS</th>
       </tr>
     );
   } else {

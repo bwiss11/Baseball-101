@@ -147,6 +147,14 @@ button {
   min-width: 3rem;
 }
 
+#OPS {
+  min-width: 4rem;
+}
+
+#WL {
+  min-width: 5.25rem;
+}
+
 button:hover {
   color: black;
   background-color: rgb(59, 237, 178);

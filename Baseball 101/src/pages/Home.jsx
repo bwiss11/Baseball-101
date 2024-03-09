@@ -64,7 +64,6 @@ const Home = () => {
     let player = randomPlayerGenerator(players);
     let firstName = player[0];
     let lastName = player[1];
-    console.log("fetching", firstName, lastName);
     return fetchData(firstName, lastName);
   };
 
@@ -89,14 +88,16 @@ const Home = () => {
         .replace("é", "e")
         .replace("é", "e")
         .replace("á", "a")
-        .replace("ó", "o") ==
+        .replace("ó", "o")
+        .replace("ú", "u") ==
         answer
           .replace("í", "i")
           .replace("í", "i")
           .replace("é", "e")
           .replace("é", "e")
           .replace("á", "a")
-          .replace("ó", "o") &&
+          .replace("ó", "o")
+          .replace("ú", "u") &&
       scoreFinal == "scoreNotFinal"
     ) {
       revealPlayer();
