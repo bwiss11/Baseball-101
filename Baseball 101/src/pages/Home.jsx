@@ -64,6 +64,7 @@ const Home = () => {
     let player = randomPlayerGenerator(players);
     let firstName = player[0];
     let lastName = player[1];
+    console.log("fetching", firstName, lastName);
     return fetchData(firstName, lastName);
   };
 
@@ -83,15 +84,17 @@ const Home = () => {
   useEffect(() => {
     if (
       guess
+      .replace("í", "i")
+      .replace("é", "e")
+      .replace("é", "e")
+      .replace("á", "a")
+      .replace("ó", "o") ==
+        answer
         .replace("í", "i")
         .replace("é", "e")
+        .replace("é", "e")
         .replace("á", "a")
-        .replace("ó", "o") ==
-        answer
-          .replace("í", "i")
-          .replace("é", "e")
-          .replace("á", "a")
-          .replace("ó", "o") &&
+        .replace("ó", "o") &&
       scoreFinal == "scoreNotFinal"
     ) {
       revealPlayer();
