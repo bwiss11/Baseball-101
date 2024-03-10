@@ -9,6 +9,8 @@ const DIRECTION_STYLES = {
   backgroundColor: "white",
   padding: "50px",
   zIndex: 1000,
+  width: "60%",
+  height: "50%"
 };
 
 const OVERLAY_STYLES = {
@@ -27,7 +29,9 @@ const Directions = ({ open, children, onClose }) => {
     <>
       <div style={OVERLAY_STYLES}></div>
       <div style={DIRECTION_STYLES}>
-        <button onClick={onClose}>Close Directions</button>
+        <div id="closeDirections" onClick={onClose}>
+          X
+        </div>
         Here are your directions
       </div>
     </>,
