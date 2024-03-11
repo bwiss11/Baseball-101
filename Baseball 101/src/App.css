@@ -138,6 +138,11 @@ button {
   font-weight: 800;
 }
 
+.revealButton:hover {
+  color: white;
+  background-color: rgb(195, 69, 69);
+}
+
 #IP {
   min-width: 3.25rem;
 }
@@ -260,8 +265,10 @@ button:hover {
 }
 
 #directionsButton:hover {
-  color: black;
-  background-color: rgb(59, 237, 178);
+  color: white;
+  background-color: black;
+  border-style: 1px solid;
+  border-color: white;
   cursor: pointer;
 }
 
@@ -314,5 +321,5 @@ button:hover {
 
 .oneTabDirection {
   display: inline-block;
-  margin-left: 4em;
+  margin-left: 2.5em;
 }
