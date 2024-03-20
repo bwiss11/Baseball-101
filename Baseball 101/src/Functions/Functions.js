@@ -8,7 +8,7 @@ function teamAbbreviator(fullName) {
     ["Boston Red Sox", "BOS"],
     ["Tampa Bay Rays", "TB"],
     ["Tampa Bay Devil Rays", "TB"],
-    [("Baltimore Orioles", "BAL")],
+    ["Baltimore Orioles", "BAL"],
     ["Toronto Blue Jays", "TOR"],
     ["Kansas City Royals", "KC"],
     ["Chicago White Sox", "CWS"],
