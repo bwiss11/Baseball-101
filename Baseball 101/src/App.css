@@ -10,6 +10,11 @@ body {
     rgb(60, 90, 190, 100),
     rgb(150, 150, 255, 100)
   );
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(120, 150, 252, 100),
+    rgb(2, 190, 252, 100)
+  );
 }
 
 li {
@@ -106,6 +111,7 @@ button {
   color: white;
   cursor: pointer;
   background-color: rgb(33, 23, 220);
+  background-color: rgb(31, 90, 191);
   border-color: black;
   border-width: 3px;
   border-style: solid;
@@ -161,7 +167,7 @@ button {
 
 button:hover {
   color: black;
-  background-color: rgb(59, 237, 178);
+  background-color: white;
 }
 
 .revealPlayerButton {
@@ -180,7 +186,7 @@ button:hover {
   width: 100%;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
-  -webkit-text-stroke: 1px;
+  -webkit-text-stroke: 0.09rem;
   -webkit-text-stroke-color: black;
   font-family: helvetica;
 }
@@ -216,8 +222,10 @@ button:hover {
   font-weight: 900;
   letter-spacing: -0.1rem;
   color: rgb(33, 23, 220);
+  color: white;
   -webkit-text-stroke: 2.5px;
   -webkit-text-stroke-color: rgb(59, 237, 178);
+  -webkit-text-stroke-color: black;
 }
 
 .scoreFinal {

@@ -23,7 +23,7 @@ function teamAbbreviator(fullName) {
     ["Atlanta Braves", "ATL"],
     ["Philadelphia Phillies", "PHI"],
     ["Miami Marlins", "MIA"],
-    ["Florida Marlins", "MIA"],
+    ["Florida Marlins", "FLA"],
     ["New York Mets", "NYM"],
     ["Washington Nationals", "WAS"],
     ["Milwaukee Brewers", "MIL"],
