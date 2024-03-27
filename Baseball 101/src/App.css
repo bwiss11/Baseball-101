@@ -17,6 +17,19 @@ body {
   );
 }
 
+h2 {
+  margin-top: 0;
+  justify-content: center;
+  color: black;
+  background-color: white;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.directionsContainer {
+  padding-bottom: 1rem;
+}
+
 li {
   background-color: #333;
   border: solid 1px;
@@ -110,10 +123,9 @@ button {
   height: 5%; */
   color: white;
   cursor: pointer;
-  background-color: rgb(33, 23, 220);
   background-color: rgb(31, 90, 191);
-  border-color: black;
-  border-width: 3px;
+  border-color: white;
+  border-width: 0.1rem;
   border-style: solid;
   border-radius: 5px;
   width: 30%;
@@ -168,6 +180,7 @@ button {
 button:hover {
   color: black;
   background-color: white;
+  border-color: black;
 }
 
 .revealPlayerButton {
@@ -286,7 +299,7 @@ button:hover {
   right: 1rem;
   padding: 0.25rem;
   background-color: white;
-  color: rgb(33, 23, 220);
+  color: black;
   border-color: black;
   border-width: 2px;
   border-style: solid;
@@ -330,4 +343,8 @@ button:hover {
 .oneTabDirection {
   display: inline-block;
   margin-left: 2.5em;
+}
+
+text {
+  margin-left: 1rem;
 }
