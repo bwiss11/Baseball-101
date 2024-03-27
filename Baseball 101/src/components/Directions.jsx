@@ -71,19 +71,19 @@ const Directions = ({ open, children, onClose }) => {
           <br></br>
           <br></br>
           <text>
-            2. The user can hit the "Hint" button at any time to be displayed
+            2. The user can hit the 'Hint' button at any time to be displayed
             with the next year of the player's statistics.
           </text>
           <br></br>
           <br></br>
           <text className="oneTabDirection">
-            a. The first press of the "Hint" button subtracts 1 point from the
+            a. The first press of the 'Hint' button subtracts 1 point from the
             user's score.
           </text>
           <br></br>
           <br></br>
           <text className="oneTabDirection">
-            b. Each additional press of the "Hint" button will subtract 5 points
+            b. Each additional press of the 'Hint' button will subtract 5 points
             from the user's score.
           </text>
           <br></br>
@@ -96,13 +96,13 @@ const Directions = ({ open, children, onClose }) => {
           <br></br>
           <br></br>
           <text>
-            4. If the user is stumped, they can click the "Reveal", and the
+            4. If the user is stumped, they can click the 'Reveal', and the
             player's name and image will be shown.
           </text>
           <br></br>
           <br></br>
           <text className="oneTabDirection">
-            a. Clicking the "Reveal" button will drop the user's score to 0.
+            a. Clicking the 'Reveal' button will drop the user's score to 0.
           </text>
         </div>
         <br></br>
@@ -123,7 +123,7 @@ const Directions = ({ open, children, onClose }) => {
             </div>
             <br></br>
             <text>
-              2. User hits the "Hint" button and reveals the first row; 1 point
+              2. User hits the 'Hint' button and reveals the first row; 1 point
               is subtracted from the score.
             </text>
             <br></br>
