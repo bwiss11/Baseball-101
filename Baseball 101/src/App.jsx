@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import { Route, Routes } from "react-router-dom";
 import React, { Suspense } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BUTTON_WRAPPER_STYLES = {
   position: "relative",
@@ -17,11 +18,18 @@ const OTHER_CONTENT_STYLES = {
 };
 
 function App() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <div style={BUTTON_WRAPPER_STYLES}>
-        <div id="dailyButton">
+        <div
+          id="dailyButton"
+          onClick={() => {
+            console.log("freeplay clicked");
+            navigate("/About");
+          }}
+        >
           <svg
             fill="#000000"
             version="1.1"
@@ -59,7 +67,13 @@ function App() {
             </g>
           </svg>
         </div>
-        <div id="freePlayButton">
+        <div
+          id="freePlayButton"
+          onClick={() => {
+            console.log("freeplay clicked");
+            navigate("/");
+          }}
+        >
           <svg
             viewBox="0 0 24 24"
             fill="none"
