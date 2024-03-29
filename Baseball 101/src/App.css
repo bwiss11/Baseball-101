@@ -320,7 +320,6 @@ button:hover {
   height: 2rem;
   max-height: 2rem;
   border-color: black;
-  border-bottom: 3px solid;
   padding: 0.15rem;
 }
 
@@ -392,4 +391,12 @@ button:hover {
 
 text {
   margin-left: 1rem;
+}
+
+.dailyPlay {
+  border-bottom: 3px solid;
+}
+
+.freePlay {
+  border-bottom: 3px solid;
 }

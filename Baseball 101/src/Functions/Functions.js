@@ -428,6 +428,17 @@ function randomPlayerGenerator(players) {
   return randomPlayer;
 }
 
+function dailyPlayerGenerator(players) {
+  const startDate = new Date("March 29, 2024");
+  const curDate = new Date();
+  const difference = Math.floor(
+    (curDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)
+  );
+  console.log(difference);
+  let dailyPlayer = players[difference];
+  return dailyPlayer;
+}
+
 // Gets the player's information and year, returns all players from that year
 async function fetchData(playerName) {
   let suffixSet = new Set(["Jr.", "Sr.", "II", "III", "IV", "V"]);
@@ -451,17 +462,6 @@ async function fetchData(playerName) {
         return 669257;
       }
       for (let i = 0; i < res.people.length; i++) {
-        // console.log(
-        //   res.people[i].fullName
-        //     .replace("í", "i")
-        //     .replace("í", "i")
-        //     .replace("é", "e")
-        //     .replace("é", "e")
-        //     .replace("á", "a")
-        //     .replace("ó", "o")
-        //     .replace("ú", "u")
-        //     .replace("ñ", "n")
-        // );
         if (
           res.people[i].fullName
             .replace("í", "i")
@@ -518,4 +518,10 @@ async function fetchData(playerName) {
   ];
 }
 
-export { randomPlayerGenerator, teamAbbreviator, fetchData, players };
+export {
+  randomPlayerGenerator,
+  teamAbbreviator,
+  fetchData,
+  players,
+  dailyPlayerGenerator,
+};

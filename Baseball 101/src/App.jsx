@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Directions from "./components/Directions";
-import Home from "./pages/Home";
-import About from "./pages/About";
+import FreePlay from "./pages/FreePlay";
+import DailyPlay from "./pages/DailyPlay";
 import { Route, Routes } from "react-router-dom";
 import React, { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
@@ -20,14 +20,19 @@ const OTHER_CONTENT_STYLES = {
 function App() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [dailyPlay, setDailyPlay] = useState("dailyPlay");
+  const [freePlay, setFreePlay] = useState("notFreePlay");
   return (
     <>
       <div style={BUTTON_WRAPPER_STYLES}>
         <div
           id="dailyButton"
+          className={dailyPlay}
           onClick={() => {
-            console.log("freeplay clicked");
-            navigate("/About");
+            console.log("daily button clicked");
+            setDailyPlay("dailyPlay");
+            setFreePlay("notFreePlay");
+            navigate("/");
           }}
         >
           <svg
@@ -69,9 +74,12 @@ function App() {
         </div>
         <div
           id="freePlayButton"
+          className={freePlay}
           onClick={() => {
             console.log("freeplay clicked");
-            navigate("/");
+            setFreePlay("freePlay");
+            setDailyPlay("notDailyPlay");
+            navigate("/freePlay");
           }}
         >
           <svg
@@ -179,8 +187,8 @@ function App() {
         </Directions>
       </div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/About" element={<About />} />
+        <Route path="/" element={<DailyPlay />} />
+        <Route path="/FreePlay" element={<FreePlay />} />
       </Routes>
     </>
   );
