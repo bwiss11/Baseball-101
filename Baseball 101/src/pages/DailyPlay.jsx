@@ -12,7 +12,7 @@ import {
 } from "../Functions/Functions";
 import { useState, useEffect } from "react";
 
-const About = () => {
+const DailyPlay = () => {
   const [data, setData] = useState(undefined);
   const [count, setCount] = useState(0);
   const [tableData, setTableData] = useState([]);
@@ -261,4 +261,4 @@ const About = () => {
   }
 };
 
-export default About;
+export default DailyPlay;
