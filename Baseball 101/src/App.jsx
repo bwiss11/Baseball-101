@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Directions from "./components/Directions";
 import FreePlay from "./pages/FreePlay";
 import DailyPlay from "./pages/DailyPlay";
 import { Route, Routes } from "react-router-dom";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const BUTTON_WRAPPER_STYLES = {
   position: "relative",
@@ -21,6 +21,17 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [dailyPlay, setDailyPlay] = useState("dailyPlay");
   const [freePlay, setFreePlay] = useState("notFreePlay");
+
+  let location = useLocation();
+  console.log("location is", location.pathname);
+
+  useEffect(() => {
+    if (location.pathname == "/freePlay") {
+      setFreePlay("freePlay");
+      setDailyPlay("notDailyPlay");
+    }
+  }, []);
+
   return (
     <>
       <div style={BUTTON_WRAPPER_STYLES}>
