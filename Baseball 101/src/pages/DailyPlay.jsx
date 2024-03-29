@@ -6,7 +6,6 @@ import SearchBar from "../components/SearchBar";
 import SearchResultsList from "../components/SearchResultsList";
 import {
   fetchData,
-  randomPlayerGenerator,
   teamAbbreviator,
   players,
   dailyPlayerGenerator,

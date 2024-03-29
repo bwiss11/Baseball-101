@@ -60,8 +60,6 @@ const Home = () => {
 
   const fetchInfo = () => {
     let player = randomPlayerGenerator(players);
-    // let firstName = player[0];
-    // let lastName = player[1];
     return fetchData(player);
   };
 

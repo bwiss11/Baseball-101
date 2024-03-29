@@ -1,10 +1,9 @@
 import { useState } from "react";
-import Navbar from "./components/Navbar";
 import Directions from "./components/Directions";
 import FreePlay from "./pages/FreePlay";
 import DailyPlay from "./pages/DailyPlay";
 import { Route, Routes } from "react-router-dom";
-import React, { Suspense } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const BUTTON_WRAPPER_STYLES = {
@@ -188,7 +187,7 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<DailyPlay />} />
-        <Route path="/FreePlay" element={<FreePlay />} />
+        <Route path="/freePlay" element={<FreePlay />} />
       </Routes>
     </>
   );
