@@ -154,7 +154,6 @@ const hitters = [
   "Cavan Biggio",
   "Luke Voit",
   "Wil Myers",
-  "Ronald Acuna Jr.",
   "Trevor Story",
   "Nelson Cruz",
   "Donovan Solano",

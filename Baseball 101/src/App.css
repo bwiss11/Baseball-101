@@ -57,7 +57,7 @@ th {
 
 tr {
   color: white;
-  background-color: #333;
+  background-color: black;
   border: 1px solid;
   border-left: 1px solid;
   /* border-color: black; */
@@ -142,6 +142,8 @@ button {
   max-width: 10rem;
   font-size: 1rem;
   font-weight: 800;
+  border: 0.1rem solid;
+  border-color: white;
 }
 
 .revealButton {
@@ -150,6 +152,8 @@ button {
   max-width: 10rem;
   font-size: 1rem;
   font-weight: 800;
+  border: 0.1rem solid;
+  border-color: white;
 }
 
 .revealButton:hover {

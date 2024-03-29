@@ -1,10 +1,8 @@
-import React, { Suspense } from "react";
+import React from "react";
 import TableHeader from "../components/TableHeader";
-import TableRow from "../components/TableRow";
 import PlayerPic from "../components/PlayerPic";
 import SearchBar from "../components/SearchBar";
 import SearchResultsList from "../components/SearchResultsList";
-import AddTableRow from "../Functions/AddTableRow";
 import {
   fetchData,
   randomPlayerGenerator,
@@ -169,166 +167,99 @@ const Home = () => {
 
     max = data[0].length;
 
-    if (position == "hitter") {
-      return (
-        <>
-          <div>
-            <div className="search-bar-container">
-              <SearchBar
-                setResults={setResults}
-                setInput={setInput}
-                input={input}
-              />
-              <SearchResultsList
-                results={results}
-                setResults={setResults}
-                setInput={setInput}
-                setGuess={setGuess}
-              />
-            </div>
+    return (
+      <>
+        <div>
+          <div className="search-bar-container">
+            <SearchBar
+              setResults={setResults}
+              setInput={setInput}
+              input={input}
+            />
+            <SearchResultsList
+              results={results}
+              setResults={setResults}
+              setInput={setInput}
+              setGuess={setGuess}
+            />
           </div>
-          <div id="score" className={scoreFinal}>
-            {score}
-          </div>
-          <div className="answerHolder">
-            <div className={answerReveal}>{answer}</div>
-          </div>
-          <div className="holder">
-            <div className="divHintReveal">
-              <button
-                className="hintButton"
-                disabled={isClickable}
-                onClick={() => {
-                  if (scoreFinal == "scoreNotFinal" && score > 0) {
-                    setCount(count + 1);
-                    if (count == 0) {
-                      setScore(score - 1);
-                    } else {
-                      setScore(score - 5);
-                    }
+        </div>
+        <div id="score" className={scoreFinal}>
+          {score}
+        </div>
+        <div className="answerHolder">
+          <div className={answerReveal}>{answer}</div>
+        </div>
+        <div className="holder">
+          <div className="divHintReveal">
+            <button
+              className="hintButton"
+              disabled={isClickable}
+              onClick={() => {
+                if (scoreFinal == "scoreNotFinal" && score > 0) {
+                  setCount(count + 1);
+                  if (count == 0) {
+                    setScore(score - 1);
+                  } else {
+                    setScore(score - 5);
                   }
-                }}
-              >
-                Hint
-              </button>
-            </div>
-            <div className="playerPicHolder">
-              {loading && (
-                <PlayerPic
-                  className="playerPic"
-                  props={{ url: data[1], revealState: { reveal } }}
-                />
-              )}
-            </div>
-            <div className="divHintReveal">
-              <button onClick={revealPlayerLoss} className="revealButton">
-                <a>Reveal</a>
-              </button>
-            </div>
+                }
+              }}
+            >
+              Hint
+            </button>
           </div>
-          <table>
-            <thead>
-              <TableHeader position={position} />
-            </thead>
-            <tbody>
-              {tableData.map((row, index) => (
-                <tr key={index}>
-                  <td>{row.year}</td>
-                  <td>{row.team}</td>
-                  <td>{row.hits}</td>
-                  <td>{row.hrs}</td>
-                  <td>{row.rbis}</td>
-                  <td>
-                    {row.avg} / {row.obp} / {row.slg}
-                  </td>
-                  <td>{row.ops}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <div>
-            <div className="search-bar-container">
-              <SearchBar
-                setResults={setResults}
-                setInput={setInput}
-                input={input}
+          <div className="playerPicHolder">
+            {loading && (
+              <PlayerPic
+                className="playerPic"
+                props={{ url: data[1], revealState: { reveal } }}
               />
-              <SearchResultsList
-                results={results}
-                setResults={setResults}
-                setInput={setInput}
-                setGuess={setGuess}
-              />
-            </div>
+            )}
           </div>
-          <div id="score" className={scoreFinal}>
-            {score}
+          <div className="divHintReveal">
+            <button onClick={revealPlayerLoss} className="revealButton">
+              <a>Reveal</a>
+            </button>
           </div>
-          <div className="answerHolder">
-            <div className={answerReveal}>{answer}</div>
-          </div>
-          <div className="holder">
-            <div className="divHintReveal">
-              <button
-                className="hintButton"
-                disabled={isClickable}
-                onClick={() => {
-                  if (scoreFinal == "scoreNotFinal" && score > 0) {
-                    setCount(count + 1);
-                    if (count == 0) {
-                      setScore(score - 1);
-                    } else {
-                      setScore(score - 5);
-                    }
-                  }
-                }}
-              >
-                Hint
-              </button>
-            </div>
-            <div className="playerPicHolder">
-              {loading && (
-                <PlayerPic
-                  className="playerPic"
-                  props={{ url: data[1], revealState: { reveal } }}
-                />
-              )}
-            </div>
-            <div className="divHintReveal">
-              <button onClick={revealPlayerLoss} className="revealButton">
-                <a>Reveal</a>
-              </button>
-            </div>
-          </div>
-          <table>
-            <thead>
-              <TableHeader position={position} />
-            </thead>
-            <tbody>
-              {tableData.map((row, index) => (
-                <tr key={index}>
-                  <td>{row.year}</td>
-                  <td>{row.team}</td>
-                  <td>{row.inningsPitched}</td>
-                  <td>
-                    {row.wins} - {row.losses}
-                  </td>
-                  <td>{row.era}</td>
-                  <td>{row.whip}</td>
-                  <td>{row.strikeouts}</td>
-                  <td>{row.walks}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      );
-    }
+        </div>
+        <table>
+          <thead>
+            <TableHeader position={position} />
+          </thead>
+          <tbody>
+            {position == "hitter"
+              ? tableData.map((row, index) => (
+                  <tr key={index}>
+                    <td>{row.year}</td>
+                    <td>{row.team}</td>
+                    <td>{row.hits}</td>
+                    <td>{row.hrs}</td>
+                    <td>{row.rbis}</td>
+                    <td>
+                      {row.avg} / {row.obp} / {row.slg}
+                    </td>
+                    <td>{row.ops}</td>
+                  </tr>
+                ))
+              : tableData.map((row, index) => (
+                  <tr key={index}>
+                    <td>{row.year}</td>
+                    <td>{row.team}</td>
+                    <td>{row.inningsPitched}</td>
+                    <td>
+                      {row.wins} - {row.losses}
+                    </td>
+                    <td>{row.era}</td>
+                    <td>{row.whip}</td>
+                    <td>{row.strikeouts}</td>
+                    <td>{row.walks}</td>
+                  </tr>
+                ))}
+          </tbody>
+        </table>
+      </>
+    );
   }
 };
 
