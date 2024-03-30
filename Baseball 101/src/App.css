@@ -293,6 +293,7 @@ button {
   height: 2rem;
   max-height: 2rem;
   padding: 0.15rem;
+  border-radius: 0.3rem;
   transition: all 0.7s;
   transition-delay: 300ms;
 }
@@ -314,6 +315,7 @@ button {
   width: 2rem;
   height: 2rem;
   padding: 0.15rem;
+  border-radius: 0.3rem;
   transition: all 0.7s;
   transition-delay: 300ms;
 }
@@ -336,6 +338,7 @@ button {
   height: 2rem;
   max-height: 2rem;
   padding: 0.15rem;
+  border-radius: 0.3rem;
   transition: all 0.7s;
   transition-delay: 300ms;
 }
@@ -359,6 +362,7 @@ button {
   max-height: 2rem;
   border-color: black;
   padding: 0.15rem;
+  border-radius: 0.3rem;
   transition: all 0.7s;
   transition-delay: 300ms;
 }
