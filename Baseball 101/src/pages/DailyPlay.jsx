@@ -177,7 +177,7 @@ const DailyPlay = () => {
           setTableData([...tableData, newRow]);
         } else {
         }
-      } else {
+      } else if (position == "pitcher") {
         // For pitchers:
         if (count < data[0].length + 1) {
           let newRow = {
