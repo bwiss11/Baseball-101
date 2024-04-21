@@ -122,7 +122,7 @@ function App() {
             </g>
           </svg>
         </div>
-        <div id="statsButton">
+        {/* <div id="statsButton">
           <svg
             viewBox="0 -0.5 21 21"
             version="1.1"
@@ -167,7 +167,7 @@ function App() {
               </g>{" "}
             </g>
           </svg>
-        </div>
+        </div> */}
         <div id="directionsButton" onClick={() => setIsOpen(true)}>
           <svg
             viewBox="0 0 24 24"
