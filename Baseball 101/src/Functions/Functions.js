@@ -424,7 +424,6 @@ function randomPlayerGenerator(players) {
     .replace("ó", "o")
     .replace("ú", "u");
 
-  console.log("Player is", randomPlayer);
   return randomPlayer;
 }
 
@@ -434,7 +433,6 @@ function dailyPlayerGenerator(players) {
   const difference = Math.floor(
     (curDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)
   );
-  console.log(difference);
   let dailyPlayer = players[difference];
   return dailyPlayer;
 }
@@ -518,10 +516,20 @@ async function fetchData(playerName) {
   ];
 }
 
+const getFormattedDate = () => {
+  const t = new Date(Date.now());
+  const z = t.getTimezoneOffset() * 60 * 1000;
+  let tLocal = t - z;
+  tLocal = new Date(tLocal);
+  const iso = tLocal.toISOString().split("T")[0];
+  return iso;
+};
+
 export {
   randomPlayerGenerator,
   teamAbbreviator,
   fetchData,
   players,
   dailyPlayerGenerator,
+  getFormattedDate,
 };

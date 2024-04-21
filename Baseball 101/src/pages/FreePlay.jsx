@@ -36,13 +36,11 @@ const Home = () => {
   }, []);
 
   const revealPlayer = () => {
-    console.log(scoreFinal, reveal);
     if (reveal !== "reveal") {
       setReveal("reveal");
       setAnswerReveal("answerReveal");
     }
     if (scoreFinal == "scoreNotFinal") {
-      console.log("settingFinal");
       setScoreFinal("scoreFinal");
     }
   };
@@ -101,7 +99,6 @@ const Home = () => {
       revealPlayer();
       setScoreFinal("scoreFinal");
     } else if (guess != "blank" && scoreFinal == "scoreNotFinal") {
-      console.log("guess is ", guess);
       setScore(score - 15);
     }
   }, [guess]);
@@ -132,7 +129,6 @@ const Home = () => {
           };
           setTableData([...tableData, newRow]);
         } else {
-          console.log("count over length");
         }
       } else {
         // For pitchers:
@@ -150,7 +146,6 @@ const Home = () => {
           };
           setTableData([...tableData, newRow]);
         } else {
-          console.log("count over length");
         }
       }
 
@@ -161,8 +156,6 @@ const Home = () => {
   }, [count]);
 
   if (data) {
-    console.log("data", data);
-
     max = data[0].length;
 
     return (
