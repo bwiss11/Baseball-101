@@ -1,5 +1,4 @@
-# Baseball 101 | 
-[baseball101.io](htts://baseball101.io)
+# Baseball 101 | [baseball101.io](https://baseball101.io)
 
 ## Introduction
 Baseball 101 provides the user with the task of guessing a player as quickly as possible as their statistics are displayed year-by-year.
