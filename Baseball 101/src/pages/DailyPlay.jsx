@@ -38,7 +38,7 @@ const DailyPlay = () => {
     ) {
       let retrievedData = JSON.parse(localStorage.getItem("data"));
       let retrievedTableData = JSON.parse(localStorage.getItem("tableData"));
-      let retrievedScore = localStorage.getItem(curDate + "Score");
+      let retrievedScore = localStorage.getItem("Score");
       setData(retrievedData);
       setTableData(retrievedTableData);
       if (localStorage.getItem(curDate) == "scoreFinal") {
@@ -52,8 +52,8 @@ const DailyPlay = () => {
     } else if (localStorage.getItem(curDate) == "started") {
       let retrievedData = JSON.parse(localStorage.getItem("data"));
       let retrievedTableData = JSON.parse(localStorage.getItem("tableData"));
-      let retrievedScore = localStorage.getItem(curDate + "Score");
-      let retrievedCount = localStorage.getItem(curDate + "Count");
+      let retrievedScore = localStorage.getItem("Score");
+      let retrievedCount = localStorage.getItem("Count");
       setData(retrievedData);
       setTableData(retrievedTableData);
       setScore(retrievedScore);
@@ -69,7 +69,7 @@ const DailyPlay = () => {
     if (scoreFinal == "scoreFinal" || scoreFinal == "scoreZero") {
       localStorage.setItem("tableData", JSON.stringify(tableData));
       localStorage.setItem("data", JSON.stringify(data));
-      localStorage.setItem(curDate + "Score", score);
+      localStorage.setItem("Score", score);
       if (scoreFinal == "scoreFinal") {
         localStorage.setItem(curDate, "scoreFinal");
       } else {
@@ -235,13 +235,13 @@ const DailyPlay = () => {
               disabled={isClickable}
               onClick={() => {
                 if (scoreFinal == "scoreNotFinal" && score > 0) {
-                  localStorage.setItem(curDate + "Count", count + 1);
+                  localStorage.setItem("Count", count + 1);
                   setCount(count + 1);
                   if (count == 0) {
-                    localStorage.setItem(curDate + "Score", score - 1);
+                    localStorage.setItem("Score", score - 1);
                     setScore(score - 1);
                   } else {
-                    localStorage.setItem(curDate + "Score", score - 5);
+                    localStorage.setItem("Score", score - 5);
                     setScore(score - 5);
                   }
                   localStorage.setItem(curDate, "started");
