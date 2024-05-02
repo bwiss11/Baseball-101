@@ -516,8 +516,9 @@ async function fetchData(playerName) {
   ];
 }
 
-const getFormattedDate = () => {
+const getFormattedDate = (offset = 0) => {
   const t = new Date(Date.now());
+  t.setHours(t.getHours() + offset * 24);
   const z = t.getTimezoneOffset() * 60 * 1000;
   let tLocal = t - z;
   tLocal = new Date(tLocal);
