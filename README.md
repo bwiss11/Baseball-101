@@ -1,9 +1,9 @@
-# Baseball 101
+# Baseball 101 | [baseball101.io](https://baseball101.io)
 
 ## Introduction
 Baseball 101 provides the user with the task of guessing a player as quickly as possible as their statistics are displayed year-by-year.
 
-**The app is hosted on Netlify and can be played [at this link](https://baseball-101.netlify.app)**
+**The app can be accessed [at this link](https://baseball101.io)**
 
 ## How to Play
 The basic rules of the game are as follows:
