@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Directions from "./components/Directions";
 import FreePlay from "./pages/FreePlay";
 import DailyPlay from "./pages/DailyPlay";
+import Stats from "./pages/Stats";
 import { Route, Routes } from "react-router-dom";
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -122,7 +123,14 @@ function App() {
             </g>
           </svg>
         </div>
-        {/* <div id="statsButton">
+        <div
+          id="statsButton"
+          onClick={() => {
+            setDailyPlay("dailyPlay");
+            setFreePlay("notFreePlay");
+            navigate("/stats");
+          }}
+        >
           <svg
             viewBox="0 -0.5 21 21"
             version="1.1"
@@ -167,7 +175,7 @@ function App() {
               </g>{" "}
             </g>
           </svg>
-        </div> */}
+        </div>
         <div id="directionsButton" onClick={() => setIsOpen(true)}>
           <svg
             viewBox="0 0 24 24"
@@ -195,6 +203,7 @@ function App() {
       <Routes>
         <Route path="/" element={<DailyPlay />} />
         <Route path="/freePlay" element={<FreePlay />} />
+        <Route path="/stats" element={<Stats />} />
       </Routes>
     </>
   );
