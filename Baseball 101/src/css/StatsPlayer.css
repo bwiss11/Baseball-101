@@ -1,0 +1,40 @@
+.statsContainer {
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  /* border-width: 1rem;
+  border: 0.25rem solid black;
+  border-radius: 1rem; */
+  /* background-color: rgba(255, 255, 255, 0.2); */
+  /* background-image: linear-gradient(
+    to top left,
+    rgba(180, 150, 252, 0.7),
+    rgba(50, 200, 252, 0.7)
+  ); */
+}
+
+/* .playerInfoHolder {
+  font-family: helvetica;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 1.25rem;
+  width: 50%;
+  border-radius: 1rem;
+  border: 0.3rem solid black;
+  background-image: linear-gradient(
+    to top left,
+    rgba(180, 150, 252, 0.7),
+    rgba(50, 200, 252, 0.7)
+  );
+} */
+
+.statsText {
+  padding-top: 0.2rem;
+  color: black;
+  font-weight: bold;
+}
+
+.statsImage {
+  width: 150px;
+}

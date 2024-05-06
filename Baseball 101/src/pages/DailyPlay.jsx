@@ -32,6 +32,35 @@ const DailyPlay = () => {
 
   useEffect(() => {
     // localStorage.clear();
+    let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
+    console.log("last completed and current date", lastCompleted, curDate);
+    if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
+      localStorage.setItem("lastCompleted", JSON.stringify(curDate));
+      // Resets state if this is the first reload on a new day
+      console.log("resetting states");
+      setData(undefined);
+      localStorage.removeItem("data");
+      setCount(0);
+      localStorage.setItem("count", 0);
+      setTableData([]);
+      localStorage.setItem("tableData", JSON.stringify([]));
+      setIsClickable(false);
+      setReveal("hidden");
+      setAnswer("");
+      setResults([]);
+      setInput("");
+      setGuess("blank");
+      setAnswerReveal("answerHidden");
+      setScoreFinal("scoreNotFinal");
+      localStorage.setItem("curDay", "started");
+      setScore(101);
+      localStorage.setItem("score", 101);
+      setLoading(true);
+      setPosition("");
+    } else {
+      localStorage.setItem("lastCompleted", JSON.stringify(curDate));
+    }
+
     if (
       localStorage.getItem("curDay") == "scoreFinal" ||
       localStorage.getItem("curDay") == "scoreZero"
@@ -85,28 +114,35 @@ const DailyPlay = () => {
           let yesterdayDate = getFormattedDate(-1);
           // localStorage.setItem("hitStreak", 1);
           let hitStreak = JSON.parse(localStorage.getItem("hitStreak"));
-
-          if (lastHit == yesterdayDate) {
-            hitStreak++;
-            localStorage.setItem("hitStreak", hitStreak);
-            let maxHitStreak = JSON.parse(localStorage.getItem("maxHitStreak"));
-            console.log(
-              "hitstreak and maxhitstreak",
-              hitStreak,
-              maxHitStreak,
-              hitStreak > maxHitStreak
-            );
-            if (hitStreak > maxHitStreak) {
-              localStorage.setItem("maxHitStreak", hitStreak);
+          if (lastHit != curDate) {
+            if (lastHit == yesterdayDate) {
+              hitStreak++;
+              localStorage.setItem("hitStreak", hitStreak);
+              let maxHitStreak = JSON.parse(
+                localStorage.getItem("maxHitStreak")
+              );
+              console.log(
+                "hitstreak and maxhitstreak",
+                hitStreak,
+                maxHitStreak,
+                hitStreak > maxHitStreak
+              );
+              if (hitStreak > maxHitStreak) {
+                localStorage.setItem("maxHitStreak", hitStreak);
+              }
+            } else {
+              localStorage.setItem("hitStreak", 1);
             }
-          } else {
-            localStorage.setItem("hitStreak", 1);
-          }
 
-          hits.unshift({ [curDate]: { player: answer, score: score } });
-          localStorage.setItem("hits", JSON.stringify(hits));
+            hits.unshift({
+              [curDate]: { player: answer, score: score, imageUrl: data[1] },
+            });
+            localStorage.setItem("hits", JSON.stringify(hits));
+          }
         } else {
-          let hits = [{ [curDate]: { player: answer, score: score } }];
+          let hits = [
+            { [curDate]: { player: answer, score: score, imageUrl: data[1] } },
+          ];
           localStorage.setItem("hits", JSON.stringify(hits));
           localStorage.setItem("hitStreak", 1);
           localStorage.setItem("maxHitStreak", 1);
@@ -126,9 +162,13 @@ const DailyPlay = () => {
         // localStorage.setItem("outs", JSON.stringify(dummyData2));
 
         let outs = JSON.parse(localStorage.getItem("outs"));
+
         if (outs) {
-          outs.unshift({ [curDate]: { player: answer, score: score } });
-          localStorage.setItem("outs", JSON.stringify(outs));
+          let lastOut = Object.keys(outs[0])[0];
+          if (lastOut != curDate) {
+            outs.unshift({ [curDate]: { player: answer, score: score } });
+            localStorage.setItem("outs", JSON.stringify(outs));
+          }
         } else {
           let outs = [{ [curDate]: { player: answer, score: score } }];
           localStorage.setItem("outs", JSON.stringify(outs));
@@ -212,6 +252,7 @@ const DailyPlay = () => {
   // runs when count state variable changes
   useEffect(() => {
     if (data) {
+      console.log("data is ", data);
       let yearTeam = "";
       if (!data[0][count - 1].team) {
         yearTeam = "Total";
@@ -262,6 +303,7 @@ const DailyPlay = () => {
   }, [count]);
 
   if (data) {
+    console.log("data length is", data);
     const max = data[0].length;
 
     return (
