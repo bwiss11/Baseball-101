@@ -472,3 +472,11 @@ text {
 .statsTh {
   padding: 0rem 1vw 0rem 1vw;
 }
+
+.statsOuterContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
