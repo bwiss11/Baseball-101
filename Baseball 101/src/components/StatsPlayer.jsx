@@ -28,9 +28,9 @@ function StatsPlayer(props) {
     originalWrittenDate.split(" ").slice(-1);
   return (
     <tr>
-      <td>{writtenDate}</td>
-      <td>{props.player}</td>
-      <td>{props.score}</td>
+      <td className="statsTd">{writtenDate}</td>
+      <td className="statsTdName">{props.player}</td>
+      <td className="statsTdScore">{props.score}</td>
     </tr>
   );
 }

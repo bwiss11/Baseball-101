@@ -66,13 +66,15 @@ const Stats = () => {
           imageUrl: retrievedOuts[i][Object.keys(retrievedOuts[i])[0]].imageUrl,
         });
       }
-      setOuts(outsArray);
+
       setNumberOuts(outsArray.length);
     }
+    setOuts(outsArray);
   }, []);
 
   if (hits) {
     console.log("hits is", hits);
+    console.log("outs is", outs);
     return (
       <>
         <div>Current Hit Streak: {hitStreak}</div>
@@ -82,20 +84,41 @@ const Stats = () => {
           Average: {(numberHits / (numberHits + numberOuts)).toFixed(3)}
         </div>
         <div className="statsPlayerHolder">
-          <table>
-            <tbody>
-              <StatsTableHeader></StatsTableHeader>
+          <table id="statsTable">
+            {hits.length > 0 ? (
+              <tbody>
+                <StatsTableHeader></StatsTableHeader>
 
-              {hits.map((day, index) => (
-                <StatsPlayer
-                  key={index}
-                  date={day.date}
-                  player={day.player}
-                  score={day.score}
-                  imageUrl={day.imageUrl}
-                ></StatsPlayer>
-              ))}
-            </tbody>
+                {hits.map((day, index) => (
+                  <StatsPlayer
+                    key={index}
+                    date={day.date}
+                    player={day.player}
+                    score={day.score}
+                    imageUrl={day.imageUrl}
+                  ></StatsPlayer>
+                ))}
+              </tbody>
+            ) : (
+              ""
+            )}
+            <br></br>
+            {outs.length > 0 ? (
+              <tbody>
+                <StatsTableHeader></StatsTableHeader>
+                {outs.map((day, index) => (
+                  <StatsPlayer
+                    key={index}
+                    date={day.date}
+                    player={day.player}
+                    score={day.score}
+                    imageUrl={day.imageUrl}
+                  ></StatsPlayer>
+                ))}
+              </tbody>
+            ) : (
+              ""
+            )}
           </table>
         </div>
       </>

@@ -450,3 +450,25 @@ text {
   display: flex;
   justify-content: center;
 }
+
+.statsTd {
+  padding: 0.2rem 1vw 0.2rem 1vw;
+  border-radius: 3px;
+  width: 5rem;
+}
+
+.statsTdName {
+  padding: 0.2rem 1vw 0.2rem 1vw;
+  border-radius: 3px;
+  width: 8rem;
+}
+
+.statsTdScore {
+  padding: 0.2rem 1vw 0.2rem 1vw;
+  border-radius: 3px;
+  width: 1rem;
+}
+
+.statsTh {
+  padding: 0rem 1vw 0rem 1vw;
+}

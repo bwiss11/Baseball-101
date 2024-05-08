@@ -4,9 +4,9 @@ import { useTable } from "react-table";
 function StatsTableHeader() {
   return (
     <tr>
-      <th>Date</th>
-      <th>Name</th>
-      <th>Score</th>
+      <th className="statsTh">Date</th>
+      <th className="statsTh">Name</th>
+      <th className="statsTh">Score</th>
     </tr>
   );
 }
