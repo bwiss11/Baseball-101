@@ -7,7 +7,6 @@ function StatsPlayer(props) {
   // let writtenDate = new Date(props.date);
   let writtenDate = new Date(props.date + "T00:00:00");
 
-  console.log("date is ", writtenDate);
   let originalWrittenDate = writtenDate
     .toDateString("en-US", {
       weekday: "none",

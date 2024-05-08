@@ -17,21 +17,10 @@ const Stats = () => {
   useEffect(() => {
     let retrievedHits = JSON.parse(localStorage.getItem("hits"));
     let hitsArray = [];
-    console.log("got hits", retrievedHits);
     if (retrievedHits) {
       for (let i = 0; i < retrievedHits.length; i++) {
         // console.log("item is", retrievedHits[i]);
         // console.log("date: ", Object.keys(retrievedHits[i])[0]);
-        console.log(
-          "date",
-          Object.keys(retrievedHits[i])[0],
-          "player",
-          retrievedHits[i][Object.keys(retrievedHits[i])[0]].player,
-          "score",
-          retrievedHits[i][Object.keys(retrievedHits[i])[0]].score,
-          "imageUrl",
-          retrievedHits[i][Object.keys(retrievedHits[i])[0]].imageUrl
-        );
         hitsArray.push({
           date: Object.keys(retrievedHits[i])[0],
           player: retrievedHits[i][Object.keys(retrievedHits[i])[0]].player,
@@ -39,16 +28,25 @@ const Stats = () => {
           imageUrl: retrievedHits[i][Object.keys(retrievedHits[i])[0]].imageUrl,
         });
       }
+
       setHits(hitsArray);
       setNumberHits(hitsArray.length);
-
-      let retrievedCurrentHitStreak = JSON.parse(
-        localStorage.getItem("hitStreak")
-      );
+      let yesterdayDate = getFormattedDate(-1);
+      if (
+        Object.keys(retrievedHits[0])[0] != yesterdayDate &&
+        Object.keys(retrievedHits[0])[0] != curDate
+      ) {
+        setHitStreak(0);
+      } else {
+        let retrievedCurrentHitStreak = JSON.parse(
+          localStorage.getItem("hitStreak")
+        );
+        setHitStreak(retrievedCurrentHitStreak);
+      }
       let retrievedMaxHitStreak = JSON.parse(
         localStorage.getItem("maxHitStreak")
       );
-      setHitStreak(retrievedCurrentHitStreak);
+
       setMaxHitStreak(retrievedMaxHitStreak);
     }
 
@@ -73,8 +71,6 @@ const Stats = () => {
   }, []);
 
   if (hits) {
-    console.log("hits is", hits);
-    console.log("outs is", outs);
     return (
       <>
         <div>Current Hit Streak: {hitStreak}</div>
@@ -102,7 +98,6 @@ const Stats = () => {
             ) : (
               ""
             )}
-            <br></br>
             {outs.length > 0 ? (
               <tbody>
                 <StatsTableHeader></StatsTableHeader>
@@ -124,36 +119,6 @@ const Stats = () => {
       </>
     );
   }
-
-  //   localStorage.setItem("tableData", JSON.stringify(tableData));
 };
 
 export default Stats;
-
-/* <tr key={index}>
-/* <td>{day.imageUrl}</td> */
-/* <td>{day.date}</td>
-<td>
-  {day.player} ({day.score})
-</td>
-</tr> */
-
-{
-  /* <div>Outs</div>
-        <div className="statsPlayerHolder">
-          {/* <table>
-          <thead>Hits</thead>
-          <tbody> */
-}
-//   {outs.map((day, index) => (
-//     <StatsPlayer
-//       key={index}
-//       date={day.date}
-//       player={day.player}
-//       score={day.score}
-//       imageUrl={day.imageUrl}
-//     ></StatsPlayer>
-//   ))}
-//   {/* </tbody>
-// </table> */}
-// </div>
