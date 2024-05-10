@@ -211,6 +211,7 @@ const DailyPlay = () => {
   useEffect(() => {
     fetchInfo().then((res) => {
       setData(res);
+      localStorage.setItem("data", JSON.stringify(res));
       setAnswer(res[0][0].player.fullName);
       if (res[2] == "pitching") {
         setPosition("pitcher");
@@ -251,7 +252,7 @@ const DailyPlay = () => {
 
   // runs when count state variable changes
   useEffect(() => {
-    if (data) {
+    if (data && data.length) {
       console.log("data is ", data);
       let yearTeam = "";
       if (!data[0][count - 1].team) {
@@ -302,7 +303,7 @@ const DailyPlay = () => {
     }
   }, [count]);
 
-  if (data) {
+  if (data && data.length) {
     console.log("data length is", data);
     const max = data[0].length;
 

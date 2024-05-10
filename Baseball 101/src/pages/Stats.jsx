@@ -12,7 +12,7 @@ const Stats = () => {
   const [numberOuts, setNumberOuts] = useState(0);
   const [hitStreak, setHitStreak] = useState(0);
   const [maxHitStreak, setMaxHitStreak] = useState(0);
-  const [score, setScore] = useState("-");
+  const [score, setScore] = useState("N/A");
   const [picUrl, setPicUrl] = useState("");
   const [name, setName] = useState("-");
 
@@ -59,7 +59,6 @@ const Stats = () => {
 
     if (retrievedOuts) {
       for (let i = 0; i < retrievedOuts.length; i++) {
-        console.log("item is", retrievedOuts[i]);
         console.log(retrievedOuts[i][Object.keys(retrievedOuts[i])[0]]);
         outsArray.push({
           date: [Object.keys(retrievedOuts[i])[0]],
@@ -73,7 +72,6 @@ const Stats = () => {
     }
 
     let retrievedScore = JSON.parse(localStorage.getItem("score"));
-    setScore(retrievedScore);
     let retrievedPicUrl = JSON.parse(localStorage.getItem("data"))[1];
     setPicUrl(retrievedPicUrl);
     let status = localStorage.getItem("curDay");
@@ -81,12 +79,17 @@ const Stats = () => {
       let retrievedName = JSON.parse(localStorage.getItem("data"))[0][0].player
         .fullName;
       setName(retrievedName);
+      setScore(retrievedScore);
     }
 
     setOuts(outsArray);
   }, []);
 
-  if (hits) {
+  useEffect(() => {
+    console.log("score is now", score);
+  }, [score]);
+
+  if (hits || score || score == 0) {
     return (
       <div className="statsOuterContainer">
         <div>Current Hit Streak: {hitStreak}</div>
@@ -96,7 +99,7 @@ const Stats = () => {
           Average: {(numberHits / (numberHits + numberOuts)).toFixed(3)}
         </div>
         <TodayStats score={score} picUrl={picUrl} name={name}></TodayStats>
-        <div className="statsPlayerHolder">
+        {/* <div className="statsPlayerHolder">
           <table id="statsTable">
             {hits.length > 0 ? (
               <tbody>
@@ -132,7 +135,7 @@ const Stats = () => {
               ""
             )}
           </table>
-        </div>
+        </div> */}
       </div>
     );
   }
