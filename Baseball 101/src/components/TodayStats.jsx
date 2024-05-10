@@ -41,6 +41,7 @@ const TodayStats = (props) => {
           <div className="todayScoreText">Score</div>
         </div>
       </div>
+      <div id="guessLog">- - - W (90) ____ Share</div>
     </div>
   );
 };

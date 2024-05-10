@@ -22,29 +22,37 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [dailyPlay, setDailyPlay] = useState("dailyPlay");
   const [freePlay, setFreePlay] = useState("notFreePlay");
+  const [stats, setStats] = useState("notStats");
 
   let location = useLocation();
+  console.log("location is", location);
   useEffect(() => {
     if (location.pathname == "/freePlay") {
       setFreePlay("freePlay");
+      setDailyPlay("notDailyPlay");
+      setStats("notStats");
+    } else if (location.pathname == "/stats") {
+      setStats("stats");
+      setFreePlay("notFreePlay");
       setDailyPlay("notDailyPlay");
     }
   }, []);
 
   return (
     <>
-      <div style={BUTTON_WRAPPER_STYLES}>
+      <div>
         <div
           id="dailyButton"
           className={dailyPlay}
           onClick={() => {
             setDailyPlay("dailyPlay");
             setFreePlay("notFreePlay");
+            setStats("notStats");
             navigate("/");
           }}
         >
           <svg
-            fill="#000000"
+            fill="rgba(0, 0, 0, 0.8)"
             version="1.1"
             id="Capa_1"
             xmlns="http://www.w3.org/2000/svg"
@@ -86,12 +94,13 @@ function App() {
           onClick={() => {
             setFreePlay("freePlay");
             setDailyPlay("notDailyPlay");
+            setStats("notStats");
             navigate("/freePlay");
           }}
         >
           <svg
+            fill="rgba(0, 0, 0, 0.8)"
             viewBox="0 0 24 24"
-            fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
@@ -104,29 +113,31 @@ function App() {
               {" "}
               <path
                 d="M9.4 7.53333C9.2 7.26667 8.8 7.26667 8.6 7.53333L6.225 10.7C6.09167 10.8778 6.09167 11.1222 6.225 11.3L8.6 14.4667C8.8 14.7333 9.2 14.7333 9.4 14.4667L11.775 11.3C11.9083 11.1222 11.9083 10.8778 11.775 10.7L9.4 7.53333Z"
-                fill="#0F0F0F"
+                fill="rgba(0, 0, 0, 0.8)"
               ></path>{" "}
               <path
                 d="M4.09245 5.63868C4.03647 5.5547 4.03647 5.4453 4.09245 5.36133L4.79199 4.31202C4.89094 4.16359 5.10906 4.16359 5.20801 4.31202L5.90755 5.36132C5.96353 5.4453 5.96353 5.5547 5.90755 5.63867L5.20801 6.68798C5.10906 6.83641 4.89094 6.83641 4.79199 6.68798L4.09245 5.63868Z"
-                fill="#0F0F0F"
+                fill="rgba(0, 0, 0, 0.8)"
               ></path>{" "}
               <path
                 d="M13.208 15.312C13.1091 15.1636 12.8909 15.1636 12.792 15.312L12.0924 16.3613C12.0365 16.4453 12.0365 16.5547 12.0924 16.6387L12.792 17.688C12.8909 17.8364 13.1091 17.8364 13.208 17.688L13.9075 16.6387C13.9635 16.5547 13.9635 16.4453 13.9075 16.3613L13.208 15.312Z"
-                fill="#0F0F0F"
+                fill="rgba(0, 0, 0, 0.8)"
               ></path>{" "}
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M1 4C1 2.34315 2.34315 1 4 1H14C15.1323 1 16.1181 1.62732 16.6288 2.55337L20.839 3.68148C22.4394 4.11031 23.3891 5.75532 22.9603 7.35572L19.3368 20.8787C18.908 22.4791 17.263 23.4288 15.6626 23L8.19849 21H4C2.34315 21 1 19.6569 1 18V4ZM17 18V4.72339L20.3213 5.61334C20.8548 5.75628 21.1714 6.30461 21.0284 6.83808L17.405 20.361C17.262 20.8945 16.7137 21.2111 16.1802 21.0681L15.1198 20.784C16.222 20.3403 17 19.261 17 18ZM4 3C3.44772 3 3 3.44772 3 4V18C3 18.5523 3.44772 19 4 19H14C14.5523 19 15 18.5523 15 18V4C15 3.44772 14.5523 3 14 3H4Z"
-                fill="#0F0F0F"
+                fill="rgba(0, 0, 0, 0.8)"
               ></path>{" "}
             </g>
           </svg>
         </div>
         <div
           id="statsButton"
+          className={stats}
           onClick={() => {
-            setDailyPlay("dailyPlay");
+            setStats("stats");
+            setDailyPlay("notDailyPlay");
             setFreePlay("notFreePlay");
             navigate("/stats");
           }}
@@ -136,7 +147,7 @@ function App() {
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
-            fill="#000000"
+            fill="rgba(0, 0, 0, 0.8)"
           >
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g
@@ -152,14 +163,14 @@ function App() {
                 id="Page-1"
                 stroke="none"
                 strokeWidth="1"
-                fill="none"
+                fill="rgba(0, 0, 0, 0.8)"
                 fillRule="evenodd"
               >
                 {" "}
                 <g
                   id="Dribbble-Light-Preview"
                   transform="translate(-179.000000, -840.000000)"
-                  fill="#000000"
+                  fill="rgba(0, 0, 0, 0.8)"
                 >
                   {" "}
                   <g id="icons" transform="translate(56.000000, 160.000000)">
@@ -179,7 +190,7 @@ function App() {
         <div id="directionsButton" onClick={() => setIsOpen(true)}>
           <svg
             viewBox="0 0 24 24"
-            fill="none"
+            fill="rgba(0, 0, 0, 0.8)"
             xmlns="http://www.w3.org/2000/svg"
           >
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
@@ -191,7 +202,7 @@ function App() {
             <g id="SVGRepo_iconCarrier">
               <path
                 d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zM7.92 9.234v.102a.5.5 0 0 0 .5.5h.997a.499.499 0 0 0 .499-.499c0-1.29.998-1.979 2.34-1.979 1.308 0 2.168.689 2.168 1.67 0 .928-.482 1.359-1.686 1.91l-.344.154C11.379 11.54 11 12.21 11 13.381v.119a.5.5 0 0 0 .5.5h.997a.499.499 0 0 0 .499-.499c0-.516.138-.723.55-.912l.345-.155c1.445-.654 2.529-1.514 2.529-3.39v-.103c0-1.978-1.72-3.441-4.164-3.441-2.478 0-4.336 1.428-4.336 3.734zm2.58 7.757c0 .867.659 1.509 1.491 1.509.85 0 1.509-.642 1.509-1.509 0-.867-.659-1.491-1.509-1.491-.832 0-1.491.624-1.491 1.491z"
-                fill="#000000"
+                fill="rgba(0, 0, 0, 0.8)"
               ></path>
             </g>
           </svg>
