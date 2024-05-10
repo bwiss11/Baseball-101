@@ -4,7 +4,7 @@ import { useTable } from "react-table";
 function TableHeader(props) {
   if (props.position == "hitter") {
     return (
-      <tr>
+      <tr className="tableHeaderRow">
         <th>Year</th>
         <th>Team</th>
         <th>Hits</th>
@@ -16,7 +16,7 @@ function TableHeader(props) {
     );
   } else {
     return (
-      <tr>
+      <tr className="tableHeaderRow">
         <th>Year</th>
         <th>Team</th>
         <th id="IP">IP</th>
