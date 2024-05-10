@@ -5,11 +5,11 @@ body {
   height: 100%;
   text-align: center;
   background-repeat: no-repeat;
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to bottom right,
     rgb(60, 90, 190, 100),
     rgb(150, 150, 255, 100)
-  );
+  ); */
   background-image: linear-gradient(
     to bottom right,
     rgb(120, 100, 252, 100),
@@ -17,10 +17,10 @@ body {
   );
 }
 
-svg {
-  filter: invert(9%) sepia(42%) saturate(1958%) hue-rotate(223deg)
-    brightness(98%) contrast(98%);
-}
+/* svg {
+  color: "white"
+  /* filter: invert(9%) sepia(42%) saturate(1958%) hue-rotate(223deg)
+    brightness(98%) contrast(98%); }*/
 
 h2 {
   margin-top: 0;
@@ -50,7 +50,7 @@ li {
 }
 
 th {
-  color: black;
+  color: rgb(2, 80, 150, 100);
   background-color: white;
   border: 1px solid;
   border-radius: 3px;
@@ -130,8 +130,10 @@ button {
   /* -webkit-text-stroke: 0.001px;
   -webkit-text-stroke-color: red; */
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.5);
-  border-color: black;
+  border-color: rgb(2, 80, 150, 100);
+  border-radius: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.75);
+  color: rgb(2, 80, 150, 100);
   border-width: 0.1rem;
   border-style: solid;
   width: 30%;
@@ -149,15 +151,14 @@ button {
   font-size: 1rem;
   font-weight: 800;
   border: 0.1rem solid;
-  border-color: white;
-  border-radius: 0.25rem;
+
   transition: all 1s;
   transition-delay: 100ms;
 }
 
 .hintButton:active {
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: green;
   border-radius: 0.3rem;
   border: 0.1rem solid;
   transition: none;
@@ -174,7 +175,6 @@ button {
   font-size: 1rem;
   font-weight: 800;
   border: 0.1rem solid;
-  border-color: white;
   border-radius: 0.25rem;
   transition: all 1s;
   transition-delay: 100ms;
@@ -218,14 +218,14 @@ button {
 .answerHolder {
   min-height: 40px;
   height: 40px;
-  color: white;
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 800;
   font-size: 36px;
   width: 100%;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
   -webkit-text-stroke: 0.09rem;
-  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-color: rgb(2, 80, 150, 100);
   font-family: helvetica;
 }
 
@@ -259,10 +259,9 @@ button {
   margin: auto;
   font-weight: 900;
   letter-spacing: -0.1rem;
-  color: white;
+  color: rgba(255, 255, 255, 1);
   -webkit-text-stroke: 2.5px;
-  -webkit-text-stroke-color: rgb(59, 237, 178);
-  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-color: rgb(2, 80, 150, 100);
 }
 
 .scoreFinal {
@@ -273,10 +272,10 @@ button {
   margin: auto;
   font-weight: 900;
   letter-spacing: -0.1rem;
-  color: rgba(0, 0, 0, 0.7);
+  color: green;
   -webkit-text-stroke: 2px;
   /* -webkit-text-stroke-color: rgb(59, 237, 178); */
-  -webkit-text-stroke-color: rgb(2, 190, 252, 100);
+  -webkit-text-stroke-color: rgba(255, 255, 255, 0.8);
 }
 
 .scoreZero {
@@ -286,9 +285,9 @@ button {
   justify-content: center;
   margin: auto;
   font-weight: 900;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgb(237, 77, 59);
   -webkit-text-stroke: 2px;
-  -webkit-text-stroke-color: rgb(237, 77, 59);
+  -webkit-text-stroke-color: rgba(255, 255, 255, 0.8);
 }
 
 #statsButton {
@@ -303,13 +302,13 @@ button {
   border-radius: 0.3rem;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  border-color: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.75);
   transition: all 1s;
   transition-delay: 100ms;
 }
 
 #statsButton:active {
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 0.3rem;
   transition: none;
 }
@@ -331,7 +330,7 @@ button {
 }
 
 #directionsButton:active {
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 0.3rem;
   transition: none;
 }
@@ -352,13 +351,13 @@ button {
   border-width: 0.15rem;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  border-color: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.75);
   transition: all 1s;
   transition-delay: 100ms;
 }
 
 #dailyButton:active {
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 0.3rem;
   transition: none;
 }
@@ -374,19 +373,18 @@ button {
   width: 2rem;
   height: 2rem;
   max-height: 2rem;
-  border-color: black;
+  border-color: rgba(255, 255, 255, 0.75);
   padding: 0.15rem;
   border-radius: 0.3rem;
   border-width: 0.15rem;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  border-color: rgba(0, 0, 0, 0.4);
   transition: all 1s;
   transition-delay: 100ms;
 }
 
 #freePlayButton:active {
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 0.3rem;
   transition: none;
 }
