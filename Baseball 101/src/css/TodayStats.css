@@ -109,6 +109,8 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
+  align-items: center;
+  justify-content: center;
   font-size: 1rem;
   -webkit-text-stroke: 0.5px;
   -webkit-text-stroke-color: rgb(0, 0, 0, 100);
@@ -124,16 +126,16 @@
   align-items: center;
   justify-content: center;
   border-left: 0.05rem solid white;
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-#shareContainer:hover {
-  background-color: blue;
-  cursor: pointer;
   background-color: white;
   color: rgb(2, 80, 150, 100);
   -webkit-text-stroke: 0.5px;
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.3);
+}
+
+#shareContainer:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 #shareButton {
