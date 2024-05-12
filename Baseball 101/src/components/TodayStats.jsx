@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/TodayStats.css";
 import { getFormattedDate } from "../Functions/Functions";
+import { FaShareFromSquare } from "react-icons/fa6";
 
 const TodayStats = (props) => {
   console.log("today stats props", props);
@@ -45,7 +46,15 @@ const TodayStats = (props) => {
           <div className="todayScoreText">Score</div>
         </div>
       </div>
-      <div id="guessLog">{props.guessLog}</div>
+      <div id="bottomRow">
+        <div id="guessLog">
+          {props.guessLog} ({props.score})
+        </div>
+        <div id="shareContainer">
+          <FaShareFromSquare />
+          <div id="shareButton">Share</div>
+        </div>
+      </div>
     </div>
   );
 };
