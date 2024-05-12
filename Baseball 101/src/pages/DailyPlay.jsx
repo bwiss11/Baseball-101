@@ -28,6 +28,7 @@ const DailyPlay = () => {
   const [score, setScore] = useState(101);
   const [loading, setLoading] = useState(true);
   const [position, setPosition] = useState("");
+  const [guesses, setGuesses] = useState("");
   const curDate = getFormattedDate();
 
   useEffect(() => {
@@ -39,6 +40,7 @@ const DailyPlay = () => {
       // Resets state if this is the first reload on a new day
       console.log("resetting states");
       setData(undefined);
+      localStorage.setItem("guessLog", "");
       localStorage.removeItem("data");
       setCount(0);
       localStorage.setItem("count", 0);
@@ -68,6 +70,8 @@ const DailyPlay = () => {
       let retrievedData = JSON.parse(localStorage.getItem("data"));
       let retrievedTableData = JSON.parse(localStorage.getItem("tableData"));
       let retrievedScore = localStorage.getItem("score");
+      let retrievedGuessLog = localStorage.getItem("guessLog");
+      setGuesses(retrievedGuessLog);
       setData(retrievedData);
       setTableData(retrievedTableData);
       if (localStorage.getItem("curDay") == "scoreFinal") {
@@ -83,6 +87,8 @@ const DailyPlay = () => {
       let retrievedTableData = JSON.parse(localStorage.getItem("tableData"));
       let retrievedScore = localStorage.getItem("score");
       let retrievedCount = localStorage.getItem("count");
+      let retrievedGuessLog = localStorage.getItem("guessLog");
+      setGuesses(retrievedGuessLog);
       setData(retrievedData);
       setTableData(retrievedTableData);
       setScore(retrievedScore);
@@ -93,6 +99,11 @@ const DailyPlay = () => {
     window.addEventListener("load", removeLoader);
     return window.removeEventListener("load", removeLoader);
   }, []);
+
+  useEffect(() => {
+    console.log("guesses updated to", guesses);
+    localStorage.setItem("guessLog", guesses);
+  }, [guesses]);
 
   useEffect(() => {
     if (scoreFinal == "scoreFinal" || scoreFinal == "scoreZero") {
@@ -199,6 +210,7 @@ const DailyPlay = () => {
       }
       setScore(0);
       setScoreFinal("scoreZero");
+      setGuesses(guesses + "L");
     }
   };
 
@@ -245,15 +257,17 @@ const DailyPlay = () => {
     ) {
       revealPlayer();
       setScoreFinal("scoreFinal");
+      setGuesses(guesses + "W");
     } else if (guess != "blank" && scoreFinal == "scoreNotFinal") {
       setScore(score - 15);
+      setGuesses(guesses + "X ");
     }
   }, [guess]);
 
   // runs when count state variable changes
   useEffect(() => {
     if (data && data.length) {
-      console.log("data is ", data);
+      // console.log("data is ", data);
       let yearTeam = "";
       if (!data[0][count - 1].team) {
         yearTeam = "Total";
@@ -304,7 +318,7 @@ const DailyPlay = () => {
   }, [count]);
 
   if (data && data.length) {
-    console.log("data length is", data);
+    // console.log("data length is", data);
     const max = data[0].length;
 
     return (
@@ -342,9 +356,11 @@ const DailyPlay = () => {
                   if (count == 0) {
                     localStorage.setItem("score", score - 1);
                     setScore(score - 1);
+                    setGuesses(guesses + "- ");
                   } else {
                     localStorage.setItem("score", score - 5);
                     setScore(score - 5);
+                    setGuesses(guesses + "- ");
                   }
                   localStorage.setItem("curDay", "started");
                 }

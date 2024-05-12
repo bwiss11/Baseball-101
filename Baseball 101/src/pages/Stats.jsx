@@ -15,10 +15,14 @@ const Stats = () => {
   const [score, setScore] = useState("N/A");
   const [picUrl, setPicUrl] = useState("");
   const [name, setName] = useState("-");
+  const [reveal, setReveal] = useState("Hidden");
+  const [guessLog, setGuessLog] = useState("");
 
   let curDate = getFormattedDate();
 
   useEffect(() => {
+    let retrievedGuessLog = localStorage.getItem("guessLog");
+    setGuessLog(retrievedGuessLog);
     let retrievedHits = JSON.parse(localStorage.getItem("hits"));
     let hitsArray = [];
     if (retrievedHits) {
@@ -80,6 +84,7 @@ const Stats = () => {
         .fullName;
       setName(retrievedName);
       setScore(retrievedScore);
+      setReveal("Reveal");
     }
 
     setOuts(outsArray);
@@ -98,7 +103,13 @@ const Stats = () => {
         <div>
           Average: {(numberHits / (numberHits + numberOuts)).toFixed(3)}
         </div>
-        <TodayStats score={score} picUrl={picUrl} name={name}></TodayStats>
+        <TodayStats
+          score={score}
+          picUrl={picUrl}
+          name={name}
+          reveal={reveal}
+          guessLog={guessLog}
+        ></TodayStats>
         {/* <div className="statsPlayerHolder">
           <table id="statsTable">
             {hits.length > 0 ? (

@@ -4,6 +4,7 @@ import { getFormattedDate } from "../Functions/Functions";
 
 const TodayStats = (props) => {
   console.log("today stats props", props);
+
   let writtenDate = new Date(getFormattedDate() + "T00:00:00");
 
   let originalWrittenDate = writtenDate
@@ -31,7 +32,10 @@ const TodayStats = (props) => {
       <div className="todayScoreHolder">
         <div className="playerPicNameHolder">
           <div className="picHolder">
-            <img src={props.picUrl} className="todayStatsPic"></img>
+            <img
+              src={props.picUrl}
+              className={"todayStatsPic" + props.reveal}
+            ></img>
           </div>
 
           <div className="todayScoreText">{props.name}</div>
@@ -41,7 +45,7 @@ const TodayStats = (props) => {
           <div className="todayScoreText">Score</div>
         </div>
       </div>
-      <div id="guessLog">- - - W (90) ____ Share</div>
+      <div id="guessLog">{props.guessLog}</div>
     </div>
   );
 };
