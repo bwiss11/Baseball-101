@@ -483,6 +483,7 @@ async function fetchData(playerName) {
 
   let MLBId = await getPlayer();
   let ESPNId = MLBtoESPNID[MLBId];
+  console.log(ESPNId, MLBId);
   let headshot = await getHeadshot(ESPNId);
 
   // Gets a player's information from their MLB ID
