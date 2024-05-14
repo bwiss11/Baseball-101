@@ -8,6 +8,25 @@ const TodayStats = (props) => {
 
   let writtenDate = new Date(getFormattedDate() + "T00:00:00");
 
+  const shareScore = () => {
+    if (navigator.share) {
+      navigator.share({
+        text:
+          "Baseball 101\n" +
+          writtenDate +
+          ":\n " +
+          props.guessLog +
+          " (" +
+          props.score +
+          ")\n" +
+          "baseball101.io",
+        // url: "https://www.baseball101.io",
+      });
+    } else {
+      console.log("need to copy to clipboard");
+    }
+  };
+
   let originalWrittenDate = writtenDate
     .toDateString("en-US", {
       weekday: "none",
@@ -51,7 +70,9 @@ const TodayStats = (props) => {
         </div>
         <div id="shareContainer">
           <FaShareFromSquare />
-          <div id="shareButton">Share</div>
+          <div id="shareButton" onClick={shareScore}>
+            Share
+          </div>
         </div>
       </div>
     </div>
