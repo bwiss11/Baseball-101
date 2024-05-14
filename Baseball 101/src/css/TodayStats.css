@@ -176,7 +176,7 @@
   color: rgb(3, 181, 0);
   -webkit-text-stroke: 1px;
   /* -webkit-text-stroke-color: rgb(59, 237, 178); */
-  -webkit-text-stroke-color: rgba(255, 255, 255, 0.8);
+  -webkit-text-stroke-color: rgba(0, 0, 0, 0.8);
 }
 
 .scoreZero {
@@ -188,5 +188,5 @@
   font-weight: 900;
   color: rgb(237, 77, 59);
   -webkit-text-stroke: 1px;
-  -webkit-text-stroke-color: rgba(255, 255, 255, 0.8);
+  -webkit-text-stroke-color: rgba(0, 0, 0, 0.8);
 }
