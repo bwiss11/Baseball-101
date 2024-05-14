@@ -38,11 +38,10 @@ const TodayStats = (props) => {
               className={"todayStatsPic" + props.reveal}
             ></img>
           </div>
-
           <div className="todayScoreText">{props.name}</div>
         </div>
         <div className="scoreHolder">
-          <div className="scoreValue">{props.score}</div>
+          <div className={props.scoreStatus}>{props.score}</div>
           <div className="todayScoreText">Score</div>
         </div>
       </div>

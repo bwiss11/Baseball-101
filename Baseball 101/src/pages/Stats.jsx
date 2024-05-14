@@ -2,8 +2,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import StatsPlayer from "../components/StatsPlayer";
 import TodayStats from "../components/TodayStats";
+import MyStats from "../components/MyStats";
 import StatsTableHeader from "../components/StatsTableHeader";
-import { getFormattedDate } from "../Functions/Functions";
+import {
+  getFormattedDate,
+  dailyPlayerGenerator,
+  fetchData,
+  players,
+} from "../Functions/Functions";
 
 const Stats = () => {
   const [hits, setHits] = useState("");
@@ -12,13 +18,19 @@ const Stats = () => {
   const [numberOuts, setNumberOuts] = useState(0);
   const [hitStreak, setHitStreak] = useState(0);
   const [maxHitStreak, setMaxHitStreak] = useState(0);
-  const [score, setScore] = useState("N/A");
+  const [score, setScore] = useState("TBD");
   const [picUrl, setPicUrl] = useState("");
   const [name, setName] = useState("-");
   const [reveal, setReveal] = useState("Hidden");
   const [guessLog, setGuessLog] = useState("");
+  const [scoreStatus, setScoreStatus] = useState("scoreNotFinal");
 
   let curDate = getFormattedDate();
+
+  const fetchInfo = () => {
+    let player = dailyPlayerGenerator(players);
+    return fetchData(player);
+  };
 
   useEffect(() => {
     let retrievedGuessLog = localStorage.getItem("guessLog");
@@ -76,15 +88,36 @@ const Stats = () => {
     }
 
     let retrievedScore = JSON.parse(localStorage.getItem("score"));
-    let retrievedPicUrl = JSON.parse(localStorage.getItem("data"))[1];
-    setPicUrl(retrievedPicUrl);
-    let status = localStorage.getItem("curDay");
-    if (status == "scoreFinal" || status == "scoreZero") {
-      let retrievedName = JSON.parse(localStorage.getItem("data"))[0][0].player
-        .fullName;
-      setName(retrievedName);
-      setScore(retrievedScore);
-      setReveal("Reveal");
+    let retrievedData = JSON.parse(localStorage.getItem("data"));
+    if (!retrievedData) {
+      fetchInfo().then((res) => {
+        localStorage.setItem("data", JSON.stringify(res));
+        let retrievedPicUrl = JSON.parse(localStorage.getItem("data"))[1];
+        setPicUrl(retrievedPicUrl);
+        let status = localStorage.getItem("curDay");
+        if (!status) {
+          localStorage.setItem("curDay", "started");
+          setScoreStatus("scoreNotFinal");
+        }
+        if (status == "scoreFinal" || status == "scoreZero") {
+          let retrievedName = JSON.parse(localStorage.getItem("data"))[0][0]
+            .player.fullName;
+          setName(retrievedName);
+          setScore(retrievedScore);
+          setReveal("Reveal");
+        }
+      });
+    } else {
+      let retrievedPicUrl = JSON.parse(localStorage.getItem("data"))[1];
+      setPicUrl(retrievedPicUrl);
+      let status = localStorage.getItem("curDay");
+      if (status == "scoreFinal" || status == "scoreZero") {
+        let retrievedName = JSON.parse(localStorage.getItem("data"))[0][0]
+          .player.fullName;
+        setName(retrievedName);
+        setScore(retrievedScore);
+        setReveal("Reveal");
+      }
     }
 
     setOuts(outsArray);
@@ -92,24 +125,31 @@ const Stats = () => {
 
   useEffect(() => {
     console.log("score is now", score);
+    let status = localStorage.getItem("curDay");
+    if (status == "started") {
+      setScoreStatus("scoreNotFinal");
+    } else {
+      setScoreStatus(status);
+    }
   }, [score]);
 
   if (hits || score || score == 0) {
     return (
       <div className="statsOuterContainer">
-        <div>Current Hit Streak: {hitStreak}</div>
-        <div>Max Hit Streak: {maxHitStreak}</div>
-        <div>At Bats: {numberHits + numberOuts}</div>
-        <div>
-          Average: {(numberHits / (numberHits + numberOuts)).toFixed(3)}
-        </div>
         <TodayStats
           score={score}
           picUrl={picUrl}
           name={name}
           reveal={reveal}
           guessLog={guessLog}
+          scoreStatus={scoreStatus}
         ></TodayStats>
+        <MyStats
+          curHitStreak={hitStreak}
+          maxHitStreak={maxHitStreak}
+          atBats={numberHits + numberOuts}
+          average={(numberHits / (numberHits + numberOuts)).toFixed(3)}
+        ></MyStats>
         {/* <div className="statsPlayerHolder">
           <table id="statsTable">
             {hits.length > 0 ? (

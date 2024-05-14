@@ -125,6 +125,7 @@ const DailyPlay = () => {
           let yesterdayDate = getFormattedDate(-1);
           // localStorage.setItem("hitStreak", 1);
           let hitStreak = JSON.parse(localStorage.getItem("hitStreak"));
+
           if (lastHit != curDate) {
             if (lastHit == yesterdayDate) {
               hitStreak++;
@@ -144,15 +145,27 @@ const DailyPlay = () => {
             } else {
               localStorage.setItem("hitStreak", 1);
             }
-
+            let guessLog = JSON.parse(localStorage.getItem("guessLog"));
             hits.unshift({
-              [curDate]: { player: answer, score: score, imageUrl: data[1] },
+              [curDate]: {
+                player: answer,
+                score: score,
+                imageUrl: data[1],
+                guessLog: guesses,
+              },
             });
             localStorage.setItem("hits", JSON.stringify(hits));
           }
         } else {
           let hits = [
-            { [curDate]: { player: answer, score: score, imageUrl: data[1] } },
+            {
+              [curDate]: {
+                player: answer,
+                score: score,
+                imageUrl: data[1],
+                guessLog: guesses,
+              },
+            },
           ];
           localStorage.setItem("hits", JSON.stringify(hits));
           localStorage.setItem("hitStreak", 1);
