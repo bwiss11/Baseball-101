@@ -129,6 +129,7 @@ const DailyPlay = () => {
           if (lastHit != curDate) {
             if (lastHit == yesterdayDate) {
               hitStreak++;
+              console.log("setting hitStreak to", hitStreak);
               localStorage.setItem("hitStreak", hitStreak);
               let maxHitStreak = JSON.parse(
                 localStorage.getItem("maxHitStreak")
@@ -145,7 +146,7 @@ const DailyPlay = () => {
             } else {
               localStorage.setItem("hitStreak", 1);
             }
-            let guessLog = JSON.parse(localStorage.getItem("guessLog"));
+            // let guessLog = JSON.parse(localStorage.getItem("guessLog"));
             hits.unshift({
               [curDate]: {
                 player: answer,
