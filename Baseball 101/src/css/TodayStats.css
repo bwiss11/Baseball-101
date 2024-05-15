@@ -91,9 +91,18 @@
 }
 
 .todayStatsPicHidden {
-  width: 80px;
-  height: 80px;
-  filter: contrast(0%) brightness(0%);
+  width: 100px;
+  height: 100px;
+  -webkit-filter: drop-shadow(2px 2px 0 rgba(255, 255, 255, 0.75))
+    drop-shadow(-2px 2px 0 rgba(255, 255, 255, 0.75))
+    drop-shadow(2px -2px 0 rgba(255, 255, 255, 0.75))
+    drop-shadow(-2px -2px 0 rgba(255, 255, 255, 0.75));
+
+  filter: contrast(0%) brightness(0%)
+    drop-shadow(2px 2px 0 rgba(255, 255, 255, 0.75))
+    drop-shadow(-2px 2px 0 rgba(255, 255, 255, 0.75))
+    drop-shadow(2px -2px 0 rgba(255, 255, 255, 0.75))
+    drop-shadow(-2px -2px 0 rgba(255, 255, 255, 0.75));
 }
 
 #date {
