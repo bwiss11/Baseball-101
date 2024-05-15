@@ -446,7 +446,7 @@ button {
   margin-left: 2.5em;
 }
 
-text {
+.text {
   margin-left: 1rem;
 }
 
@@ -500,4 +500,16 @@ text {
 
 .tableHeaderRow {
   background-color: rgba(0, 0, 0, 0);
+}
+
+.directionsPageButtons {
+  width: 1rem;
+  height: 1rem;
+  max-height: 2rem;
+  /* padding-top: 0.15rem; */
+  border-radius: 0.3rem;
+  border-width: 0.15rem;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-color: rgba(255, 255, 255, 0.75);
 }
