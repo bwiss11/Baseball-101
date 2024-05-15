@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDom from "react-dom";
+import { useRef, useEffect } from "react";
 
 const DIRECTION_STYLES = {
   position: "fixed",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  backgroundColor: "black",
+  backgroundColor: "rgba(0, 0, 0, .8)",
   color: "white",
   padding: "50px",
   zIndex: 1000,
@@ -29,15 +30,25 @@ const OVERLAY_STYLES = {
 };
 
 const Directions = ({ open, children, onClose }) => {
+  let directionsRef = useRef();
+  console.log("directionsref is ", directionsRef);
+  useEffect(() => {
+    let handler = (e) => {
+      if (!directionsRef.current.contains(e.target)) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+  });
   if (!open) return null;
   return ReactDom.createPortal(
     <>
       <div style={OVERLAY_STYLES}></div>
-      <div id="directionsText" style={DIRECTION_STYLES}>
+      <div id="directionsText" style={DIRECTION_STYLES} ref={directionsRef}>
         <div id="closeDirections" onClick={onClose}>
-          X
+          <div>X</div>
         </div>
-        <br></br>
         <br></br>
         <div className="directionsContainer">
           <h2>Quick Start / TLDR</h2>
@@ -101,53 +112,8 @@ const Directions = ({ open, children, onClose }) => {
           </text>
           <br></br>
           <br></br>
-          <text className="oneTabDirection">
+          <div className="oneTabDirection">
             a. Clicking the 'Reveal' button will drop the user's score to 0.
-          </text>
-        </div>
-        <br></br>
-        <br></br>
-        <div className="directionsContainer">
-          <h2>Example Gameplay</h2>
-          <div id="exampleGameplay">
-            <text>The screenshots below show the following gameplay:</text>
-            <br></br>
-            <br></br>
-            <text>
-              1. Initial state with only the player's silhouette shown, with the
-              score at 101.
-            </text>
-            <br></br>
-            <div>
-              <img src="https://github.com/bwiss11/Baseball-101/assets/79183545/882d2c44-ff9f-4deb-bb87-8006c45cdc0f"></img>
-            </div>
-            <br></br>
-            <text>
-              2. User hits the 'Hint' button and reveals the first row; 1 point
-              is subtracted from the score.
-            </text>
-            <br></br>
-            <div>
-              <img src="https://github.com/bwiss11/Baseball-101/assets/79183545/729e0850-c693-4a6f-ad6e-6366bf69e5d0"></img>
-            </div>
-            <br></br>
-            <text>
-              3. User reveals 3 more years of data (-15 points) and then thinks
-              they know the answer.
-            </text>
-            <br></br>
-            <div>
-              <img src="https://github.com/bwiss11/Baseball-101/assets/79183545/c3298958-8cb1-48ce-88b2-e3341553e6d5"></img>
-            </div>
-            <br></br>
-            <text>
-              4. User clicks on Aaron Judge's name and is correct! Score is
-              locked in at 85 points and his name and image are revealed.
-            </text>
-            <br></br>
-            <div>
-              <img src="https://github.com/bwiss11/Baseball-101/assets/79183545/868a6064-8296-4ce8-bd5c-838de4e8a6d1"></img>
-            </div>
           </div>
         </div>
       </div>

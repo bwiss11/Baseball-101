@@ -91,8 +91,8 @@
 }
 
 .todayStatsPicHidden {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   filter: contrast(0%) brightness(0%);
 }
 

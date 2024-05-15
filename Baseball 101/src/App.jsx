@@ -207,9 +207,7 @@ function App() {
             </g>
           </svg>
         </div>
-        <Directions open={isOpen} onClose={() => setIsOpen(false)}>
-          Directions Here
-        </Directions>
+        <Directions open={isOpen} onClose={() => setIsOpen(false)}></Directions>
       </div>
       <Routes>
         <Route path="/" element={<DailyPlay />} />

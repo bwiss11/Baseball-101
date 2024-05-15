@@ -401,19 +401,22 @@ button {
   border-color: black;
   border-width: 2px;
   border-style: solid;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 900;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 1.25rem;
   text-align: center;
-  vertical-align: middle;
-  line-height: 2rem;
+  vertical-align: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 #closeDirections:hover {
   color: white;
-  background-color: rgb(195, 69, 69);
+  border-color: white;
+  background-color: rgba(195, 69, 69, 0.8);
   cursor: pointer;
 }
 

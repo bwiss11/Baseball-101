@@ -14,7 +14,7 @@ const TodayStats = (props) => {
         text:
           "Baseball 101\n" +
           writtenDate +
-          ":\n " +
+          "\n " +
           props.guessLog +
           " (" +
           props.score +
