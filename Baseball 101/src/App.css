@@ -163,6 +163,7 @@ button {
   min-height: 2rem;
   min-width: 6rem;
   max-width: 10rem;
+  max-height: 2.5rem;
   font-size: 1rem;
   font-weight: 800;
   border: 0.1rem solid;
@@ -184,6 +185,7 @@ button {
 
 .revealButton {
   min-height: 2rem;
+  max-height: 2.5rem;
   min-width: 6rem;
   max-width: 10rem;
   font-size: 1rem;
