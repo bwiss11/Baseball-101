@@ -2,9 +2,12 @@ import React from "react";
 import "../css/TodayStats.css";
 import { getFormattedDate } from "../Functions/Functions";
 import { FaShareFromSquare } from "react-icons/fa6";
+import { useState, useEffect } from "react";
 
 const TodayStats = (props) => {
   console.log("today stats props", props);
+
+  const [showClipboardMessage, setShowClipboardMessage] = useState(false);
 
   let writtenDate = new Date(getFormattedDate() + "T00:00:00");
 
@@ -23,6 +26,25 @@ const TodayStats = (props) => {
         // url: "https://www.baseball101.io",
       });
     } else {
+      if ("clipboard" in navigator) {
+        navigator.clipboard.writeText(
+          "Baseball 101\n" +
+            writtenDate +
+            "\n " +
+            props.guessLog +
+            " (" +
+            props.score +
+            ")\n" +
+            "baseball101.io"
+        );
+        // alert("Copied to clipboard");
+        setShowClipboardMessage(true);
+        setTimeout(() => {
+          setShowClipboardMessage(false);
+        }, 500);
+      } else {
+        document.execCommand("copy", true, "Text which dsafs you want to copy");
+      }
       console.log("need to copy to clipboard");
     }
   };
@@ -46,36 +68,41 @@ const TodayStats = (props) => {
     ", " +
     originalWrittenDate.split(" ").slice(-1);
   return (
-    <div className="container">
-      <div id="date">{writtenDate}</div>
+    <>
+      <div className="container">
+        <div id="date">{writtenDate}</div>
 
-      <div className="todayScoreHolder">
-        <div className="playerPicNameHolder">
-          <div className="picHolder">
-            <img
-              src={props.picUrl}
-              className={"todayStatsPic" + props.reveal}
-            ></img>
+        <div className="todayScoreHolder">
+          <div className="playerPicNameHolder">
+            <div className="picHolder">
+              <img
+                src={props.picUrl}
+                className={"todayStatsPic" + props.reveal}
+              ></img>
+            </div>
+            <div className="todayScoreText">{props.name}</div>
           </div>
-          <div className="todayScoreText">{props.name}</div>
-        </div>
-        <div className="scoreHolder">
-          <div className={props.scoreStatus}>{props.score}</div>
-          <div className="todayScoreText">Score</div>
-        </div>
-      </div>
-      <div id="bottomRow">
-        <div id="guessLog">
-          {props.guessLog} ({props.score})
-        </div>
-        <div id="shareContainer">
-          <FaShareFromSquare />
-          <div id="shareButton" onClick={shareScore}>
-            Share
+          <div className="scoreHolder">
+            <div className={props.scoreStatus}>{props.score}</div>
+            <div className="todayScoreText">Score</div>
           </div>
         </div>
+        <div id="bottomRow">
+          <div id="guessLog">
+            {props.guessLog} ({props.score})
+          </div>
+          <div id="shareContainer">
+            <FaShareFromSquare />
+            <div id="shareButton" onClick={shareScore}>
+              Share
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+      <div className="clipboardMessage">
+        <div id="copiedMessage">{showClipboardMessage ? "Copied" : ""}</div>
+      </div>
+    </>
   );
 };
 
