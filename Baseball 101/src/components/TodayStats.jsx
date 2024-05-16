@@ -91,11 +91,9 @@ const TodayStats = (props) => {
           <div id="guessLog">
             {props.guessLog} ({props.score})
           </div>
-          <div id="shareContainer">
+          <div id="shareContainer" onClick={shareScore}>
             <FaShareFromSquare />
-            <div id="shareButton" onClick={shareScore}>
-              Share
-            </div>
+            <div id="shareButton">Share</div>
           </div>
         </div>
       </div>
