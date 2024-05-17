@@ -2,6 +2,7 @@ import { useState } from "react";
 import MLBtoESPNID from "../MLBtoESPNID.json";
 import allMLBPlayers from "../allMLBPlayers.json";
 import players from "../answerList.json";
+import specialCases from "../specialCases.json";
 
 // Converts full team name to abbreviation
 function teamAbbreviator(fullName) {
@@ -117,8 +118,17 @@ async function fetchData(playerName) {
     return data2;
   }
 
-  let MLBId = await getPlayer();
+  let MLBId;
+  if (playerName in specialCases) {
+    MLBId = specialCases[playerName];
+  } else {
+    MLBId = await getPlayer();
+  }
+
   let ESPNId = MLBtoESPNID[MLBId];
+  if (!ESPNId) {
+    console.log(playerName, ESPNId, MLBId);
+  }
   let headshot = await getHeadshot(ESPNId);
 
   // Gets a player's information from their MLB ID
@@ -162,6 +172,12 @@ const getFormattedDate = (offset = 0) => {
   return iso;
 };
 
+const tester = () => {
+  for (let i = 0; i < players.length; i++) {
+    fetchData(players[i]).then((res) => {});
+  }
+};
+
 // allPlayers = {}
 
 export {
@@ -171,4 +187,5 @@ export {
   players,
   dailyPlayerGenerator,
   getFormattedDate,
+  tester,
 };

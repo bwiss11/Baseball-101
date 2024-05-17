@@ -8,6 +8,7 @@ import {
   randomPlayerGenerator,
   teamAbbreviator,
   players,
+  tester,
 } from "../Functions/Functions";
 import { useState, useEffect } from "react";
 
@@ -28,6 +29,7 @@ const Home = () => {
   const [position, setPosition] = useState("");
 
   useEffect(() => {
+    tester();
     // const removeLoader = () => setLoading(false);
     // window.addEventListener("load", removeLoader);
     // return window.removeEventListener("load", removeLoader);
