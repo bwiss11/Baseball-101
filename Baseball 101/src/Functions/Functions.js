@@ -177,7 +177,11 @@ const getFormattedDate = (offset = 0) => {
 
 const tester = () => {
   for (let i = 0; i < allMLBPlayers.length; i++) {
-    fetchData(allMLBPlayers[i]).then((res) => {});
+    fetchData(allMLBPlayers[i]).then((res) => {
+      if (allMLBPlayers[i] == "Jarrod Washburn") {
+        console.log("result is ", res);
+      }
+    });
   }
 };
 

@@ -29,7 +29,7 @@ const Home = () => {
   const [position, setPosition] = useState("");
 
   useEffect(() => {
-    tester();
+    // tester();
     // const removeLoader = () => setLoading(false);
     // window.addEventListener("load", removeLoader);
     // return window.removeEventListener("load", removeLoader);
@@ -58,6 +58,7 @@ const Home = () => {
 
   const fetchInfo = () => {
     let player = randomPlayerGenerator();
+    console.log("player is", player);
     return fetchData(player);
   };
 
