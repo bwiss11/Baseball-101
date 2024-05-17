@@ -27,12 +27,10 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [position, setPosition] = useState("");
 
-  let max = 100;
-
   useEffect(() => {
-    const removeLoader = () => setLoading(false);
-    window.addEventListener("load", removeLoader);
-    return window.removeEventListener("load", removeLoader);
+    // const removeLoader = () => setLoading(false);
+    // window.addEventListener("load", removeLoader);
+    // return window.removeEventListener("load", removeLoader);
   }, []);
 
   const revealPlayer = () => {
@@ -156,8 +154,6 @@ const Home = () => {
   }, [count]);
 
   if (data) {
-    max = data[0].length;
-
     return (
       <>
         <div>

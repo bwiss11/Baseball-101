@@ -322,8 +322,6 @@ const DailyPlay = () => {
   }, [count]);
 
   if (data && data.length) {
-    const max = data[0].length;
-
     return (
       <>
         <div>
