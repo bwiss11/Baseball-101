@@ -2,7 +2,6 @@ import React from "react";
 import { teamAbbreviator } from "../Functions/Functions";
 
 const TableRow = (props) => {
-  console.log("props are", props.fullData.season);
   return (
     <tr>
       <td>{props.fullData.season}</td>

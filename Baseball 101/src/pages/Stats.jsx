@@ -28,7 +28,7 @@ const Stats = () => {
   let curDate = getFormattedDate();
 
   const fetchInfo = () => {
-    let player = dailyPlayerGenerator(players);
+    let player = dailyPlayerGenerator();
     return fetchData(player);
   };
 
@@ -39,8 +39,6 @@ const Stats = () => {
     let hitsArray = [];
     if (retrievedHits) {
       for (let i = 0; i < retrievedHits.length; i++) {
-        // console.log("item is", retrievedHits[i]);
-        // console.log("date: ", Object.keys(retrievedHits[i])[0]);
         hitsArray.push({
           date: Object.keys(retrievedHits[i])[0],
           player: retrievedHits[i][Object.keys(retrievedHits[i])[0]].player,
@@ -75,7 +73,6 @@ const Stats = () => {
 
     if (retrievedOuts) {
       for (let i = 0; i < retrievedOuts.length; i++) {
-        console.log(retrievedOuts[i][Object.keys(retrievedOuts[i])[0]]);
         outsArray.push({
           date: [Object.keys(retrievedOuts[i])[0]],
           player: retrievedOuts[i][Object.keys(retrievedOuts[i])[0]].player,
@@ -124,7 +121,6 @@ const Stats = () => {
   }, []);
 
   useEffect(() => {
-    console.log("score is now", score);
     let status = localStorage.getItem("curDay");
     if (status == "started") {
       setScoreStatus("scoreNotFinal");

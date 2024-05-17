@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "../css/SearchBar.css";
 import { players } from "../Functions/Functions";
+import allMLBPlayers from "../allMLBPlayers.json";
 
 const SearchBar = ({ setResults, input, setInput }) => {
   const handleChange = (value) => {
-    const results = players.filter((player) => {
+    const results = allMLBPlayers.filter((player) => {
       // Value given by user, and the user's input (so far) matches the player's name
       return value && player.toLowerCase().includes(value.toLowerCase());
     });

@@ -3,8 +3,6 @@ import { useTable } from "react-table";
 import "../css/StatsPlayer.css";
 
 function StatsPlayer(props) {
-  // console.log("props date is ", props.date);
-  // let writtenDate = new Date(props.date);
   let writtenDate = new Date(props.date + "T00:00:00");
 
   let originalWrittenDate = writtenDate

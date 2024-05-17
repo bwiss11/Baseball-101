@@ -57,7 +57,7 @@ const Home = () => {
   };
 
   const fetchInfo = () => {
-    let player = randomPlayerGenerator(players);
+    let player = randomPlayerGenerator();
     return fetchData(player);
   };
 

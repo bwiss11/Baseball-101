@@ -25,7 +25,7 @@ function App() {
   const [stats, setStats] = useState("notStats");
 
   let location = useLocation();
-  console.log("location is", location);
+
   useEffect(() => {
     if (location.pathname == "/freePlay") {
       setFreePlay("freePlay");

@@ -4,12 +4,11 @@ import { getFormattedDate } from "../Functions/Functions";
 import { FaShareFromSquare } from "react-icons/fa6";
 
 const MyStats = (props) => {
-  console.log("my stats props", props);
   let average = props.average;
   if (average.slice(0, 1) == "0") {
     average = average.slice(1, average.length);
   }
-  console.log("average is", average);
+
   if (isNaN(average)) {
     average = ".000";
   }

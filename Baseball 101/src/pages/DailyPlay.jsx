@@ -34,11 +34,10 @@ const DailyPlay = () => {
   useEffect(() => {
     // localStorage.clear();
     let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
-    console.log("last completed and current date", lastCompleted, curDate);
+
     if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
       localStorage.setItem("lastCompleted", JSON.stringify(curDate));
       // Resets state if this is the first reload on a new day
-      console.log("resetting states");
       setData(undefined);
       localStorage.setItem("guessLog", "");
       localStorage.removeItem("data");
@@ -101,7 +100,6 @@ const DailyPlay = () => {
   }, []);
 
   useEffect(() => {
-    console.log("guesses updated to", guesses);
     localStorage.setItem("guessLog", guesses);
   }, [guesses]);
 
@@ -129,16 +127,9 @@ const DailyPlay = () => {
           if (lastHit != curDate) {
             if (lastHit == yesterdayDate) {
               hitStreak++;
-              console.log("setting hitStreak to", hitStreak);
               localStorage.setItem("hitStreak", hitStreak);
               let maxHitStreak = JSON.parse(
                 localStorage.getItem("maxHitStreak")
-              );
-              console.log(
-                "hitstreak and maxhitstreak",
-                hitStreak,
-                maxHitStreak,
-                hitStreak > maxHitStreak
               );
               if (hitStreak > maxHitStreak) {
                 localStorage.setItem("maxHitStreak", hitStreak);
@@ -229,7 +220,7 @@ const DailyPlay = () => {
   };
 
   const fetchInfo = () => {
-    let player = dailyPlayerGenerator(players);
+    let player = dailyPlayerGenerator();
     return fetchData(player);
   };
 
@@ -281,7 +272,6 @@ const DailyPlay = () => {
   // runs when count state variable changes
   useEffect(() => {
     if (data && data.length) {
-      // console.log("data is ", data);
       let yearTeam = "";
       if (!data[0][count - 1].team) {
         yearTeam = "Total";
@@ -332,7 +322,6 @@ const DailyPlay = () => {
   }, [count]);
 
   if (data && data.length) {
-    // console.log("data length is", data);
     const max = data[0].length;
 
     return (

@@ -5,8 +5,6 @@ import { FaShareFromSquare } from "react-icons/fa6";
 import { useState, useEffect } from "react";
 
 const TodayStats = (props) => {
-  console.log("today stats props", props);
-
   const [showClipboardMessage, setShowClipboardMessage] = useState(false);
 
   let writtenDate = new Date(getFormattedDate() + "T00:00:00");
@@ -41,11 +39,9 @@ const TodayStats = (props) => {
         setShowClipboardMessage(true);
         setTimeout(() => {
           setShowClipboardMessage(false);
-        }, 1500);
+        }, 1250);
       } else {
-        document.execCommand("copy", true, "Text which dsafs you want to copy");
       }
-      console.log("need to copy to clipboard");
     }
   };
 
