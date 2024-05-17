@@ -155,6 +155,9 @@ async function fetchData(playerName) {
     return playerPic;
   }
 
+  if (!playerStats.stats) {
+    console.log("player is ", playerName, playerStats);
+  }
   return [
     playerStats.stats[0].splits,
     headshot,
