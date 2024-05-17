@@ -8,7 +8,6 @@ import {
   randomPlayerGenerator,
   teamAbbreviator,
   players,
-  tester,
 } from "../Functions/Functions";
 import { useState, useEffect } from "react";
 
@@ -58,7 +57,6 @@ const Home = () => {
 
   const fetchInfo = () => {
     let player = randomPlayerGenerator();
-    console.log("player is", player);
     return fetchData(player);
   };
 

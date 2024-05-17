@@ -126,9 +126,6 @@ async function fetchData(playerName) {
   }
 
   let ESPNId = MLBtoESPNID[MLBId];
-  if (!ESPNId) {
-    console.log(playerName, ESPNId, MLBId);
-  }
   let headshot = await getHeadshot(ESPNId);
 
   // Gets a player's information from their MLB ID
@@ -155,9 +152,6 @@ async function fetchData(playerName) {
     return playerPic;
   }
 
-  if (!playerStats.stats) {
-    console.log("player is ", playerName, playerStats);
-  }
   return [
     playerStats.stats[0].splits,
     headshot,
@@ -175,15 +169,12 @@ const getFormattedDate = (offset = 0) => {
   return iso;
 };
 
-const tester = () => {
-  for (let i = 0; i < allMLBPlayers.length; i++) {
-    fetchData(allMLBPlayers[i]).then((res) => {
-      if (allMLBPlayers[i] == "Jarrod Washburn") {
-        console.log("result is ", res);
-      }
-    });
-  }
-};
+// const tester = () => {
+//   for (let i = 0; i < allMLBPlayers.length; i++) {
+//     fetchData(allMLBPlayers[i]).then((res) => {
+//     });
+//   }
+// };
 
 // allPlayers = {}
 
@@ -194,5 +185,4 @@ export {
   players,
   dailyPlayerGenerator,
   getFormattedDate,
-  tester,
 };
