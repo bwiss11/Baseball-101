@@ -80,7 +80,6 @@ const TodayStats = (props) => {
           </div>
           <div className="scoreHolder">
             <div className={props.scoreStatus}>{props.score}</div>
-            <div className="todayScoreText">Score</div>
           </div>
         </div>
         <div id="bottomRow">
