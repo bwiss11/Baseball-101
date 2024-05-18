@@ -33,6 +33,29 @@ const Stats = () => {
   };
 
   useEffect(() => {
+    let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
+
+    if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
+      fetchInfo().then((res) => {
+        localStorage.setItem("data", JSON.stringify(res));
+        if (res[2] == "pitching") {
+          setPosition("pitcher");
+        } else {
+          setPosition("hitter");
+        }
+      });
+      localStorage.setItem("lastCompleted", JSON.stringify(curDate));
+      // Resets state if this is the first reload on a new day
+      localStorage.setItem("guessLog", "");
+      localStorage.removeItem("data");
+      localStorage.setItem("count", 0);
+      localStorage.setItem("tableData", JSON.stringify([]));
+      setReveal("Hidden");
+      setName("-");
+      setScoreStatus("scoreNotFinal");
+      localStorage.setItem("score", 101);
+    }
+
     let retrievedGuessLog = localStorage.getItem("guessLog");
     setGuessLog(retrievedGuessLog);
     let retrievedHits = JSON.parse(localStorage.getItem("hits"));
