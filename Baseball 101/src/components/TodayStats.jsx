@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 const TodayStats = (props) => {
   const [showClipboardMessage, setShowClipboardMessage] = useState(false);
-
+  console.log("today stats props", props);
   let writtenDate = new Date(getFormattedDate() + "T00:00:00");
 
   const shareScore = () => {
