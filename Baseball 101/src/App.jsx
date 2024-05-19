@@ -7,16 +7,6 @@ import { Route, Routes } from "react-router-dom";
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const BUTTON_WRAPPER_STYLES = {
-  position: "relative",
-  zIndex: 1,
-};
-
-const OTHER_CONTENT_STYLES = {
-  position: "relative",
-  zIndex: 2,
-};
-
 function App() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);

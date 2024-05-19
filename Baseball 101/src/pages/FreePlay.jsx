@@ -7,7 +7,6 @@ import {
   fetchData,
   randomPlayerGenerator,
   teamAbbreviator,
-  players,
 } from "../Functions/Functions";
 import { useState, useEffect } from "react";
 
@@ -24,15 +23,7 @@ const Home = () => {
   const [answerReveal, setAnswerReveal] = useState("answerHidden");
   const [scoreFinal, setScoreFinal] = useState("scoreNotFinal");
   const [score, setScore] = useState(101);
-  const [loading, setLoading] = useState(true);
   const [position, setPosition] = useState("");
-
-  useEffect(() => {
-    // tester();
-    // const removeLoader = () => setLoading(false);
-    // window.addEventListener("load", removeLoader);
-    // return window.removeEventListener("load", removeLoader);
-  }, []);
 
   const revealPlayer = () => {
     if (reveal !== "reveal") {
@@ -198,12 +189,12 @@ const Home = () => {
             </button>
           </div>
           <div className="playerPicHolder">
-            {loading && (
+            {
               <PlayerPic
                 className="playerPic"
                 props={{ url: data[1], revealState: { reveal } }}
               />
-            )}
+            }
           </div>
           <div className="divHintReveal">
             <button onClick={revealPlayerLoss} className="revealButton">

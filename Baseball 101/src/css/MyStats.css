@@ -1,18 +1,10 @@
 .myStatsContainer {
   margin-top: 0.5rem;
   width: 22rem;
-  /* background-color: white; */
   color: white;
   font-weight: 700;
-  /* background-image: linear-gradient(
-      to right,
-  
-      rgb(2, 190, 252, 0.24),
-      rgb(120, 100, 252, 0.24)
-    ); */
   background-color: rgba(0, 0, 0, 0.2);
   border: 0.05rem solid white;
-  /* border-radius: 0.5rem; */
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem;
   font-family: helvetica;
@@ -53,7 +45,6 @@
 }
 
 .todayScoreHolder {
-  /* background-color: red; */
   width: 100%;
   height: 60%;
   display: flex;
@@ -64,19 +55,15 @@
 
 .playerPicNameHolder {
   width: 50%;
-  /* background-color: green; */
 }
 
 .scoreHolder {
   width: 50%;
-  /* background-color: blue; */
 }
 
 .myStatsValue {
   display: flex;
-  /* background-color: red; */
   justify-content: center;
-  /* align-items: center; */
   font-family: Helvetica;
   font-size: 2.5rem;
   align-items: flex-end;
@@ -88,9 +75,7 @@
   padding: 0.5rem;
   padding-bottom: 1rem;
   -webkit-text-stroke: 2px;
-  /* -webkit-text-stroke-color: rgb(59, 237, 178); */
   -webkit-text-stroke-color: rgb(0, 0, 0, 100);
-  /* -webkit-text-stroke-color: rgb(2, 190, 252, 100); */
 }
 
 .textTop {
@@ -100,7 +85,6 @@
 .todayScoreText {
   display: flex;
   justify-content: center;
-  /* background-color: grey; */
   margin-top: 0.5rem;
   height: 30%;
   align-items: center;
@@ -108,7 +92,6 @@
 
 .picHolder {
   display: flex;
-  /* background-color: green; */
   height: 70%;
   justify-content: center;
   align-items: center;
@@ -138,8 +121,6 @@
   margin-top: 0.5rem;
   padding-bottom: 0.5rem;
   font-size: 1.5rem;
-  /* -webkit-text-stroke: 0.5px;
-  -webkit-text-stroke-color: rgb(0, 0, 0, 100); */
   border-bottom: 0.05rem white solid;
 }
 

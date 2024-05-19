@@ -1,18 +1,10 @@
 .container {
   margin-top: 7rem;
   width: 22rem;
-  /* background-color: white; */
   color: white;
   font-weight: 700;
-  /* background-image: linear-gradient(
-    to right,
-
-    rgb(2, 190, 252, 0.24),
-    rgb(120, 100, 252, 0.24)
-  ); */
   background-color: rgba(0, 0, 0, 0.2);
   border: 0.05rem solid white;
-  /* border-radius: 0.5rem; */
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
   font-family: helvetica;
@@ -21,14 +13,11 @@
 }
 
 .todayScoreHolder {
-  /* background-color: red; */
   width: 100%;
 
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* margin-top: 1rem;
-  margin-bottom: 1rem; */
 }
 
 .playerPicNameHolder {
@@ -50,37 +39,25 @@
 }
 
 .scoreValue {
-  /* display: flex; */
-  /* background-color: red; */
-  /* justify-content: center; */
-  /* align-items: center; */
   height: 70%;
   font-family: Helvetica;
   font-size: 5rem;
-  /* align-items: flex-end; */
-  /* justify-content: center; */
-  /* margin: auto; */
   font-weight: 900;
   letter-spacing: -0.1rem;
   color: white;
   -webkit-text-stroke: 2px;
-  /* -webkit-text-stroke-color: rgb(59, 237, 178); */
   -webkit-text-stroke-color: rgb(0, 0, 0, 100);
-  /* -webkit-text-stroke-color: rgb(2, 190, 252, 100); */
 }
 
 .todayScoreText {
   display: flex;
   justify-content: center;
-  /* background-color: grey; */
-  /* margin-top: 0.5rem; */
   height: 30%;
   align-items: center;
 }
 
 .picHolder {
   display: flex;
-  /* background-color: green; */
   height: 70%;
   justify-content: center;
   align-items: center;
@@ -185,7 +162,6 @@
   letter-spacing: -0.1rem;
   color: rgb(3, 181, 0);
   -webkit-text-stroke: 1px;
-  /* -webkit-text-stroke-color: rgb(59, 237, 178); */
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -206,7 +182,6 @@
   height: 1.5rem;
   width: 22rem;
   justify-content: right;
-  /* background-color: red; */
   align-self: right;
 }
 
@@ -215,7 +190,6 @@
   display: flex;
   color: white;
   font-family: helvetica;
-  /* background-color: green; */
   width: 26%;
   justify-content: center;
   align-items: center;

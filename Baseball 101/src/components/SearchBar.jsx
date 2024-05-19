@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../css/SearchBar.css";
-import { players } from "../Functions/Functions";
 import allMLBPlayers from "../allMLBPlayers.json";
 
 const SearchBar = ({ setResults, input, setInput }) => {

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import MLBtoESPNID from "../MLBtoESPNID.json";
 import allMLBPlayers from "../allMLBPlayers.json";
 import players from "../answerList.json";
@@ -168,15 +167,6 @@ const getFormattedDate = (offset = 0) => {
   const iso = tLocal.toISOString().split("T")[0];
   return iso;
 };
-
-// const tester = () => {
-//   for (let i = 0; i < allMLBPlayers.length; i++) {
-//     fetchData(allMLBPlayers[i]).then((res) => {
-//     });
-//   }
-// };
-
-// allPlayers = {}
 
 export {
   randomPlayerGenerator,

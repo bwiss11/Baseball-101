@@ -7,7 +7,6 @@ import SearchResultsList from "../components/SearchResultsList";
 import {
   fetchData,
   teamAbbreviator,
-  players,
   dailyPlayerGenerator,
   getFormattedDate,
 } from "../Functions/Functions";
@@ -32,7 +31,6 @@ const DailyPlay = () => {
   const curDate = getFormattedDate();
 
   useEffect(() => {
-    // localStorage.clear();
     let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
 
     if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
@@ -112,11 +110,6 @@ const DailyPlay = () => {
       if (scoreFinal == "scoreFinal") {
         localStorage.setItem("curDay", "scoreFinal");
 
-        // let dummyData = [
-        //   { "2024-05-01": { player: "Adley Rutschman", score: 85 } },
-        // ];
-        // localStorage.setItem("maxHitStreak", 0);
-        // localStorage.setItem("hits", JSON.stringify(dummyData));
         let hits = JSON.parse(localStorage.getItem("hits"));
         if (hits) {
           let lastHit = Object.keys(hits[0])[0];
@@ -137,7 +130,6 @@ const DailyPlay = () => {
             } else {
               localStorage.setItem("hitStreak", 1);
             }
-            // let guessLog = JSON.parse(localStorage.getItem("guessLog"));
             hits.unshift({
               [curDate]: {
                 player: answer,
@@ -162,20 +154,10 @@ const DailyPlay = () => {
           localStorage.setItem("hits", JSON.stringify(hits));
           localStorage.setItem("hitStreak", 1);
           localStorage.setItem("maxHitStreak", 1);
-          // localStorage.setItem("hitStreak", 1);
-          //
         }
-
-        // let hits = [{ 20240501: "player" }];
-        // hits.unshift("placeholder");
       } else {
         localStorage.setItem("curDay", "scoreZero");
         localStorage.setItem("hitStreak", 0);
-
-        // let dummyData2 = [
-        //   { "2024-05-01": { player: "Adley Rutschman", score: 0 } },
-        // ];
-        // localStorage.setItem("outs", JSON.stringify(dummyData2));
 
         let outs = JSON.parse(localStorage.getItem("outs"));
 

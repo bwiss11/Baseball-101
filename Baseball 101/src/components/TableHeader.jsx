@@ -1,5 +1,4 @@
 import React from "react";
-import { useTable } from "react-table";
 
 function TableHeader(props) {
   if (props.position == "hitter") {

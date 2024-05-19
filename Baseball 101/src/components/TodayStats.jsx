@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 
 const TodayStats = (props) => {
   const [showClipboardMessage, setShowClipboardMessage] = useState(false);
-  console.log("today stats props", props);
   let writtenDate = new Date(getFormattedDate() + "T00:00:00");
 
   const shareScore = () => {
@@ -21,7 +20,6 @@ const TodayStats = (props) => {
           props.score +
           ")\n" +
           "baseball101.io",
-        // url: "https://www.baseball101.io",
       });
     } else {
       if ("clipboard" in navigator) {
@@ -35,7 +33,6 @@ const TodayStats = (props) => {
             ")\n" +
             "baseball101.io"
         );
-        // alert("Copied to clipboard");
         setShowClipboardMessage(true);
         setTimeout(() => {
           setShowClipboardMessage(false);
@@ -67,7 +64,6 @@ const TodayStats = (props) => {
     <>
       <div className="container">
         <div id="date">{writtenDate}</div>
-
         <div className="todayScoreHolder">
           <div className="playerPicNameHolder">
             <div className="picHolder">

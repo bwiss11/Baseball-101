@@ -1,7 +1,5 @@
 import React from "react";
 import "../css/MyStats.css";
-import { getFormattedDate } from "../Functions/Functions";
-import { FaShareFromSquare } from "react-icons/fa6";
 
 const MyStats = (props) => {
   let average = props.average;
@@ -18,12 +16,10 @@ const MyStats = (props) => {
       <div className="firstRow">
         <div className="statsContainer" id="rightStatsContainer">
           <div className="textTop">Current Hit Streak</div>
-          {/* <div>Hit Streak</div> */}
           <div className="myStatsValue">{props.curHitStreak}</div>
         </div>
         <div className="statsContainer">
           <div className="textTop">Max Hit Streak</div>
-          {/* <div>Hit Streak</div> */}
           <div className="myStatsValue">{props.maxHitStreak}</div>
         </div>
       </div>

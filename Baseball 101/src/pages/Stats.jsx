@@ -1,14 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import StatsPlayer from "../components/StatsPlayer";
 import TodayStats from "../components/TodayStats";
 import MyStats from "../components/MyStats";
-import StatsTableHeader from "../components/StatsTableHeader";
 import {
   getFormattedDate,
   dailyPlayerGenerator,
   fetchData,
-  players,
 } from "../Functions/Functions";
 
 const Stats = () => {
@@ -149,7 +146,6 @@ const Stats = () => {
   }, [score]);
 
   if ((hits || score || score == 0) && scoreStatus) {
-    console.log("score status", scoreStatus);
     return (
       <div className="statsOuterContainer">
         <TodayStats

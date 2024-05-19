@@ -1,5 +1,4 @@
 import React from "react";
-import { useTable } from "react-table";
 import "../css/StatsPlayer.css";
 
 function StatsPlayer(props) {
@@ -33,14 +32,3 @@ function StatsPlayer(props) {
 }
 
 export default StatsPlayer;
-
-{
-  /* <div className="statsContainer">
-<img className="statsImage" src={props.imageUrl}></img>
-<div className="playerInfoHolder">
-  <div className="statsText">{writtenDate}</div>
-  <div className="statsText">{props.player}</div>
-  <div className="statsText">{props.score}</div>
-</div>
-</div> */
-}
