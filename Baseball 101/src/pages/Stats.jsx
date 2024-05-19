@@ -51,84 +51,70 @@ const Stats = () => {
       localStorage.setItem("score", 101);
       setReveal("Hidden");
       setName("-");
-    } else {
-      let retrievedGuessLog = localStorage.getItem("guessLog");
-      setGuessLog(retrievedGuessLog);
-      let retrievedHits = JSON.parse(localStorage.getItem("hits"));
-      let hitsArray = [];
-      if (retrievedHits) {
-        for (let i = 0; i < retrievedHits.length; i++) {
-          hitsArray.push({
-            date: Object.keys(retrievedHits[i])[0],
-            player: retrievedHits[i][Object.keys(retrievedHits[i])[0]].player,
-            score: retrievedHits[i][Object.keys(retrievedHits[i])[0]].score,
-            imageUrl:
-              retrievedHits[i][Object.keys(retrievedHits[i])[0]].imageUrl,
-          });
-        }
-
-        setHits(hitsArray);
-        setNumberHits(hitsArray.length);
-        let yesterdayDate = getFormattedDate(-1);
-        if (
-          Object.keys(retrievedHits[0])[0] != yesterdayDate &&
-          Object.keys(retrievedHits[0])[0] != curDate
-        ) {
-          setHitStreak(0);
-        } else {
-          let retrievedCurrentHitStreak = JSON.parse(
-            localStorage.getItem("hitStreak")
-          );
-          setHitStreak(retrievedCurrentHitStreak);
-        }
-        let retrievedMaxHitStreak = JSON.parse(
-          localStorage.getItem("maxHitStreak")
-        );
-
-        setMaxHitStreak(retrievedMaxHitStreak);
-      }
-
-      let retrievedOuts = JSON.parse(localStorage.getItem("outs"));
-      let outsArray = [];
-
-      if (retrievedOuts) {
-        for (let i = 0; i < retrievedOuts.length; i++) {
-          outsArray.push({
-            date: [Object.keys(retrievedOuts[i])[0]],
-            player: retrievedOuts[i][Object.keys(retrievedOuts[i])[0]].player,
-            score: retrievedOuts[i][Object.keys(retrievedOuts[i])[0]].score,
-            imageUrl:
-              retrievedOuts[i][Object.keys(retrievedOuts[i])[0]].imageUrl,
-          });
-        }
-
-        setNumberOuts(outsArray.length);
-      }
-
-      let retrievedScore = JSON.parse(localStorage.getItem("score"));
-      let retrievedData = JSON.parse(localStorage.getItem("data"));
-      if (!retrievedData) {
-        fetchInfo().then((res) => {
-          localStorage.setItem("data", JSON.stringify(res));
-          let retrievedPicUrl = JSON.parse(localStorage.getItem("data"))[1];
-          setPicUrl(retrievedPicUrl);
-          let status = localStorage.getItem("curDay");
-          if (!status) {
-            localStorage.setItem("curDay", "started");
-            setScoreStatus("scoreNotFinal");
-          }
-          if (status == "scoreFinal" || status == "scoreZero") {
-            let retrievedName = JSON.parse(localStorage.getItem("data"))[0][0]
-              .player.fullName;
-            setName(retrievedName);
-            setScore(retrievedScore);
-            setReveal("Reveal");
-          }
+    }
+    let retrievedGuessLog = localStorage.getItem("guessLog");
+    setGuessLog(retrievedGuessLog);
+    let retrievedHits = JSON.parse(localStorage.getItem("hits"));
+    let hitsArray = [];
+    if (retrievedHits) {
+      for (let i = 0; i < retrievedHits.length; i++) {
+        hitsArray.push({
+          date: Object.keys(retrievedHits[i])[0],
+          player: retrievedHits[i][Object.keys(retrievedHits[i])[0]].player,
+          score: retrievedHits[i][Object.keys(retrievedHits[i])[0]].score,
+          imageUrl: retrievedHits[i][Object.keys(retrievedHits[i])[0]].imageUrl,
         });
+      }
+
+      setHits(hitsArray);
+      setNumberHits(hitsArray.length);
+      let yesterdayDate = getFormattedDate(-1);
+      if (
+        Object.keys(retrievedHits[0])[0] != yesterdayDate &&
+        Object.keys(retrievedHits[0])[0] != curDate
+      ) {
+        setHitStreak(0);
       } else {
+        let retrievedCurrentHitStreak = JSON.parse(
+          localStorage.getItem("hitStreak")
+        );
+        setHitStreak(retrievedCurrentHitStreak);
+      }
+      let retrievedMaxHitStreak = JSON.parse(
+        localStorage.getItem("maxHitStreak")
+      );
+
+      setMaxHitStreak(retrievedMaxHitStreak);
+    }
+
+    let retrievedOuts = JSON.parse(localStorage.getItem("outs"));
+    let outsArray = [];
+
+    if (retrievedOuts) {
+      for (let i = 0; i < retrievedOuts.length; i++) {
+        outsArray.push({
+          date: [Object.keys(retrievedOuts[i])[0]],
+          player: retrievedOuts[i][Object.keys(retrievedOuts[i])[0]].player,
+          score: retrievedOuts[i][Object.keys(retrievedOuts[i])[0]].score,
+          imageUrl: retrievedOuts[i][Object.keys(retrievedOuts[i])[0]].imageUrl,
+        });
+      }
+
+      setNumberOuts(outsArray.length);
+    }
+
+    let retrievedScore = JSON.parse(localStorage.getItem("score"));
+    let retrievedData = JSON.parse(localStorage.getItem("data"));
+    if (!retrievedData) {
+      fetchInfo().then((res) => {
+        localStorage.setItem("data", JSON.stringify(res));
         let retrievedPicUrl = JSON.parse(localStorage.getItem("data"))[1];
         setPicUrl(retrievedPicUrl);
         let status = localStorage.getItem("curDay");
+        if (!status) {
+          localStorage.setItem("curDay", "started");
+          setScoreStatus("scoreNotFinal");
+        }
         if (status == "scoreFinal" || status == "scoreZero") {
           let retrievedName = JSON.parse(localStorage.getItem("data"))[0][0]
             .player.fullName;
@@ -136,6 +122,17 @@ const Stats = () => {
           setScore(retrievedScore);
           setReveal("Reveal");
         }
+      });
+    } else {
+      let retrievedPicUrl = JSON.parse(localStorage.getItem("data"))[1];
+      setPicUrl(retrievedPicUrl);
+      let status = localStorage.getItem("curDay");
+      if (status == "scoreFinal" || status == "scoreZero") {
+        let retrievedName = JSON.parse(localStorage.getItem("data"))[0][0]
+          .player.fullName;
+        setName(retrievedName);
+        setScore(retrievedScore);
+        setReveal("Reveal");
       }
 
       setOuts(outsArray);
