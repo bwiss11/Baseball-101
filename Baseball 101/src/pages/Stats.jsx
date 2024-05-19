@@ -17,7 +17,7 @@ const Stats = () => {
   const [maxHitStreak, setMaxHitStreak] = useState(0);
   const [score, setScore] = useState("TBD");
   const [picUrl, setPicUrl] = useState("");
-  const [name, setName] = useState("-");
+  const [name, setName] = useState("");
   const [reveal, setReveal] = useState("Hidden");
   const [guessLog, setGuessLog] = useState("");
   const [scoreStatus, setScoreStatus] = useState("scoreNotFinal");
@@ -47,7 +47,7 @@ const Stats = () => {
       localStorage.setItem("curDay", "started");
       localStorage.setItem("score", 101);
       setReveal("Hidden");
-      setName("-");
+      setName("");
     }
     let retrievedGuessLog = localStorage.getItem("guessLog");
     setGuessLog(retrievedGuessLog);

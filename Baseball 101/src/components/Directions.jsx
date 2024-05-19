@@ -29,7 +29,7 @@ const OVERLAY_STYLES = {
   zIndex: 1000,
 };
 
-const Directions = ({ open, children, onClose }) => {
+const Directions = ({ open, onClose }) => {
   let directionsRef = useRef();
   useEffect(() => {
     let handler = (e) => {
