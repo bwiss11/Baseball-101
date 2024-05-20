@@ -20,7 +20,7 @@ const Stats = () => {
   const [name, setName] = useState("");
   const [reveal, setReveal] = useState("Hidden");
   const [guessLog, setGuessLog] = useState("");
-  const [scoreStatus, setScoreStatus] = useState("scoreNotFinal");
+  const [scoreStatus, setScoreStatus] = useState("scoreTBD");
 
   let curDate = getFormattedDate();
 
@@ -110,7 +110,7 @@ const Stats = () => {
         let status = localStorage.getItem("curDay");
         if (!status) {
           localStorage.setItem("curDay", "started");
-          setScoreStatus("scoreNotFinal");
+          setScoreStatus("scoreTBD");
         }
         if (status == "scoreFinal" || status == "scoreZero") {
           let retrievedName = JSON.parse(localStorage.getItem("data"))[0][0]
@@ -139,7 +139,7 @@ const Stats = () => {
   useEffect(() => {
     let status = localStorage.getItem("curDay");
     if (status == "started") {
-      setScoreStatus("scoreNotFinal");
+      setScoreStatus("scoreTBD");
     } else {
       setScoreStatus(status);
     }

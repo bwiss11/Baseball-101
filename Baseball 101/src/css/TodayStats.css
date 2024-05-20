@@ -139,9 +139,9 @@
   padding-left: 5;
 }
 
-.scoreNotFinal {
+.scoreTBD {
   font-family: Helvetica;
-  font-size: 5rem;
+  font-size: 3rem;
   align-items: center;
   justify-content: center;
   margin: auto;
