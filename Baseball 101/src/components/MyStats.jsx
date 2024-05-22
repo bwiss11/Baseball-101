@@ -14,7 +14,7 @@ const MyStats = (props) => {
     <div className="myStatsContainer">
       <div id="date">My Stats</div>
       <div className="firstRow">
-        <div className="statsContainer" id="rightStatsContainer">
+        <div className="statsContainer" id="leftStatsContainer">
           <div className="textTop">Current Hit Streak</div>
           <div className="myStatsValue">{props.curHitStreak}</div>
         </div>
@@ -24,13 +24,13 @@ const MyStats = (props) => {
         </div>
       </div>
       <div className="secondRow">
-        <div className="statsContainer" id="rightStatsContainer">
-          <div className="textTop">Average</div>
-          <div className="myStatsValue">{average}</div>
-        </div>
-        <div className="statsContainer">
+        <div className="statsContainer" id="leftStatsContainer">
           <div className="textTop">At Bats</div>
           <div className="myStatsValue">{props.atBats}</div>
+        </div>
+        <div className="statsContainer">
+          <div className="textTop">Average</div>
+          <div className="myStatsValue">{average}</div>
         </div>
       </div>
     </div>
