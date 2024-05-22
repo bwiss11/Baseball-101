@@ -134,7 +134,6 @@ const DailyPlay = () => {
               [curDate]: {
                 player: answer,
                 score: score,
-                imageUrl: data[1],
                 guessLog: guesses,
               },
             });
@@ -146,7 +145,6 @@ const DailyPlay = () => {
               [curDate]: {
                 player: answer,
                 score: score,
-                imageUrl: data[1],
                 guessLog: guesses,
               },
             },
@@ -164,11 +162,15 @@ const DailyPlay = () => {
         if (outs) {
           let lastOut = Object.keys(outs[0])[0];
           if (lastOut != curDate) {
-            outs.unshift({ [curDate]: { player: answer, score: score } });
+            outs.unshift({
+              [curDate]: { player: answer, score: score, guessLog: guesses },
+            });
             localStorage.setItem("outs", JSON.stringify(outs));
           }
         } else {
-          let outs = [{ [curDate]: { player: answer, score: score } }];
+          let outs = [
+            { [curDate]: { player: answer, score: score, guessLog: guesses } },
+          ];
           localStorage.setItem("outs", JSON.stringify(outs));
         }
       }
@@ -246,7 +248,11 @@ const DailyPlay = () => {
       setScoreFinal("scoreFinal");
       setGuesses(guesses + "W");
     } else if (guess != "blank" && scoreFinal == "scoreNotFinal") {
-      setScore(score - 15);
+      if (score - 15 > 0) {
+        setScore(score - 15);
+      } else {
+        revealPlayerLoss();
+      }
       setGuesses(guesses + "X ");
     }
   }, [guess]);

@@ -89,7 +89,11 @@ const Home = () => {
       revealPlayer();
       setScoreFinal("scoreFinal");
     } else if (guess != "blank" && scoreFinal == "scoreNotFinal") {
-      setScore(score - 15);
+      if (score - 15 > 0) {
+        setScore(score - 15);
+      } else {
+        revealPlayerLoss();
+      }
     }
   }, [guess]);
 

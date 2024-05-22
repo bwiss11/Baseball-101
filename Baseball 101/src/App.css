@@ -269,7 +269,7 @@ button {
 
 .scoreNotFinal {
   font-family: Helvetica;
-  font-size: 4rem;
+  font-size: 5rem;
   align-items: center;
   justify-content: center;
   margin: auto;
@@ -282,7 +282,7 @@ button {
 
 .scoreFinal {
   font-family: Helvetica;
-  font-size: 4rem;
+  font-size: 5rem;
   align-items: center;
   justify-content: center;
   margin: auto;
@@ -296,11 +296,12 @@ button {
 
 .scoreZero {
   font-family: Helvetica;
-  font-size: 4rem;
+  font-size: 5rem;
   align-items: center;
   justify-content: center;
   margin: auto;
   font-weight: 900;
+  letter-spacing: -0.1rem;
   color: rgb(237, 77, 59);
   -webkit-text-stroke: 2px;
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.8);
