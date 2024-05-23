@@ -184,7 +184,10 @@ const Home = () => {
                   if (count == 0) {
                     setScore(score - 1);
                   } else {
-                    setScore(score - 5);
+                    if (data[0][count].team) {
+                      // doesn't count towards score if team is "Total" (player played for multiple teams in one year)
+                      setScore(score - 5);
+                    }
                   }
                 }
               }}

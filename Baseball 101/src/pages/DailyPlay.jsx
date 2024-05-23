@@ -34,7 +34,7 @@ const DailyPlay = () => {
     let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
 
     if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
-      const lastStatus = JSON.parse(localStorage.getItem("curDay"));
+      const lastStatus = localStorage.getItem("curDay");
       // If user started a game on a previous day and didn't finish, hit streak to 0
       if (lastStatus && lastStatus == "started") {
         localStorage.setItem("hitStreak", 0);
@@ -352,9 +352,12 @@ const DailyPlay = () => {
                     setScore(score - 1);
                     setGuesses(guesses + "- ");
                   } else {
-                    localStorage.setItem("score", score - 5);
-                    setScore(score - 5);
-                    setGuesses(guesses + "- ");
+                    // doesn't count towards score if team is "Total" (player played for multiple teams in one year)
+                    if (data[0][count].team) {
+                      localStorage.setItem("score", score - 5);
+                      setScore(score - 5);
+                      setGuesses(guesses + "- ");
+                    }
                   }
                   localStorage.setItem("curDay", "started");
                 }
