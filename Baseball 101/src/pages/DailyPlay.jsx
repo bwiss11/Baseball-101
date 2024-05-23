@@ -34,6 +34,11 @@ const DailyPlay = () => {
     let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
 
     if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
+      const lastStatus = JSON.parse(localStorage.getItem("curDay"));
+      // If user started a game on a previous day and didn't finish, hit streak to 0
+      if (lastStatus && lastStatus == "started") {
+        localStorage.setItem("hitStreak", 0);
+      }
       localStorage.setItem("lastCompleted", JSON.stringify(curDate));
       // Resets state if this is the first reload on a new day
       setData(undefined);
