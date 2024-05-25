@@ -66,24 +66,8 @@ const Home = () => {
 
   useEffect(() => {
     if (
-      guess
-        .replace("í", "i")
-        .replace("í", "i")
-        .replace("é", "e")
-        .replace("é", "e")
-        .replace("á", "a")
-        .replace("ó", "o")
-        .replace("ú", "u")
-        .replace("ñ", "n") ==
-        answer
-          .replace("í", "i")
-          .replace("í", "i")
-          .replace("é", "e")
-          .replace("é", "e")
-          .replace("á", "a")
-          .replace("ó", "o")
-          .replace("ú", "u")
-          .replace("ñ", "n") &&
+      guess.normalize("NFD").replace(/\p{Diacritic}/gu, "") ==
+        answer.normalize("NFD").replace(/\p{Diacritic}/gu, "") &&
       scoreFinal == "scoreNotFinal"
     ) {
       revealPlayer();

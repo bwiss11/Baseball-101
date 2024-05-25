@@ -52,13 +52,8 @@ function randomPlayerGenerator() {
   let randomPlayer = allMLBPlayers[
     Math.floor(Math.floor(Math.random() * allMLBPlayers.length))
   ]
-    .replace("í", "i")
-    .replace("í", "i")
-    .replace("é", "e")
-    .replace("é", "e")
-    .replace("á", "a")
-    .replace("ó", "o")
-    .replace("ú", "u");
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "");
 
   return randomPlayer;
 }
@@ -98,14 +93,8 @@ async function fetchData(playerName) {
       for (let i = 0; i < res.people.length; i++) {
         if (
           res.people[i].fullName
-            .replace("í", "i")
-            .replace("í", "i")
-            .replace("é", "e")
-            .replace("é", "e")
-            .replace("á", "a")
-            .replace("ó", "o")
-            .replace("ú", "u")
-            .replace("ñ", "n") == playerName
+            .normalize("NFD")
+            .replace(/\p{Diacritic}/gu, "") == playerName
         ) {
           id = res.people[i].id;
           return id;
