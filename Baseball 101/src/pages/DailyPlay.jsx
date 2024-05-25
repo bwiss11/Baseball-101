@@ -40,7 +40,8 @@ const DailyPlay = () => {
     //
     let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
 
-    console.log(lastCompleted, curDate);
+    console.log("last completed and curDate", lastCompleted, curDate);
+
     if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
       const lastStatus = localStorage.getItem("curDay");
       console.log("last status", lastStatus, lastStatus == "started");
@@ -53,7 +54,16 @@ const DailyPlay = () => {
         let retrievedPlayer = retrievedData[0][0].player.fullName;
         let retrievedScore = localStorage.getItem("score");
         let retrievedGuessLog = localStorage.getItem("guessLog");
+        console.log(
+          "all retrieved stuff",
+          retrievedDate,
+          retrievedData,
+          retrievedPlayer,
+          retrievedScore,
+          retrievedGuessLog
+        );
         let outs = JSON.parse(localStorage.getItem("outs"));
+        console.log("outs", outs);
         if (outs) {
           let lastOut = Object.keys(outs[0])[0];
           if (lastOut != retrievedDate) {
@@ -64,6 +74,7 @@ const DailyPlay = () => {
                 guessLog: retrievedGuessLog,
               },
             });
+            console.log("setting outs to", outs);
             localStorage.setItem("outs", JSON.stringify(outs));
           }
         } else {
@@ -76,6 +87,7 @@ const DailyPlay = () => {
               },
             },
           ];
+          console.log("setting outs to", outs);
           localStorage.setItem("outs", JSON.stringify(outs));
         }
       }
