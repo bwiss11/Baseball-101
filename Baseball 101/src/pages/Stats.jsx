@@ -30,9 +30,58 @@ const Stats = () => {
   };
 
   useEffect(() => {
+    // DELETE THIS - FOR TESTING PURPOSES ONLY
+    // let dummyDate = "2024-05-23";
+    // localStorage.setItem("lastCompleted", JSON.stringify(dummyDate));
+    // console.log("setting dummy date to ", dummyDate);
+    // localStorage.setItem("curDay", JSON.stringify("started"));
+
+    //
     let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
 
+    console.log(lastCompleted, curDate);
     if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
+      const lastStatus = JSON.parse(localStorage.getItem("curDay"));
+      console.log("last status", lastStatus, lastStatus == "started");
+      // If user started a game on a previous day and didn't finish, hit streak to 0
+      // Need to test below
+      if (lastStatus && lastStatus == "started") {
+        console.log(
+          "user had started game on previous day, setting hit streak to 0"
+        );
+        localStorage.setItem("hitStreak", 0);
+        let retrievedDate = localStorage.getItem("lastCompleted");
+        let retrievedData = JSON.parse(localStorage.getItem("data"));
+        let retrievedPlayer = retrievedData[0][0].player.fullName;
+        let retrievedScore = localStorage.getItem("score");
+        let retrievedGuessLog = localStorage.getItem("guessLog");
+        let outs = JSON.parse(localStorage.getItem("outs"));
+        if (outs) {
+          let lastOut = Object.keys(outs[0])[0];
+          if (lastOut != retrievedDate) {
+            outs.unshift({
+              [retrievedDate]: {
+                player: retrievedPlayer,
+                score: retrievedScore,
+                guessLog: retrievedGuessLog,
+              },
+            });
+            localStorage.setItem("outs", JSON.stringify(outs));
+          }
+        } else {
+          let outs = [
+            {
+              [retrievedDate]: {
+                player: retrievedPlayer,
+                score: retrievedScore,
+                guessLog: retrievedGuessLog,
+              },
+            },
+          ];
+          localStorage.setItem("outs", JSON.stringify(outs));
+        }
+      }
+      // Gets today's player's data
       fetchInfo().then((res) => {
         localStorage.setItem("data", JSON.stringify(res));
         let retrievedPicUrl = JSON.parse(localStorage.getItem("data"))[1];
