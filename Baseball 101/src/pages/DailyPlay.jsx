@@ -227,6 +227,10 @@ const DailyPlay = () => {
     localStorage.setItem("tableData", JSON.stringify(tableData));
   }, [tableData]);
 
+  useEffect(() => {
+    localStorage.setItem("score", score);
+  }, [score]);
+
   const revealPlayer = () => {
     if (reveal !== "reveal") {
       setReveal("reveal");
@@ -269,14 +273,6 @@ const DailyPlay = () => {
   }, []);
 
   useEffect(() => {
-    console.log(
-      "guess is",
-      guess.normalize("NFD").replace(/\p{Diacritic}/gu, "")
-    );
-    console.log(
-      "answer is",
-      answer.normalize("NFD").replace(/\p{Diacritic}/gu, "")
-    );
     if (
       guess.normalize("NFD").replace(/\p{Diacritic}/gu, "") ==
         answer.normalize("NFD").replace(/\p{Diacritic}/gu, "") &&
