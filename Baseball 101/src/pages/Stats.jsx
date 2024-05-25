@@ -41,7 +41,7 @@ const Stats = () => {
 
     console.log(lastCompleted, curDate);
     if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
-      const lastStatus = JSON.parse(localStorage.getItem("curDay"));
+      const lastStatus = localStorage.getItem("curDay");
       console.log("last status", lastStatus, lastStatus == "started");
       // If user started a game on a previous day and didn't finish, hit streak to 0
       // Need to test below
