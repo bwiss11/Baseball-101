@@ -38,7 +38,7 @@ const DailyPlay = () => {
     // localStorage.setItem("curDay", JSON.stringify("started"));
 
     //
-    let lastCompleted = localStorage.getItem("lastCompleted");
+    let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
 
     console.log("last completed and curDate", lastCompleted, curDate);
 

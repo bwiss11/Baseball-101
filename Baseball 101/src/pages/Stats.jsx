@@ -30,7 +30,7 @@ const Stats = () => {
   };
 
   useEffect(() => {
-    let lastCompleted = localStorage.getItem("lastCompleted");
+    let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
 
     console.log(lastCompleted, curDate);
     if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
