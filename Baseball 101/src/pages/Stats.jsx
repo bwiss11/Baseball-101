@@ -30,14 +30,7 @@ const Stats = () => {
   };
 
   useEffect(() => {
-    // DELETE THIS - FOR TESTING PURPOSES ONLY
-    // let dummyDate = "2024-05-23";
-    // localStorage.setItem("lastCompleted", JSON.stringify(dummyDate));
-    // console.log("setting dummy date to ", dummyDate);
-    // localStorage.setItem("curDay", JSON.stringify("started"));
-
-    //
-    let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
+    let lastCompleted = localStorage.getItem("lastCompleted");
 
     console.log(lastCompleted, curDate);
     if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
