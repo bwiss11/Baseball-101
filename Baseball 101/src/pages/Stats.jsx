@@ -62,7 +62,7 @@ const Stats = () => {
             outs.unshift({
               [retrievedDate]: {
                 player: retrievedPlayer,
-                score: retrievedScore,
+                score: 0,
                 guessLog: retrievedGuessLog,
               },
             });

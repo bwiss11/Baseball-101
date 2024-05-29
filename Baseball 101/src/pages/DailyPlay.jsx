@@ -70,7 +70,7 @@ const DailyPlay = () => {
             outs.unshift({
               [retrievedDate]: {
                 player: retrievedPlayer,
-                score: retrievedScore,
+                score: 0,
                 guessLog: retrievedGuessLog,
               },
             });
@@ -82,7 +82,7 @@ const DailyPlay = () => {
             {
               [retrievedDate]: {
                 player: retrievedPlayer,
-                score: retrievedScore,
+                score: 0,
                 guessLog: retrievedGuessLog,
               },
             },
@@ -221,7 +221,7 @@ const DailyPlay = () => {
           let lastOut = Object.keys(outs[0])[0];
           if (lastOut != curDate) {
             outs.unshift({
-              [curDate]: { player: answer, score: score, guessLog: guesses },
+              [curDate]: { player: answer, score: 0, guessLog: guesses },
             });
             localStorage.setItem("outs", JSON.stringify(outs));
           }
