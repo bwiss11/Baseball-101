@@ -320,8 +320,8 @@ button {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   border-color: rgba(255, 255, 255, 0.75);
-  transition: all 1s;
-  transition-delay: 100ms;
+  /* transition: all 1s;
+  transition-delay: 100ms; */
 }
 
 #statsButton:active {
@@ -342,8 +342,8 @@ button {
   height: 2rem;
   padding: 0.15rem;
   border-radius: 0.3rem;
-  transition: all 1s;
-  transition-delay: 100ms;
+  /* transition: all 1s;
+  transition-delay: 100ms; */
 }
 
 #directionsButton:active {
@@ -369,8 +369,8 @@ button {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   border-color: rgba(255, 255, 255, 0.75);
-  transition: all 1s;
-  transition-delay: 100ms;
+  /* transition: all 1s;
+  transition-delay: 100ms; */
 }
 
 #dailyButton:active {
@@ -396,8 +396,8 @@ button {
   border-width: 0.15rem;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  transition: all 1s;
-  transition-delay: 100ms;
+  /* transition: all 1s;
+  transition-delay: 100ms; */
 }
 
 #freePlayButton:active {
