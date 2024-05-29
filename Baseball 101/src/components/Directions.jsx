@@ -51,18 +51,16 @@ const Directions = ({ open, onClose }) => {
         <div className="directionsContainer">
           <h2>Quick Rules</h2>
           <div className="text">
-            1. Use the search bar at the top of the page to guess the player as
-            soon as you know the answer.
+            1. The 'Hint' button reveals the next year of statistics.
           </div>
           <br></br>
-
           <div className="text">
-            2. Use the 'Hint' button to reveal the next year of statistics.
+            2. The 'Reveal' button will show the answer, and set the score to 0.
           </div>
           <br></br>
-
           <div className="text">
-            3. If you give up, use the 'Reveal' button to see the answer.
+            3. The search bar at the top can be used to guess the player at any
+            point.
           </div>
           <br></br>
         </div>
@@ -111,7 +109,7 @@ const Directions = ({ open, onClose }) => {
             the user's score on the{" "}
             <svg
               className="directionsPageButtons"
-              viewBox="0 -0.5 21 21"
+              viewBox="0 -4 18 24"
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
