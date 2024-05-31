@@ -267,6 +267,7 @@ const DailyPlay = () => {
 
   const fetchInfo = () => {
     let player = dailyPlayerGenerator();
+    console.log("player is", player);
     return fetchData(player);
   };
 
@@ -275,7 +276,7 @@ const DailyPlay = () => {
     fetchInfo().then((res) => {
       setData(res);
       localStorage.setItem("data", JSON.stringify(res));
-      setAnswer(res[0][0].player.fullName);
+      setAnswer(res[3]);
       if (res[2] == "pitching") {
         setPosition("pitcher");
       } else {

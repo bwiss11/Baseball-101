@@ -55,7 +55,7 @@ const Home = () => {
   useEffect(() => {
     fetchInfo().then((res) => {
       setData(res);
-      setAnswer(res[0][0].player.fullName);
+      setAnswer(res[3]);
       if (res[2] == "pitching") {
         setPosition("pitcher");
       } else {

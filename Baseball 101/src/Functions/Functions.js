@@ -144,6 +144,7 @@ async function fetchData(playerName) {
     playerStats.stats[0].splits,
     headshot,
     playerStats.stats[0].group.displayName,
+    playerName,
   ];
 }
 
