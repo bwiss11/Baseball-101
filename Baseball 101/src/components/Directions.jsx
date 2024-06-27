@@ -19,7 +19,7 @@ const Directions = ({ open, onClose }) => {
       <div id="outerDirections">
         <div id="directionsText" ref={directionsRef}>
           <div id="closeDirections" onClick={onClose}>
-            <div>X</div>
+            <div id="xButton">X</div>
           </div>
           <br></br>
           <div className="directionsContainer">
