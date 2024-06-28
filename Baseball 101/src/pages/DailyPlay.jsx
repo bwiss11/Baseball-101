@@ -10,6 +10,11 @@ import {
   dailyPlayerGenerator,
   getFormattedDate,
 } from "../Functions/Functions";
+import {
+  addGuessPattern,
+  addGuess,
+  addDailyPlayPageView,
+} from "../backend/firestore";
 import { useState, useEffect } from "react";
 
 const DailyPlay = () => {
@@ -36,7 +41,7 @@ const DailyPlay = () => {
     // localStorage.setItem("lastCompleted", JSON.stringify(dummyDate));
     // console.log("setting dummy date to ", dummyDate);
     // localStorage.setItem("curDay", JSON.stringify("started"));
-
+    addDailyPlayPageView();
     //
     let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
 
@@ -54,14 +59,6 @@ const DailyPlay = () => {
         let retrievedPlayer = retrievedData[0][0].player.fullName;
         let retrievedScore = localStorage.getItem("score");
         let retrievedGuessLog = localStorage.getItem("guessLog");
-        console.log(
-          "all retrieved stuff",
-          retrievedDate,
-          retrievedData,
-          retrievedPlayer,
-          retrievedScore,
-          retrievedGuessLog
-        );
         let outs = JSON.parse(localStorage.getItem("outs"));
         console.log("outs", outs);
         if (outs) {
@@ -262,6 +259,7 @@ const DailyPlay = () => {
       setScore(0);
       setScoreFinal("scoreZero");
       setGuesses(guesses + "L");
+      addGuessPattern(guesses + "L");
     }
   };
 
@@ -294,6 +292,7 @@ const DailyPlay = () => {
       revealPlayer();
       setScoreFinal("scoreFinal");
       setGuesses(guesses + "W");
+      addGuessPattern(guesses + "W");
     } else if (guess != "blank" && scoreFinal == "scoreNotFinal") {
       if (score - 15 > 0) {
         setScore(score - 15);
@@ -301,6 +300,9 @@ const DailyPlay = () => {
         revealPlayerLoss();
       }
       setGuesses(guesses + "X ");
+    }
+    if (guess && guess != "blank") {
+      addGuess(guess);
     }
   }, [guess]);
 

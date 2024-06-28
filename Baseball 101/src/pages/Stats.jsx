@@ -7,6 +7,7 @@ import {
   dailyPlayerGenerator,
   fetchData,
 } from "../Functions/Functions";
+import { addStatsPageView } from "../backend/firestore";
 
 const Stats = () => {
   const [hits, setHits] = useState("");
@@ -30,6 +31,7 @@ const Stats = () => {
   };
 
   useEffect(() => {
+    addStatsPageView();
     let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
 
     console.log(lastCompleted, curDate);

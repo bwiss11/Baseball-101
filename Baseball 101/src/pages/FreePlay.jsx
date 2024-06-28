@@ -9,6 +9,7 @@ import {
   teamAbbreviator,
 } from "../Functions/Functions";
 import { useState, useEffect } from "react";
+import { addFreePlayPageView } from "../backend/firestore";
 
 const Home = () => {
   const [data, setData] = useState(undefined);
@@ -53,6 +54,7 @@ const Home = () => {
 
   // Runs only when page is reloaded
   useEffect(() => {
+    addFreePlayPageView();
     fetchInfo().then((res) => {
       setData(res);
       setAnswer(res[3]);
