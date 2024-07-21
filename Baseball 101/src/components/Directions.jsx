@@ -15,7 +15,6 @@ const Directions = ({ open, onClose }) => {
   if (!open) return null;
   return ReactDom.createPortal(
     <>
-      {/* <div style={OVERLAY_STYLES}></div> */}
       <div id="outerDirections">
         <div id="directionsText" ref={directionsRef}>
           <div id="closeDirections" onClick={onClose}>

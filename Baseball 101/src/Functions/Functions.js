@@ -5,6 +5,7 @@ import specialCases from "../specialCases.json";
 
 // Converts full team name to abbreviation
 function teamAbbreviator(fullName) {
+  // Maps team's full name to its 3 letter abbreviation
   const teamMap = new Map([
     ["New York Yankees", "NYY"],
     ["Boston Red Sox", "BOS"],
@@ -21,7 +22,7 @@ function teamAbbreviator(fullName) {
     ["Houston Astros", "HOU"],
     ["Los Angeles Angels", "LAA"],
     ["Anaheim Angels", "ANA"],
-    [("Texas Rangers", "TEX")],
+    ["Texas Rangers", "TEX"],
     ["Seattle Mariners", "SEA"],
     ["Oakland Athletics", "OAK"],
     ["Atlanta Braves", "ATL"],
@@ -40,26 +41,27 @@ function teamAbbreviator(fullName) {
     ["San Diego Padres", "SD"],
     ["San Francisco Giants", "SF"],
     ["Colorado Rockies", "COL"],
-    ["Multiple", "MULT"],
   ]);
   if (teamMap.get(fullName)) {
     return teamMap.get(fullName);
   } else {
+    // If team is not in map, the player likely played for multiple teams that year and "Total" year's stats are displayed
     return "Total";
   }
 }
 
 function randomPlayerGenerator() {
+  // Generates a random player and handles all unusual characters (accents, tildes, etc.)
   let randomPlayer = allMLBPlayers[
     Math.floor(Math.floor(Math.random() * allMLBPlayers.length))
   ]
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "");
-
   return randomPlayer;
 }
 
 function dailyPlayerGenerator() {
+  // Generates the player for the Daily Play page based on the date
   const startDate = new Date("May 16, 2024");
   const curDate = new Date();
   const difference = Math.floor(
@@ -69,8 +71,8 @@ function dailyPlayerGenerator() {
   return dailyPlayer;
 }
 
-// Gets the player's information and year, returns all players from that year
 async function fetchData(playerName) {
+  // Gets the player's information and year, returns all players from that year
   let suffixSet = new Set(["Jr.", "Sr.", "II", "III", "IV", "V"]);
 
   // Sets last name, handles players with more than 2 names (Jr., II, Jung Ho Kang, etc.)
@@ -102,18 +104,20 @@ async function fetchData(playerName) {
         }
       }
     });
-
     // actually returning id above, this just makes it wait til data2 resolves
     return data2;
   }
 
+  // Gets the player's ID for MLB's database
   let MLBId;
   if (playerName in specialCases) {
+    // Handles special cases for players that cause issues (inconsistent naming between MLB and ESPN, etc.)
     MLBId = specialCases[playerName];
   } else {
     MLBId = await getPlayer();
   }
 
+  // Gets the ESPN ID and the player's headshot
   let ESPNId = MLBtoESPNID[MLBId];
   let headshot = await getHeadshot(ESPNId);
 
@@ -133,7 +137,6 @@ async function fetchData(playerName) {
   // Gets a player's headshot from their ESPN ID
   async function getHeadshot(ESPNId) {
     let playerPic = "";
-
     playerPic =
       "https://a.espncdn.com/combiner/i?img=/i/headshots/mlb/players/full/" +
       ESPNId +
@@ -149,6 +152,7 @@ async function fetchData(playerName) {
   ];
 }
 
+// Gets current date and formats it
 const getFormattedDate = (offset = 0) => {
   const t = new Date(Date.now());
   t.setHours(t.getHours() + offset * 24);

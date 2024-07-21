@@ -36,21 +36,23 @@ const DailyPlay = () => {
   const curDate = getFormattedDate();
 
   useEffect(() => {
+    // Adds 1 to the page view counter
     addDailyPlayPageView();
+
+    // Gets the last completed game date
     let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
 
     if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
       const lastStatus = localStorage.getItem("curDay");
-      // If user started a game on a previous day and didn't finish, hit streak to 0
-      // Need to test below
+      // If user started a game on a previous day and didn't finish, hit streak set to 0
       if (lastStatus && lastStatus == "started") {
         localStorage.setItem("hitStreak", 0);
         let retrievedDate = localStorage.getItem("lastCompleted");
         let retrievedData = JSON.parse(localStorage.getItem("data"));
         let retrievedPlayer = retrievedData[0][0].player.fullName;
-        let retrievedScore = localStorage.getItem("score");
         let retrievedGuessLog = localStorage.getItem("guessLog");
         let outs = JSON.parse(localStorage.getItem("outs"));
+        // Adds the uncompleted game's player name to the outs array
         if (outs) {
           let lastOut = Object.keys(outs[0])[0];
           if (lastOut != retrievedDate) {
@@ -76,7 +78,7 @@ const DailyPlay = () => {
           localStorage.setItem("outs", JSON.stringify(outs));
         }
       }
-      // Need to test above
+
       localStorage.setItem("lastCompleted", JSON.stringify(curDate));
       // Resets state if this is the first reload on a new day
       setData(undefined);
@@ -102,11 +104,11 @@ const DailyPlay = () => {
     } else {
       localStorage.setItem("lastCompleted", JSON.stringify(curDate));
     }
-
     if (
       localStorage.getItem("curDay") == "scoreFinal" ||
       localStorage.getItem("curDay") == "scoreZero"
     ) {
+      // Sets the day's stats if the user has completed the game for that day
       let retrievedData = JSON.parse(localStorage.getItem("data"));
       let retrievedTableData = JSON.parse(localStorage.getItem("tableData"));
       let retrievedScore = localStorage.getItem("score");

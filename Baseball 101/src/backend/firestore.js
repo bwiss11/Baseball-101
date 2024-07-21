@@ -3,7 +3,6 @@ import {
   getFirestore,
   collection,
   addDoc,
-  getDoc,
   getDocs,
   where,
   query,
@@ -33,6 +32,8 @@ const db = getFirestore(app);
 const curDate = getFormattedDate();
 
 async function addGuessPattern(guessPattern) {
+  // Adds a guess pattern to the database after a user has completed the daily game
+  // Queries to get document with the current date
   const q = query(
     collection(db, "dates"),
     where("date", "==", curDate),
@@ -41,11 +42,11 @@ async function addGuessPattern(guessPattern) {
   const querySnapshot = await getDocs(q);
   var myDoc;
   querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
     myDoc = doc;
   });
   if (!myDoc) {
     try {
+      // Adds new document for that date since it hasn't yet been created
       const docRef = await addDoc(collection(db, "dates"), {
         date: curDate,
         dailyPlayPageViews: 0,
@@ -57,6 +58,7 @@ async function addGuessPattern(guessPattern) {
       console.error("Error adding document: ", e);
     }
   } else {
+    // Adds the guess pattern to the document
     var guessPatternsArray = myDoc.data().guessPatterns;
     guessPatternsArray.push(guessPattern);
     await updateDoc(doc(db, "dates", myDoc.id), {
@@ -66,11 +68,13 @@ async function addGuessPattern(guessPattern) {
 }
 
 async function addGuess(guess) {
+  // Adds a user's guess for who the player is to the database
   const q = query(
     collection(db, "dates"),
     where("date", "==", curDate),
     limit(1)
   );
+
   const querySnapshot = await getDocs(q);
   var myDoc;
   querySnapshot.forEach((doc) => {
@@ -79,6 +83,7 @@ async function addGuess(guess) {
   });
   if (!myDoc) {
     try {
+      // Adds new document for that date since it hasn't yet been created
       const docRef = await addDoc(collection(db, "dates"), {
         date: curDate,
         dailyPlayPageViews: 0,
@@ -90,6 +95,7 @@ async function addGuess(guess) {
       console.error("Error adding document: ", e);
     }
   } else {
+    // Adds the guess to the document
     var guessesArray = myDoc.data().guesses;
     guessesArray.push(guess);
     await updateDoc(doc(db, "dates", myDoc.id), {
@@ -99,6 +105,7 @@ async function addGuess(guess) {
 }
 
 async function addDailyPlayPageView() {
+  // Adds to the Daily Play page view counter in the database
   const q = query(
     collection(db, "dates"),
     where("date", "==", curDate),
@@ -112,6 +119,7 @@ async function addDailyPlayPageView() {
   if (!myDoc) {
     try {
       const docRef = await addDoc(collection(db, "dates"), {
+        // Adds new document for that date since it hasn't yet been created
         date: curDate,
         dailyPlayPageViews: 1,
         freePlayPageViews: 0,
@@ -123,6 +131,7 @@ async function addDailyPlayPageView() {
       console.error("Error adding document: ", e);
     }
   } else {
+    // Increments the Daily Play page views field of the document
     var curDailyPlayPageViews = myDoc.data().dailyPlayPageViews;
     curDailyPlayPageViews++;
     await updateDoc(doc(db, "dates", myDoc.id), {
@@ -132,6 +141,7 @@ async function addDailyPlayPageView() {
 }
 
 async function addFreePlayPageView() {
+  // Adds to the Free Play page view counter in the database
   const q = query(
     collection(db, "dates"),
     where("date", "==", curDate),
@@ -145,6 +155,7 @@ async function addFreePlayPageView() {
   });
   if (!myDoc) {
     try {
+      // Adds new document for that date since it hasn't yet been created
       const docRef = await addDoc(collection(db, "dates"), {
         date: curDate,
         dailyPlayPageViews: 0,
@@ -157,6 +168,7 @@ async function addFreePlayPageView() {
       console.error("Error adding document: ", e);
     }
   } else {
+    // Increments the Free Play page views field of the document
     var curFreePlayPageViews = myDoc.data().freePlayPageViews;
     curFreePlayPageViews++;
     await updateDoc(doc(db, "dates", myDoc.id), {
@@ -166,6 +178,7 @@ async function addFreePlayPageView() {
 }
 
 async function addStatsPageView() {
+  // Adds to the Stats page view counter in the database
   const q = query(
     collection(db, "dates"),
     where("date", "==", curDate),
@@ -179,6 +192,7 @@ async function addStatsPageView() {
   });
   if (!myDoc) {
     try {
+      // Adds new document for that date since it hasn't yet been created
       const docRef = await addDoc(collection(db, "dates"), {
         date: curDate,
         dailyPlayPageViews: 0,
@@ -191,6 +205,7 @@ async function addStatsPageView() {
       console.error("Error adding document: ", e);
     }
   } else {
+    // Increments the Stats page views field of the document
     var curStatsPageViews = myDoc.data().statsPageViews;
     curStatsPageViews++;
     await updateDoc(doc(db, "dates", myDoc.id), {
