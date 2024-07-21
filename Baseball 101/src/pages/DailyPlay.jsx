@@ -36,20 +36,11 @@ const DailyPlay = () => {
   const curDate = getFormattedDate();
 
   useEffect(() => {
-    // DELETE THIS - FOR TESTING PURPOSES ONLY
-    // let dummyDate = "2024-05-23";
-    // localStorage.setItem("lastCompleted", JSON.stringify(dummyDate));
-    // console.log("setting dummy date to ", dummyDate);
-    // localStorage.setItem("curDay", JSON.stringify("started"));
     addDailyPlayPageView();
-    //
     let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
-
-    console.log("last completed and curDate", lastCompleted, curDate);
 
     if (!lastCompleted || (lastCompleted && lastCompleted != curDate)) {
       const lastStatus = localStorage.getItem("curDay");
-      console.log("last status", lastStatus, lastStatus == "started");
       // If user started a game on a previous day and didn't finish, hit streak to 0
       // Need to test below
       if (lastStatus && lastStatus == "started") {
@@ -60,7 +51,6 @@ const DailyPlay = () => {
         let retrievedScore = localStorage.getItem("score");
         let retrievedGuessLog = localStorage.getItem("guessLog");
         let outs = JSON.parse(localStorage.getItem("outs"));
-        console.log("outs", outs);
         if (outs) {
           let lastOut = Object.keys(outs[0])[0];
           if (lastOut != retrievedDate) {
@@ -71,7 +61,6 @@ const DailyPlay = () => {
                 guessLog: retrievedGuessLog,
               },
             });
-            console.log("setting outs to", outs);
             localStorage.setItem("outs", JSON.stringify(outs));
           }
         } else {
@@ -84,7 +73,6 @@ const DailyPlay = () => {
               },
             },
           ];
-          console.log("setting outs to", outs);
           localStorage.setItem("outs", JSON.stringify(outs));
         }
       }
@@ -265,7 +253,6 @@ const DailyPlay = () => {
 
   const fetchInfo = () => {
     let player = dailyPlayerGenerator();
-    console.log("player is", player);
     return fetchData(player);
   };
 

@@ -32,36 +32,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const curDate = getFormattedDate();
 
-async function testFunction() {
-  console.log("calling testFunction");
-  const q = query(
-    collection(db, "dates"),
-    where("date", "==", curDate),
-    limit(1)
-  );
-  const querySnapshot = await getDocs(q);
-  var myDoc;
-  querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    myDoc = doc.data();
-  });
-  console.log("mydoc is", myDoc);
-  if (!myDoc) {
-    try {
-      const docRef = await addDoc(collection(db, "dates"), {
-        date: curDate,
-        dailyPlayPageViews: 0,
-        freePlayPageViews: 0,
-        guessPatterns: [],
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  } else {
-  }
-}
-
 async function addGuessPattern(guessPattern) {
   const q = query(
     collection(db, "dates"),
@@ -83,14 +53,12 @@ async function addGuessPattern(guessPattern) {
         guessPatterns: [guessPattern],
         guesses: [],
       });
-      console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   } else {
     var guessPatternsArray = myDoc.data().guessPatterns;
     guessPatternsArray.push(guessPattern);
-    console.log("new guess patterns", guessPatternsArray, myDoc.id);
     await updateDoc(doc(db, "dates", myDoc.id), {
       guessPatterns: guessPatternsArray,
     });
@@ -118,14 +86,12 @@ async function addGuess(guess) {
         guessPatterns: [],
         guesses: [guess],
       });
-      console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
   } else {
     var guessesArray = myDoc.data().guesses;
     guessesArray.push(guess);
-    console.log("new guess patterns", guessesArray, myDoc.id);
     await updateDoc(doc(db, "dates", myDoc.id), {
       guesses: guessesArray,
     });
@@ -133,7 +99,6 @@ async function addGuess(guess) {
 }
 
 async function addDailyPlayPageView() {
-  console.log("add dp page view");
   const q = query(
     collection(db, "dates"),
     where("date", "==", curDate),
@@ -142,7 +107,6 @@ async function addDailyPlayPageView() {
   const querySnapshot = await getDocs(q);
   var myDoc;
   querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
     myDoc = doc;
   });
   if (!myDoc) {
@@ -155,7 +119,6 @@ async function addDailyPlayPageView() {
         guessPatterns: [],
         guesses: [],
       });
-      console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -169,7 +132,6 @@ async function addDailyPlayPageView() {
 }
 
 async function addFreePlayPageView() {
-  console.log("add fp page view");
   const q = query(
     collection(db, "dates"),
     where("date", "==", curDate),
@@ -191,7 +153,6 @@ async function addFreePlayPageView() {
         guessPatterns: [],
         guesses: [],
       });
-      console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -205,7 +166,6 @@ async function addFreePlayPageView() {
 }
 
 async function addStatsPageView() {
-  console.log("add fp page view");
   const q = query(
     collection(db, "dates"),
     where("date", "==", curDate),
@@ -227,7 +187,6 @@ async function addStatsPageView() {
         guessPatterns: [],
         guesses: [],
       });
-      console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -241,7 +200,6 @@ async function addStatsPageView() {
 }
 
 export {
-  testFunction,
   addGuessPattern,
   addGuess,
   addDailyPlayPageView,
