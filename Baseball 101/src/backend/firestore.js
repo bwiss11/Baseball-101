@@ -12,16 +12,17 @@ import {
 } from "firebase/firestore";
 import { getFormattedDate } from "../Functions/Functions";
 
+
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
 const firebaseConfig = {
   apiKey: "AIzaSyDIZcr0PplKs_A3wAD4JT74PozeeQJLqPo",
   authDomain: "baseball101.firebaseapp.com",
   projectId: "baseball101",
-  storageBucket: "baseball101.appspot.com",
+  storageBucket: "baseball101.firebasestorage.app",
   messagingSenderId: "993933823042",
   appId: "1:993933823042:web:c9147ab4d9362e31cf31db",
-  measurementId: "G-ZPRKJBDYTP",
+  measurementId: "G-ZPRKJBDYTP"
 };
 
 // Initialize Firebase
@@ -30,6 +31,8 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 const curDate = getFormattedDate();
+
+console.log("db", db);
 
 async function addGuessPattern(guessPattern) {
   // Adds a guess pattern to the database after a user has completed the daily game
@@ -111,11 +114,13 @@ async function addDailyPlayPageView() {
     where("date", "==", curDate),
     limit(1)
   );
+
   const querySnapshot = await getDocs(q);
   var myDoc;
   querySnapshot.forEach((doc) => {
     myDoc = doc;
   });
+
   if (!myDoc) {
     try {
       const docRef = await addDoc(collection(db, "dates"), {
