@@ -5,6 +5,7 @@ import specialCases from "../specialCases.json";
 
 // Converts full team name to abbreviation
 function teamAbbreviator(fullName) {
+  console.log("full team name is",fullName);
   // Maps team's full name to its 3 letter abbreviation
   const teamMap = new Map([
     ["New York Yankees", "NYY"],

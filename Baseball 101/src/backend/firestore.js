@@ -32,8 +32,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const curDate = getFormattedDate();
 
-console.log("db", db);
-
 async function addGuessPattern(guessPattern) {
   // Adds a guess pattern to the database after a user has completed the daily game
   // Queries to get document with the current date
