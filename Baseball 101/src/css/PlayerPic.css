@@ -1,4 +1,17 @@
-img {
-  width: 100%;
-  min-width: 10rem;
+.playerPicContainer {
+  width: clamp(200px, 30vw, 40vh);  /* Increased min to 200px, preferred to 30vw, max to 40vh */
+  height: clamp(160px, 25vw, 35vh); /* Increased min to 160px, preferred to 25vw, max to 35vh */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;  /* Aligns content to bottom */
+  margin: 0 auto 3px; /* Added 10px bottom margin */
+}
+
+.playerPicContainer img {
+  width: 100%;      /* Force full width */
+  height: 100%;     /* Force full height */
+  object-fit: cover; /* Cover the container while maintaining aspect ratio */
+  object-position: center bottom; /* Align image to bottom */
+  display: block;
+  margin: 0 auto;
 }
