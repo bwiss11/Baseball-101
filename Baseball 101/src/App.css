@@ -35,6 +35,15 @@ h2 {
   padding-bottom: 1rem;
 }
 
+.email-link {
+  color: rgb(2, 190, 252, 100);
+  text-decoration: none;
+}
+
+.email-link:hover {
+  color: rgb(120, 100, 252, 100);
+}
+
 li {
   background-color: #333;
   border: solid 1px;

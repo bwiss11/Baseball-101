@@ -394,7 +394,7 @@ const DailyPlay = () => {
                     if (score - 1 > 0) {
                       setScore(score - 1);
                     } else {
-                      revealPlayerLoss(true);
+                      revealPlayerLoss(true, false);
                     }
                   } else {
                     // doesn't count towards score if team is "Total" (player played for multiple teams in one year)
@@ -404,7 +404,7 @@ const DailyPlay = () => {
                       if (score - 5 > 0) {
                         setScore(score - 5);
                       } else {
-                        revealPlayerLoss(true);
+                        revealPlayerLoss(true, false);
                       }
                     }
                   }
@@ -424,7 +424,7 @@ const DailyPlay = () => {
             )}
           </div>
           <div className="divHintReveal">
-            <button onClick={revealPlayerLoss} className="revealButton">
+            <button onClick={() => revealPlayerLoss(false, false)} className="revealButton">
               <a>Reveal</a>
             </button>
           </div>

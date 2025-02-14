@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDom from "react-dom";
 import { useRef, useEffect } from "react";
 
@@ -175,49 +174,13 @@ const Directions = ({ open, onClose }) => {
           </div>
           <br></br>
           <div className="directionsContainer">
-            <h2>Full Rules</h2>
+            <h2>Contact</h2>
             <div className="text">
-              1. The user is initially displayed with nothing but the silhouette
-              of the player's image, and their score is set to 101.
+              If you have any questions or feedback, please contact {" "}
+              <a className = "email-link" href="mailto:baseballonezeroone@gmail.com">baseballonezeroone@gmail.com</a>.
             </div>
             <br></br>
-            <div className="text">
-              2. The user can hit the 'Hint' button at any time to be displayed
-              with the next year of the player's statistics.
-            </div>
-            <br></br>
-            <div className="oneTabDirection">
-              a. The first press of the 'Hint' button subtracts 1 point from the
-              user's score.
-            </div>
-            <br></br>
-            <br></br>
-            <div className="oneTabDirection">
-              b. Each additional press of the 'Hint' button will subtract 5
-              points from the user's score.
-            </div>
-            <br></br>
-            <br></br>
-            <div className="oneTabDirection">
-              c. An incorrect guess will subtract 15 points from the user's
-              score.
-            </div>
-            <br></br>
-            <br></br>
-            <div className="text">
-              3. If at any point, the user thinks they know which player the
-              data belongs to, they can type in the player's name in the search
-              bar at the top.
-            </div>
-            <br></br>
-            <div className="text">
-              4. If the user is stumped, they can click the 'Reveal', and the
-              player's name and image will be shown.
-            </div>
-            <br></br>
-            <div className="oneTabDirection">
-              a. Clicking the 'Reveal' button will drop the user's score to 0.
-            </div>
+
           </div>
         </div>
       </div>
