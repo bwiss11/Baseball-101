@@ -63,25 +63,6 @@
   align-items: center;
 }
 
-.todayStatsPicReveal {
-  width: 100px;
-  height: auto;
-}
-
-.todayStatsPicHidden {
-  width: 100px;
-  height: auto;
-  -webkit-filter: drop-shadow(2px 2px 0 rgba(255, 255, 255, 0.75))
-    drop-shadow(-2px 2px 0 rgba(255, 255, 255, 0.75))
-    drop-shadow(2px -2px 0 rgba(255, 255, 255, 0.75))
-    drop-shadow(-2px -2px 0 rgba(255, 255, 255, 0.75));
-
-  filter: contrast(0%) brightness(0%)
-    drop-shadow(2px 2px 0 rgba(255, 255, 255, 0.75))
-    drop-shadow(-2px 2px 0 rgba(255, 255, 255, 0.75))
-    drop-shadow(2px -2px 0 rgba(255, 255, 255, 0.75))
-    drop-shadow(-2px -2px 0 rgba(255, 255, 255, 0.75));
-}
 
 #date {
   margin-top: 0.5rem;

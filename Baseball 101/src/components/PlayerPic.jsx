@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from 'prop-types';
 import "../css/PlayerPic.css";
 
 const PlayerPic = (props) => {

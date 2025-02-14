@@ -1,4 +1,3 @@
-import React from "react";
 import TableHeader from "../components/TableHeader";
 import PlayerPic from "../components/PlayerPic";
 import SearchBar from "../components/SearchBar";
@@ -57,7 +56,7 @@ const Home = () => {
     addFreePlayPageView();
     fetchInfo().then((res) => {
       setData(res);
-      setAnswer(res[3]);
+      setAnswer(res[0][0].player.fullName);
       if (res[2] == "pitching") {
         setPosition("pitcher");
       } else {
@@ -108,8 +107,7 @@ const Home = () => {
             ops: data[0][count - 1].stat.ops,
           };
           setTableData([...tableData, newRow]);
-        } else {
-        }
+        } 
       } else {
         // For pitchers:
         if (count < data[0].length + 1) {
@@ -125,7 +123,6 @@ const Home = () => {
             walks: data[0][count - 1].stat.baseOnBalls,
           };
           setTableData([...tableData, newRow]);
-        } else {
         }
       }
 
@@ -168,11 +165,19 @@ const Home = () => {
                 if (scoreFinal == "scoreNotFinal" && score > 0) {
                   setCount(count + 1);
                   if (count == 0) {
-                    setScore(score - 1);
+                    if (score - 1 > 0) {
+                      setScore(score - 1);
+                    } else {
+                      revealPlayerLoss();
+                    }
                   } else {
                     if (data[0][count].team) {
                       // doesn't count towards score if team is "Total" (player played for multiple teams in one year)
-                      setScore(score - 5);
+                      if (score - 5 > 0) {
+                        setScore(score - 5);
+                      } else {
+                        revealPlayerLoss();
+                      }
                     }
                   }
                 }

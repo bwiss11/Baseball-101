@@ -1,8 +1,7 @@
-import React from "react";
 import "../css/TodayStats.css";
 import { getFormattedDate } from "../Functions/Functions";
 import { FaShareFromSquare } from "react-icons/fa6";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const TodayStats = (props) => {
   const [showClipboardMessage, setShowClipboardMessage] = useState(false);

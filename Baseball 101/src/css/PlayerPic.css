@@ -1,10 +1,10 @@
 .playerPicContainer {
-  width: clamp(200px, 30vw, 40vh);  /* Increased min to 200px, preferred to 30vw, max to 40vh */
-  height: clamp(160px, 25vw, 35vh); /* Increased min to 160px, preferred to 25vw, max to 35vh */
+  width: clamp(150px, 35vw, 50vh);  /* Increased min to 180px, preferred to 30vw, max to 40vh */
+  height: clamp(120px, 28vw, 40vh); /* Increased min to 160px, preferred to 25vw, max to 35vh */
   display: flex;
   justify-content: center;
   align-items: flex-end;  /* Aligns content to bottom */
-  margin: 0 auto 3px; /* Added 10px bottom margin */
+  margin: 0 auto 3px; /* Added 3px bottom margin */
 }
 
 .playerPicContainer img {

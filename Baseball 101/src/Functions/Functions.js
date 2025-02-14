@@ -5,7 +5,6 @@ import specialCases from "../specialCases.json";
 
 // Converts full team name to abbreviation
 function teamAbbreviator(fullName) {
-  console.log("full team name is",fullName);
   // Maps team's full name to its 3 letter abbreviation
   const teamMap = new Map([
     ["New York Yankees", "NYY"],
@@ -23,6 +22,7 @@ function teamAbbreviator(fullName) {
     ["Houston Astros", "HOU"],
     ["Los Angeles Angels", "LAA"],
     ["Anaheim Angels", "ANA"],
+    ["California Angels", "CAL"],
     ["Texas Rangers", "TEX"],
     ["Seattle Mariners", "SEA"],
     ["Oakland Athletics", "OAK"],
@@ -32,6 +32,7 @@ function teamAbbreviator(fullName) {
     ["Florida Marlins", "FLA"],
     ["New York Mets", "NYM"],
     ["Washington Nationals", "WAS"],
+    ["Montreal Expos", "MON"],
     ["Milwaukee Brewers", "MIL"],
     ["Chicago Cubs", "CHC"],
     ["Cincinnati Reds", "CIN"],

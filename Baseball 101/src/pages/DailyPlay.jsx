@@ -1,5 +1,4 @@
 import "../App.css";
-import React from "react";
 import TableHeader from "../components/TableHeader";
 import PlayerPic from "../components/PlayerPic";
 import SearchBar from "../components/SearchBar";
@@ -240,7 +239,7 @@ const DailyPlay = () => {
     }
   };
 
-  const revealPlayerLoss = () => {
+  const revealPlayerLoss = (hint=false, guess=false) => {
     if (scoreFinal == "scoreNotFinal") {
       if (reveal !== "reveal") {
         setReveal("reveal");
@@ -248,8 +247,16 @@ const DailyPlay = () => {
       }
       setScore(0);
       setScoreFinal("scoreZero");
-      setGuesses(guesses + "L");
-      addGuessPattern(guesses + "L");
+      if (hint) {
+        setGuesses(guesses + "- L");
+        addGuessPattern(guesses + "- L");
+      } else if (guess) {
+        setGuesses(guesses + "X L");
+        addGuessPattern(guesses + "X L");
+      } else {
+        setGuesses(guesses + "L");
+        addGuessPattern(guesses + "L");
+      }
     }
   };
 
@@ -263,7 +270,7 @@ const DailyPlay = () => {
     fetchInfo().then((res) => {
       setData(res);
       localStorage.setItem("data", JSON.stringify(res));
-      setAnswer(res[3]);
+      setAnswer(res[0][0].player.fullName);
       if (res[2] == "pitching") {
         setPosition("pitcher");
       } else {
@@ -285,10 +292,11 @@ const DailyPlay = () => {
     } else if (guess != "blank" && scoreFinal == "scoreNotFinal") {
       if (score - 15 > 0) {
         setScore(score - 15);
+        setGuesses(guesses + "X ");
       } else {
-        revealPlayerLoss();
+        revealPlayerLoss(false, true);
       }
-      setGuesses(guesses + "X ");
+      
     }
     if (guess && guess != "blank") {
       addGuess(guess);
@@ -320,8 +328,7 @@ const DailyPlay = () => {
             ops: data[0][count - 1].stat.ops,
           };
           setTableData([...tableData, newRow]);
-        } else {
-        }
+        } 
       } else if (position == "pitcher") {
         // For pitchers:
         if (count < data[0].length + 1) {
@@ -337,8 +344,7 @@ const DailyPlay = () => {
             walks: data[0][count - 1].stat.baseOnBalls,
           };
           setTableData([...tableData, newRow]);
-        } else {
-        }
+        } 
       }
 
       if (count == data[0].length) {
@@ -382,14 +388,24 @@ const DailyPlay = () => {
                   setCount(count + 1);
                   if (count == 0) {
                     localStorage.setItem("score", score - 1);
-                    setScore(score - 1);
+                    
+                    // setScore(score - 1);
                     setGuesses(guesses + "- ");
+                    if (score - 1 > 0) {
+                      setScore(score - 1);
+                    } else {
+                      revealPlayerLoss(true);
+                    }
                   } else {
                     // doesn't count towards score if team is "Total" (player played for multiple teams in one year)
                     if (data[0][count].team) {
                       localStorage.setItem("score", score - 5);
-                      setScore(score - 5);
                       setGuesses(guesses + "- ");
+                      if (score - 5 > 0) {
+                        setScore(score - 5);
+                      } else {
+                        revealPlayerLoss(true);
+                      }
                     }
                   }
                   localStorage.setItem("curDay", "started");
