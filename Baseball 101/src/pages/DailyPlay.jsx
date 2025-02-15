@@ -425,7 +425,7 @@ const DailyPlay = () => {
           </div>
           <div className="divHintReveal">
             <button onClick={() => revealPlayerLoss(false, false)} className="revealButton">
-              <a>Reveal</a>
+              Reveal
             </button>
           </div>
         </div>

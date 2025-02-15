@@ -196,7 +196,7 @@ const Home = () => {
           </div>
           <div className="divHintReveal">
             <button onClick={revealPlayerLoss} className="revealButton">
-              <a>Reveal</a>
+              Reveal
             </button>
           </div>
         </div>
