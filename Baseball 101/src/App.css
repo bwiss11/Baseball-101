@@ -17,18 +17,19 @@ body {
   );
 }
 
-/* svg {
-  color: "white"
-  /* filter: invert(9%) sepia(42%) saturate(1958%) hue-rotate(223deg)
-    brightness(98%) contrast(98%); }*/
 
 h2 {
+  margin-left: 1rem;
   margin-top: 0;
-  justify-content: center;
   color: black;
   background-color: white;
-  text-align: center;
   border-radius: 5px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  display: inline-block;
+  align-self: center;
 }
 
 .directionsContainer {
@@ -465,7 +466,7 @@ button {
   top: 52%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   color: white;
   padding: 50px;
   z-index: 1000;
