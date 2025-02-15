@@ -15,3 +15,21 @@
   display: block;
   margin: 0 auto;
 }
+
+a {
+  color: #ffffff; /* or any light color like #e0e0e0 */
+  text-decoration: none; /* removes underline */
+}
+
+a:hover {
+  color: #cccccc; /* slightly darker on hover */
+}
+
+.email-link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.email-link:hover {
+  color: #cccccc;
+}

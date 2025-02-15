@@ -64,7 +64,7 @@ function randomPlayerGenerator() {
 
 function dailyPlayerGenerator() {
   // Generates the player for the Daily Play page based on the date
-  const startDate = new Date("May 16, 2024");
+  const startDate = new Date("February 14, 2025");
   const curDate = new Date();
   const difference = Math.floor(
     (curDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)

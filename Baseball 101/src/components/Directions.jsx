@@ -21,13 +21,13 @@ const Directions = ({ open, onClose }) => {
           </div>
           <br></br>
           <div className="directionsContainer">
-            <h2>Quick Rules</h2>
+            <h2>Rules</h2>
             <div className="text">
               1. The 'Hint' button reveals the next year of statistics.
             </div>
             <br></br>
             <div className="text">
-              2. The 'Reveal' button will show the answer, and set the score to
+              2. The 'Reveal' button will show the answer, but will set the score to
               0.
             </div>
             <br></br>
