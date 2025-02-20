@@ -430,10 +430,7 @@ writtenDate =
             />
           </div>
         </div>
-        <div id="score" className={scoreFinal}>
-          {score}
-        </div>
-<div className={answerReveal}>
+        <div className={answerReveal}>
         <div className="shareHolder" onClick={shareScore} isClickable={answerReveal == "answerReveal"}>
         <div
     id="shareContainerDailyPlay"
@@ -493,6 +490,10 @@ writtenDate =
           )}
         </div>
       </div>
+        <div id="score" className={scoreFinal}>
+          {score}
+        </div>
+
         <div className="answerHolder">
           <div className={answerReveal}>{answer}</div>
         </div>
