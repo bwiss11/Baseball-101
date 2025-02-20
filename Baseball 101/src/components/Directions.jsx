@@ -22,6 +22,8 @@ const Directions = ({ open, onClose }) => {
           <br></br>
           <div className="directionsContainer">
             <h2>Rules</h2>
+            <br></br>
+            <br></br>
             <div className="text">
               1. The 'Hint' button reveals the next year of statistics.
             </div>
@@ -39,6 +41,8 @@ const Directions = ({ open, onClose }) => {
           </div>
           <div className="directionsContainer">
             <h2>Play Types</h2>
+            <br></br>
+            <br></br>
             <div className="text">
               1. The{" "}
               <svg
@@ -175,9 +179,25 @@ const Directions = ({ open, onClose }) => {
           <br></br>
           <div className="directionsContainer">
             <h2>Contact</h2>
+            <br></br>
+            <br></br>
             <div className="text">
-              If you have any questions or feedback, please contact {" "}
-              <a className = "email-link" href="mailto:baseballonezeroone@gmail.com">baseballonezeroone@gmail.com</a>.
+              If you have any questions or feedback, please reach out via:
+              <br />
+              <br />
+              Email: <a className="link" href="mailto:baseballonezeroone@gmail.com">
+                baseballonezeroone@gmail.com
+              </a>
+              <br />
+              <br />
+              X (Twitter): <a 
+                href="https://x.com/baseballone0one" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="link"
+              >
+              Baseball 101
+              </a>
             </div>
             <br></br>
 

@@ -25,11 +25,36 @@ a:hover {
   color: #cccccc; /* slightly darker on hover */
 }
 
-.email-link {
+.link {
   color: #ffffff;
   text-decoration: none;
 }
 
-.email-link:hover {
+.link:hover {
   color: #cccccc;
+}
+
+h2 {
+  width: fit-content;    /* Makes element width fit its content */
+  margin: 0 auto;        /* Centers the element */
+  text-align: center;    /* Centers the text inside */
+}
+
+.social-link {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 10px; /* Adds some spacing between links */
+}
+
+.social-link:hover {
+  color: #cccccc;
+}
+
+.twitter-handle {
+  color: #1DA1F2; /* Twitter/X blue color */
+  display: inline;
+}
+
+.twitter-handle:hover {
+  color: #0d8bd9; /* Slightly darker on hover */
 }
