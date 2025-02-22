@@ -3,17 +3,8 @@ import TableHeader from "../components/TableHeader";
 import PlayerPic from "../components/PlayerPic";
 import SearchBar from "../components/SearchBar";
 import SearchResultsList from "../components/SearchResultsList";
-import {
-  fetchData,
-  teamAbbreviator,
-  dailyPlayerGenerator,
-  getFormattedDate,
-} from "../Functions/Functions";
-import {
-  addGuessPattern,
-  addGuess,
-  addDailyPlayPageView,
-} from "../backend/firestore";
+import { fetchData, teamAbbreviator, dailyPlayerGenerator, getFormattedDate } from "../Functions/Functions";
+import { addGuessPattern, addGuess, addDailyPlayPageView } from "../backend/firestore";
 import { useState, useEffect } from "react";
 import { FaShareFromSquare } from "react-icons/fa6";
 const DailyPlay = () => {
@@ -37,33 +28,18 @@ const DailyPlay = () => {
   let writtenDate = new Date(getFormattedDate() + "T00:00:00");
 
   const shareScore = () => {
-    console.log("trying to share score")
+    console.log("trying to share score");
     if (answerReveal != "answerReveal") {
       return;
     }
     if (navigator.share) {
       navigator.share({
-        text:
-          "Baseball 101\n" +
-          writtenDate +
-          "\n " +
-          guesses +
-          " (" +
-          score +
-          ")\n" +
-          "baseball101.io",
+        text: "Baseball 101\n" + writtenDate + "\n " + guesses + " (" + score + ")\n" + "baseball101.io",
       });
     } else {
       if ("clipboard" in navigator) {
         navigator.clipboard.writeText(
-          "Baseball 101\n" +
-            writtenDate +
-            "\n " +
-            guesses +
-            " (" +
-            score +
-            ")\n" +
-            "baseball101.io"
+          "Baseball 101\n" + writtenDate + "\n " + guesses + " (" + score + ")\n" + "baseball101.io"
         );
         setShowClipboardMessage(true);
         setTimeout(() => {
@@ -72,26 +48,26 @@ const DailyPlay = () => {
       } else {
       }
     }
-  }; 
+  };
 
   let originalWrittenDate = writtenDate
-  .toDateString("en-US", {
-    weekday: "none",
-    year: "numeric",
-    month: "short",
-  })
-  .split(" ")
-  .slice(1)
-  .join(" ")
-  .replace(/\b0/g, "");
-length = originalWrittenDate.split(" ").length;
-writtenDate =
-  originalWrittenDate
+    .toDateString("en-US", {
+      weekday: "none",
+      year: "numeric",
+      month: "short",
+    })
     .split(" ")
-    .slice(0, length - 1)
-    .join(" ") +
-  ", " +
-  originalWrittenDate.split(" ").slice(-1);
+    .slice(1)
+    .join(" ")
+    .replace(/\b0/g, "");
+  length = originalWrittenDate.split(" ").length;
+  writtenDate =
+    originalWrittenDate
+      .split(" ")
+      .slice(0, length - 1)
+      .join(" ") +
+    ", " +
+    originalWrittenDate.split(" ").slice(-1);
 
   useEffect(() => {
     // Adds 1 to the page view counter
@@ -162,10 +138,7 @@ writtenDate =
     } else {
       localStorage.setItem("lastCompleted", JSON.stringify(curDate));
     }
-    if (
-      localStorage.getItem("curDay") == "scoreFinal" ||
-      localStorage.getItem("curDay") == "scoreZero"
-    ) {
+    if (localStorage.getItem("curDay") == "scoreFinal" || localStorage.getItem("curDay") == "scoreZero") {
       // Sets the day's stats if the user has completed the game for that day
       let retrievedData = JSON.parse(localStorage.getItem("data"));
       let retrievedTableData = JSON.parse(localStorage.getItem("tableData"));
@@ -224,9 +197,7 @@ writtenDate =
             if (lastHit == yesterdayDate) {
               hitStreak++;
               localStorage.setItem("hitStreak", hitStreak);
-              let maxHitStreak = JSON.parse(
-                localStorage.getItem("maxHitStreak")
-              );
+              let maxHitStreak = JSON.parse(localStorage.getItem("maxHitStreak"));
               if (hitStreak > maxHitStreak) {
                 localStorage.setItem("maxHitStreak", hitStreak);
               }
@@ -271,9 +242,7 @@ writtenDate =
             localStorage.setItem("outs", JSON.stringify(outs));
           }
         } else {
-          let outs = [
-            { [curDate]: { player: answer, score: score, guessLog: guesses } },
-          ];
+          let outs = [{ [curDate]: { player: answer, score: score, guessLog: guesses } }];
           localStorage.setItem("outs", JSON.stringify(outs));
         }
       }
@@ -298,7 +267,7 @@ writtenDate =
     }
   };
 
-  const revealPlayerLoss = (hint=false, guess=false) => {
+  const revealPlayerLoss = (hint = false, guess = false) => {
     if (scoreFinal == "scoreNotFinal") {
       if (reveal !== "reveal") {
         setReveal("reveal");
@@ -340,8 +309,7 @@ writtenDate =
 
   useEffect(() => {
     if (
-      guess.normalize("NFD").replace(/\p{Diacritic}/gu, "") ==
-        answer.normalize("NFD").replace(/\p{Diacritic}/gu, "") &&
+      guess.normalize("NFD").replace(/\p{Diacritic}/gu, "") == answer.normalize("NFD").replace(/\p{Diacritic}/gu, "") &&
       scoreFinal == "scoreNotFinal"
     ) {
       revealPlayer();
@@ -355,7 +323,6 @@ writtenDate =
       } else {
         revealPlayerLoss(false, true);
       }
-      
     }
     if (guess && guess != "blank") {
       addGuess(guess);
@@ -387,7 +354,7 @@ writtenDate =
             ops: data[0][count - 1].stat.ops,
           };
           setTableData([...tableData, newRow]);
-        } 
+        }
       } else if (position == "pitcher") {
         // For pitchers:
         if (count < data[0].length + 1) {
@@ -403,7 +370,7 @@ writtenDate =
             walks: data[0][count - 1].stat.baseOnBalls,
           };
           setTableData([...tableData, newRow]);
-        } 
+        }
       }
 
       if (count == data[0].length) {
@@ -414,82 +381,65 @@ writtenDate =
 
   if (data && data.length) {
     return (
-      <>
+      <div>
         <div>
           <div className="search-bar-container">
-            <SearchBar
-              setResults={setResults}
-              setInput={setInput}
-              input={input}
-            />
-            <SearchResultsList
-              results={results}
-              setResults={setResults}
-              setInput={setInput}
-              setGuess={setGuess}
-            />
+            <SearchBar setResults={setResults} setInput={setInput} input={input} />
+            <SearchResultsList results={results} setResults={setResults} setInput={setInput} setGuess={setGuess} />
+          </div>
+        </div>
+        <div className="clipboardMessageDailyPlay">
+          <div id="copiedMessage">
+            {showClipboardMessage ? (
+              <>
+                <svg
+                  viewBox="0 0 20 20"
+                  height="20px"
+                  width="20px"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="white"
+                >
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                  <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    {" "}
+                    <g id="layer1">
+                      {" "}
+                      <path d="M 7 0 L 5 2 L 2 2 L 2 20 L 17 20 L 17 2 L 14 2 L 12 0 L 7 0 z M 7.4140625 1 L 11.585938 1 L 14 3.4140625 L 14 4 L 5 4 L 5 3.4140625 L 7.4140625 1 z M 8 2 L 8 3 L 11 3 L 11 2 L 8 2 z M 3 3 L 4 3 L 4 5 L 5 5 L 14 5 L 15 5 L 15 3 L 16 3 L 16 19 L 3 19 L 3 3 z M 4 9 L 4 10 L 15 10 L 15 9 L 4 9 z M 4 11 L 4 12 L 15 12 L 15 11 L 4 11 z M 4 13 L 4 14 L 15 14 L 15 13 L 4 13 z M 4 15 L 4 16 L 15 16 L 15 15 L 4 15 z "></path>{" "}
+                    </g>{" "}
+                  </g>
+                </svg>
+                <svg
+                  height="20px"
+                  width="20px"
+                  fill="#39FF14"
+                  viewBox="-1.7 0 20.4 20.4"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                  <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path d="M16.417 10.283A7.917 7.917 0 1 1 8.5 2.366a7.916 7.916 0 0 1 7.917 7.917zm-4.105-4.498a.791.791 0 0 0-1.082.29l-3.828 6.63-1.733-2.08a.791.791 0 1 0-1.216 1.014l2.459 2.952a.792.792 0 0 0 .608.285.83.83 0 0 0 .068-.003.791.791 0 0 0 .618-.393L12.6 6.866a.791.791 0 0 0-.29-1.081z"></path>
+                  </g>
+                </svg>
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </div>
         <div className={answerReveal}>
-        <div className="shareHolder" onClick={shareScore} isClickable={answerReveal == "answerReveal"}>
-        <div
-    id="shareContainerDailyPlay"
-    className={`shareHolder ${answerReveal == "answerReveal" ? '' : 'disabled'}`}
-  >
-            <FaShareFromSquare />
-            &nbsp;<div >Share</div>
+          <div className="shareHolder" onClick={shareScore}>
+            <div
+              id="shareContainerDailyPlay"
+              className={`shareHolder ${answerReveal == "answerReveal" ? "" : "disabled"}`}
+            >
+              <FaShareFromSquare />
+              &nbsp;<div>Share</div>
             </div>
           </div>
-          </div>
-          <div className="clipboardMessage">
-        <div id="copiedMessage">
-          {showClipboardMessage ? (
-            <>
-              <svg
-                viewBox="0 0 20 20"
-                height="20px"
-                width="20px"
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="white"
-              >
-                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  {" "}
-                  <g id="layer1">
-                    {" "}
-                    <path d="M 7 0 L 5 2 L 2 2 L 2 20 L 17 20 L 17 2 L 14 2 L 12 0 L 7 0 z M 7.4140625 1 L 11.585938 1 L 14 3.4140625 L 14 4 L 5 4 L 5 3.4140625 L 7.4140625 1 z M 8 2 L 8 3 L 11 3 L 11 2 L 8 2 z M 3 3 L 4 3 L 4 5 L 5 5 L 14 5 L 15 5 L 15 3 L 16 3 L 16 19 L 3 19 L 3 3 z M 4 9 L 4 10 L 15 10 L 15 9 L 4 9 z M 4 11 L 4 12 L 15 12 L 15 11 L 4 11 z M 4 13 L 4 14 L 15 14 L 15 13 L 4 13 z M 4 15 L 4 16 L 15 16 L 15 15 L 4 15 z "></path>{" "}
-                  </g>{" "}
-                </g>
-              </svg>
-              <svg
-                height="20px"
-                width="20px"
-                fill="#39FF14"
-                viewBox="-1.7 0 20.4 20.4"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path d="M16.417 10.283A7.917 7.917 0 1 1 8.5 2.366a7.916 7.916 0 0 1 7.917 7.917zm-4.105-4.498a.791.791 0 0 0-1.082.29l-3.828 6.63-1.733-2.08a.791.791 0 1 0-1.216 1.014l2.459 2.952a.792.792 0 0 0 .608.285.83.83 0 0 0 .068-.003.791.791 0 0 0 .618-.393L12.6 6.866a.791.791 0 0 0-.29-1.081z"></path>
-                </g>
-              </svg>
-            </>
-          ) : (
-            ""
-          )}
         </div>
-      </div>
         <div id="score" className={scoreFinal}>
           {score}
         </div>
@@ -497,8 +447,6 @@ writtenDate =
         <div className="answerHolder">
           <div className={answerReveal}>{answer}</div>
         </div>
-
-
 
         <div className="holder">
           <div className="divHintReveal">
@@ -511,7 +459,7 @@ writtenDate =
                   setCount(count + 1);
                   if (count == 0) {
                     localStorage.setItem("score", score - 1);
-                    
+
                     // setScore(score - 1);
                     setGuesses(guesses + "- ");
                     if (score - 1 > 0) {
@@ -539,12 +487,7 @@ writtenDate =
             </button>
           </div>
           <div className="playerPicHolder">
-            {loading && (
-              <PlayerPic
-                className="playerPic"
-                props={{ url: data[1], revealState: { reveal } }}
-              />
-            )}
+            {loading && <PlayerPic className="playerPic" props={{ url: data[1], revealState: { reveal } }} />}
           </div>
           <div className="divHintReveal">
             <button onClick={() => revealPlayerLoss(false, false)} className="revealButton">
@@ -587,7 +530,7 @@ writtenDate =
                 ))}
           </tbody>
         </table>
-      </>
+      </div>
     );
   }
 };

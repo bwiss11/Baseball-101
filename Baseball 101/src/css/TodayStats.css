@@ -167,6 +167,7 @@
 }
 
 #copiedMessage {
+  min-height: 1.5rem;
   padding-top: 0.2rem;
   display: flex;
   color: white;
