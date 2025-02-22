@@ -389,7 +389,7 @@ const DailyPlay = () => {
           </div>
         </div>
         <div className="clipboardMessageDailyPlay">
-          <div id="copiedMessage">
+          <div id="copiedMessageDailyPlay">
             {showClipboardMessage ? (
               <>
                 <svg

@@ -173,6 +173,17 @@
   color: white;
   font-family: helvetica;
   width: 26%;
+  justify-content: right;
+  align-items: right;
+}
+
+#copiedMessageDailyPlay {
+  min-height: 1.5rem;
+  padding-top: 0.2rem;
+  display: flex;
+  color: white;
+  font-family: helvetica;
+  width: 26%;
   justify-content: center;
   align-items: center;
 }
