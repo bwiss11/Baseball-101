@@ -86,6 +86,7 @@ async function fetchData(playerName) {
   }
 
   async function getPlayer() {
+    console.log("OLD CALLING MLB API 2");
     let response2 = await fetch(
       "https://statsapi.mlb.com/api/v1/people/search?names=" + lastName
     );
@@ -125,6 +126,7 @@ async function fetchData(playerName) {
 
   // Gets a player's information from their MLB ID
   async function getPlayerInfo() {
+    console.log("OLD CALLING MLB API");
     let response = await fetch(
       "https://statsapi.mlb.com/api/v1/people?personIds=" +
         MLBId +

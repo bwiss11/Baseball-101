@@ -288,14 +288,20 @@ const DailyPlay = () => {
     }
   };
 
-  const fetchInfo = () => {
-    let player = dailyPlayerGenerator();
-    return fetchData(player);
+  const playerFetch = async () => {
+    try {
+      const response = await fetch("/.netlify/functions/player-fetching");
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   // Runs only when page is reloaded
   useEffect(() => {
-    fetchInfo().then((res) => {
+    playerFetch().then((res) => {
       setData(res);
       localStorage.setItem("data", JSON.stringify(res));
       setAnswer(res[0][0].player.fullName);

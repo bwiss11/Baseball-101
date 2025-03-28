@@ -1,8 +1,7 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import TodayStats from "../components/TodayStats";
 import MyStats from "../components/MyStats";
-import { getFormattedDate, dailyPlayerGenerator, fetchData } from "../Functions/Functions";
+import { getFormattedDate } from "../Functions/Functions";
 import { addStatsPageView } from "../backend/firestore";
 
 const Stats = () => {
@@ -21,22 +20,16 @@ const Stats = () => {
 
   let curDate = getFormattedDate();
 
-  const fetchInfo = () => {
-    let player = dailyPlayerGenerator();
-    return fetchData(player);
-  };
-
   const playerFetch = async () => {
     try {
       const response = await fetch("/.netlify/functions/player-fetching");
       const data = await response.json();
-      alert(data.message); // Display the fetched message in an alert
+
+      return data;
     } catch (error) {
       console.error("Error fetching data:", error);
-      alert("Failed to fetch data");
     }
   };
-
   useEffect(() => {
     addStatsPageView();
     let lastCompleted = JSON.parse(localStorage.getItem("lastCompleted"));
@@ -79,7 +72,7 @@ const Stats = () => {
         }
       }
       // Gets today's player's data
-      fetchInfo().then((res) => {
+      playerFetch().then((res) => {
         localStorage.setItem("data", JSON.stringify(res));
         let retrievedPicUrl = JSON.parse(localStorage.getItem("data"))[1];
         setPicUrl(retrievedPicUrl);
@@ -142,7 +135,7 @@ const Stats = () => {
     let retrievedScore = JSON.parse(localStorage.getItem("score"));
     let retrievedData = JSON.parse(localStorage.getItem("data"));
     if (!retrievedData) {
-      fetchInfo().then((res) => {
+      playerFetch().then((res) => {
         localStorage.setItem("data", JSON.stringify(res));
         let retrievedPicUrl = JSON.parse(localStorage.getItem("data"))[1];
         setPicUrl(retrievedPicUrl);
@@ -199,7 +192,6 @@ const Stats = () => {
           atBats={numberHits + numberOuts}
           average={(numberHits / (numberHits + numberOuts)).toFixed(3)}
         ></MyStats>
-        <button onClick={playerFetch}>Player Fetch</button>
       </div>
     );
   }

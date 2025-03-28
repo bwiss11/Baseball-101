@@ -2,11 +2,7 @@ import TableHeader from "../components/TableHeader";
 import PlayerPic from "../components/PlayerPic";
 import SearchBar from "../components/SearchBar";
 import SearchResultsList from "../components/SearchResultsList";
-import {
-  fetchData,
-  randomPlayerGenerator,
-  teamAbbreviator,
-} from "../Functions/Functions";
+import { teamAbbreviator } from "../Functions/Functions";
 import { useState, useEffect } from "react";
 import { addFreePlayPageView } from "../backend/firestore";
 
@@ -35,6 +31,17 @@ const Home = () => {
     }
   };
 
+  const playerFetch = async () => {
+    try {
+      const response = await fetch("/.netlify/functions/player-fetching");
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   const revealPlayerLoss = () => {
     if (scoreFinal == "scoreNotFinal") {
       if (reveal !== "reveal") {
@@ -46,15 +53,10 @@ const Home = () => {
     }
   };
 
-  const fetchInfo = () => {
-    let player = randomPlayerGenerator();
-    return fetchData(player);
-  };
-
   // Runs only when page is reloaded
   useEffect(() => {
     addFreePlayPageView();
-    fetchInfo().then((res) => {
+    playerFetch().then((res) => {
       setData(res);
       setAnswer(res[0][0].player.fullName);
       if (res[2] == "pitching") {
@@ -67,8 +69,7 @@ const Home = () => {
 
   useEffect(() => {
     if (
-      guess.normalize("NFD").replace(/\p{Diacritic}/gu, "") ==
-        answer.normalize("NFD").replace(/\p{Diacritic}/gu, "") &&
+      guess.normalize("NFD").replace(/\p{Diacritic}/gu, "") == answer.normalize("NFD").replace(/\p{Diacritic}/gu, "") &&
       scoreFinal == "scoreNotFinal"
     ) {
       revealPlayer();
@@ -107,7 +108,7 @@ const Home = () => {
             ops: data[0][count - 1].stat.ops,
           };
           setTableData([...tableData, newRow]);
-        } 
+        }
       } else {
         // For pitchers:
         if (count < data[0].length + 1) {
@@ -137,17 +138,8 @@ const Home = () => {
       <>
         <div>
           <div className="search-bar-container">
-            <SearchBar
-              setResults={setResults}
-              setInput={setInput}
-              input={input}
-            />
-            <SearchResultsList
-              results={results}
-              setResults={setResults}
-              setInput={setInput}
-              setGuess={setGuess}
-            />
+            <SearchBar setResults={setResults} setInput={setInput} input={input} />
+            <SearchResultsList results={results} setResults={setResults} setInput={setInput} setGuess={setGuess} />
           </div>
         </div>
         <div id="score" className={scoreFinal}>
@@ -187,12 +179,7 @@ const Home = () => {
             </button>
           </div>
           <div className="playerPicHolder">
-            {
-              <PlayerPic
-                className="playerPic"
-                props={{ url: data[1], revealState: { reveal } }}
-              />
-            }
+            {<PlayerPic className="playerPic" props={{ url: data[1], revealState: { reveal } }} />}
           </div>
           <div className="divHintReveal">
             <button onClick={revealPlayerLoss} className="revealButton">

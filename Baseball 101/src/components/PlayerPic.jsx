@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
 import "../css/PlayerPic.css";
 
 const PlayerPic = (props) => {
+  console.log("playerpicURL is " + props.props.url);
   return (
     <div className="playerPicContainer">
       <img
