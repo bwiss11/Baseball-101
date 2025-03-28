@@ -289,11 +289,8 @@ const DailyPlay = () => {
 
   const playerFetch = async () => {
     try {
-      console.log("attempting player-fetch in DailyPlay");
       const response = await fetch("/.netlify/functions/player-fetching");
-      console.log("player-fetching response is " + JSON.stringify(response));
       const data = await response.json();
-      console.log("player-fetching data is " + JSON.stringify(data));
       return data;
     } catch (error) {
       console.error("Error fetching data:", error);
