@@ -5,16 +5,16 @@ body {
   height: 100%;
   text-align: center;
   background-repeat: no-repeat;
-  /* background-image: linear-gradient(
-    to bottom right,
-    rgb(60, 90, 190, 100),
-    rgb(150, 150, 255, 100)
-  ); */
   background-image: linear-gradient(
     to bottom right,
     rgb(120, 100, 252, 100),
-    rgb(2, 190, 252, 100)
+    rgb(0, 0, 0, 100)
   );
+  /* background-image: linear-gradient(
+    to bottom right,
+    rgb(120, 100, 252, 100),
+    rgb(2, 190, 252, 100)
+  ); */
 }
 
 
