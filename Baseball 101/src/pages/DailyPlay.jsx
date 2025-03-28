@@ -28,7 +28,6 @@ const DailyPlay = () => {
   let writtenDate = new Date(getFormattedDate() + "T00:00:00");
 
   const shareScore = () => {
-    console.log("trying to share score");
     if (answerReveal != "answerReveal") {
       return;
     }
@@ -290,9 +289,11 @@ const DailyPlay = () => {
 
   const playerFetch = async () => {
     try {
+      console.log("attempting player-fetch in DailyPlay");
       const response = await fetch("/.netlify/functions/player-fetching");
+      console.log("player-fetching response is " + JSON.stringify(response));
       const data = await response.json();
-
+      console.log("player-fetching data is " + JSON.stringify(data));
       return data;
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -301,7 +302,9 @@ const DailyPlay = () => {
 
   // Runs only when page is reloaded
   useEffect(() => {
+    console.log("attempting player-fetch in DailyPlay");
     playerFetch().then((res) => {
+      console.log("playerFetch in DailyPlay is complete", res);
       setData(res);
       localStorage.setItem("data", JSON.stringify(res));
       setAnswer(res[0][0].player.fullName);

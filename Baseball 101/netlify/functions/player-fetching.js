@@ -1,20 +1,17 @@
-import fetch from 'node-fetch'; // Ensure you have node-fetch installed for server-side fetch
 import  players  from '../../src/answerList.json'
 import specialCases from '../../src/specialCases.json'
 import MLBtoESPNID from '../../src/MLBtoESPNID.json'
 import AWS from 'aws-sdk';
 import { Buffer } from 'buffer';
-import dotenv from 'dotenv';
 
-// Cache variables
+// // Cache variables
 let cachedData = null;
 let cachedDate = null;
 
 export const handler = async () => {
 
 
-dotenv.config();
-/// AWS Section
+// / AWS Section
 const s3 = new AWS.S3({
     accessKeyId: process.env.MY_AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.MY_AWS_SECRET_ACCESS_KEY,
@@ -38,7 +35,7 @@ const s3 = new AWS.S3({
     return uploadResult.Location;
   }
 
-  // end AWS Section
+//   // end AWS Section
 
 
 
@@ -55,6 +52,8 @@ const s3 = new AWS.S3({
 
     console.log("cachedDate is " + cachedDate);
     console.log("curDate is " + today);
+
+    console.log("cachedData is " + cachedData);
         // Check if we have cached data for today
         if (cachedDate === today && cachedData) {
             return {
@@ -108,7 +107,7 @@ const s3 = new AWS.S3({
         let ESPNId = MLBtoESPNID[MLBId];
         let headshotURL = await getHeadshot(ESPNId);
         console.log("uploading image to S3");
-        const AWSheadshoturl = await uploadImageToS3(headshotURL, `didigregorius.png`);
+        const AWSheadshoturl = await uploadImageToS3(headshotURL, `${playerName}.png`);
         console.log("headshottest is " + AWSheadshoturl);
       
         async function getPlayerInfo() {
@@ -144,6 +143,8 @@ const s3 = new AWS.S3({
 
       cachedData = res;
       cachedDate = today;
+      
+      console.log("cachedData is now" + cachedData);
       return {
         statusCode: 200,
         body: JSON.stringify([
