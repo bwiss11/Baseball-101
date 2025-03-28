@@ -2,11 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import TodayStats from "../components/TodayStats";
 import MyStats from "../components/MyStats";
-import {
-  getFormattedDate,
-  dailyPlayerGenerator,
-  fetchData,
-} from "../Functions/Functions";
+import { getFormattedDate, dailyPlayerGenerator, fetchData } from "../Functions/Functions";
 import { addStatsPageView } from "../backend/firestore";
 
 const Stats = () => {
@@ -28,6 +24,17 @@ const Stats = () => {
   const fetchInfo = () => {
     let player = dailyPlayerGenerator();
     return fetchData(player);
+  };
+
+  const playerFetch = async () => {
+    try {
+      const response = await fetch("/.netlify/functions/player-fetching");
+      const data = await response.json();
+      alert(data.message); // Display the fetched message in an alert
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      alert("Failed to fetch data");
+    }
   };
 
   useEffect(() => {
@@ -105,20 +112,13 @@ const Stats = () => {
       setHits(hitsArray);
       setNumberHits(hitsArray.length);
       let yesterdayDate = getFormattedDate(-1);
-      if (
-        Object.keys(retrievedHits[0])[0] != yesterdayDate &&
-        Object.keys(retrievedHits[0])[0] != curDate
-      ) {
+      if (Object.keys(retrievedHits[0])[0] != yesterdayDate && Object.keys(retrievedHits[0])[0] != curDate) {
         setHitStreak(0);
       } else {
-        let retrievedCurrentHitStreak = JSON.parse(
-          localStorage.getItem("hitStreak")
-        );
+        let retrievedCurrentHitStreak = JSON.parse(localStorage.getItem("hitStreak"));
         setHitStreak(retrievedCurrentHitStreak);
       }
-      let retrievedMaxHitStreak = JSON.parse(
-        localStorage.getItem("maxHitStreak")
-      );
+      let retrievedMaxHitStreak = JSON.parse(localStorage.getItem("maxHitStreak"));
 
       setMaxHitStreak(retrievedMaxHitStreak);
     }
@@ -152,8 +152,7 @@ const Stats = () => {
           setScoreStatus("scoreTBD");
         }
         if (status == "scoreFinal" || status == "scoreZero") {
-          let retrievedName = JSON.parse(localStorage.getItem("data"))[0][0]
-            .player.fullName;
+          let retrievedName = JSON.parse(localStorage.getItem("data"))[0][0].player.fullName;
           setName(retrievedName);
           setScore(retrievedScore);
           setReveal("Reveal");
@@ -164,8 +163,7 @@ const Stats = () => {
       setPicUrl(retrievedPicUrl);
       let status = localStorage.getItem("curDay");
       if (status == "scoreFinal" || status == "scoreZero") {
-        let retrievedName = JSON.parse(localStorage.getItem("data"))[0][0]
-          .player.fullName;
+        let retrievedName = JSON.parse(localStorage.getItem("data"))[0][0].player.fullName;
         setName(retrievedName);
         setScore(retrievedScore);
         setReveal("Reveal");
@@ -201,6 +199,7 @@ const Stats = () => {
           atBats={numberHits + numberOuts}
           average={(numberHits / (numberHits + numberOuts)).toFixed(3)}
         ></MyStats>
+        <button onClick={playerFetch}>Player Fetch</button>
       </div>
     );
   }

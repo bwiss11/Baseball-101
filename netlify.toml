@@ -1,8 +1,8 @@
 # example netlify.toml
 [build]
   command = "npm run build"
-  functions = "netlify/functions"
-  publish = "dist"
+  functions = "Baseball 101/netlify/functions"
+  publish = "Baseball 101/dist"
 
 [[redirects]]
   from = "/*"
