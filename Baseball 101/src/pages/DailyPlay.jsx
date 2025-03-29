@@ -59,7 +59,7 @@ const DailyPlay = () => {
     .slice(1)
     .join(" ")
     .replace(/\b0/g, "");
-  length = originalWrittenDate.split(" ").length;
+  const length = originalWrittenDate.split(" ").length;
   writtenDate =
     originalWrittenDate
       .split(" ")
@@ -287,9 +287,9 @@ const DailyPlay = () => {
     }
   };
 
-  const playerFetch = async () => {
+  const playerFetch = async (curDate) => {
     try {
-      const response = await fetch("/.netlify/functions/player-fetching");
+      const response = await fetch(`/.netlify/functions/player-fetching?date=${curDate}`);
       const data = await response.json();
       return data;
     } catch (error) {
@@ -300,7 +300,7 @@ const DailyPlay = () => {
   // Runs only when page is reloaded
   useEffect(() => {
     console.log("attempting player-fetch in DailyPlay");
-    playerFetch().then((res) => {
+    playerFetch(curDate).then((res) => {
       console.log("playerFetch in DailyPlay is complete", res);
       setData(res);
       localStorage.setItem("data", JSON.stringify(res));

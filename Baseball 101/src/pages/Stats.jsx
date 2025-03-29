@@ -20,9 +20,9 @@ const Stats = () => {
 
   let curDate = getFormattedDate();
 
-  const playerFetch = async () => {
+  const playerFetch = async (curDate) => {
     try {
-      const response = await fetch("/.netlify/functions/player-fetching");
+      const response = await fetch(`/.netlify/functions/player-fetching?date=${curDate}`);
       const data = await response.json();
 
       return data;
@@ -72,7 +72,7 @@ const Stats = () => {
         }
       }
       // Gets today's player's data
-      playerFetch().then((res) => {
+      playerFetch(curDate).then((res) => {
         localStorage.setItem("data", JSON.stringify(res));
         let retrievedPicUrl = JSON.parse(localStorage.getItem("data"))[1];
         setPicUrl(retrievedPicUrl);
@@ -135,7 +135,7 @@ const Stats = () => {
     let retrievedScore = JSON.parse(localStorage.getItem("score"));
     let retrievedData = JSON.parse(localStorage.getItem("data"));
     if (!retrievedData) {
-      playerFetch().then((res) => {
+      playerFetch(curDate).then((res) => {
         localStorage.setItem("data", JSON.stringify(res));
         let retrievedPicUrl = JSON.parse(localStorage.getItem("data"))[1];
         setPicUrl(retrievedPicUrl);
