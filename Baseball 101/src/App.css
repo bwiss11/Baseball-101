@@ -10,11 +10,19 @@ body {
     rgb(120, 100, 252, 100),
     rgb(0, 0, 0, 100)
   ); */
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(120, 100, 252, 100),
-    rgb(2, 190, 252, 100)
-  );
+
+  /* background-image: linear-gradient(
+    to bottom,
+    rgb(2, 190, 252, 0.75),
+    rgb(120, 100, 252, 0.75)
+
+  ); */
+
+background-image: linear-gradient(
+  to bottom,
+  rgb(60, 145, 252, 0.75), /* Adjusted to be closer to the second color */
+  rgb(80, 130, 252, 0.75)  /* Adjusted to be closer to the first color */
+);
 }
 
 
@@ -177,8 +185,8 @@ button {
   font-size: 1rem;
   font-weight: 800;
   border: 0.1rem solid;
-  transition: all 1s;
-  transition-delay: 100ms;
+  transition: all 0.25s;
+  /* transition-delay: 100ms; */
 }
 
 .hintButton:active {
@@ -191,6 +199,8 @@ button {
 
 .hintButton:hover {
   cursor: pointer;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .revealButton {
@@ -202,8 +212,8 @@ button {
   font-weight: 800;
   border: 0.1rem solid;
   border-radius: 0.25rem;
-  transition: all 1s;
-  transition-delay: 100ms;
+  transition: all 0.25s;
+  /* transition-delay: 100ms; */
 }
 
 .revealButton:active {
@@ -215,6 +225,8 @@ button {
 }
 
 .revealButton:hover {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
 
@@ -250,12 +262,12 @@ button {
   font-size: 36px;
   width: 100%;
   -webkit-text-stroke: 0.09rem;
-  -webkit-text-stroke-color: rgb(2, 80, 150, 100);
+  -webkit-text-stroke-color: rgb(0, 0, 0, 0.8);
   font-family: helvetica;
 }
 
 .shareHolder {
-  
+  margin-bottom: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -345,7 +357,7 @@ button {
   margin: auto;
   font-weight: 900;
   letter-spacing: -0.1rem;
-  color: green;
+  color: rgb(102, 255, 102);
   -webkit-text-stroke: 2px;
   /* -webkit-text-stroke-color: rgb(59, 237, 178); */
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.8);
