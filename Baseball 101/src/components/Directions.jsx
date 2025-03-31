@@ -24,19 +24,11 @@ const Directions = ({ open, onClose }) => {
             <h2>Rules</h2>
             <br></br>
             <br></br>
-            <div className="text">
-              1. The 'Hint' button reveals the next year of statistics.
-            </div>
+            <div className="text">1. The 'Hint' button reveals the next year of statistics.</div>
             <br></br>
-            <div className="text">
-              2. The 'Reveal' button will show the answer, but will set the score to
-              0.
-            </div>
+            <div className="text">2. The 'Reveal' button will show the answer, but will set the score to 0.</div>
             <br></br>
-            <div className="text">
-              3. The search bar at the top can be used to guess the player at
-              any point.
-            </div>
+            <div className="text">3. The search bar at the top can be used to guess the player at any point.</div>
             <br></br>
           </div>
           <div className="directionsContainer">
@@ -56,11 +48,7 @@ const Directions = ({ open, onClose }) => {
                 xmlSpace="preserve"
               >
                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></g>
+                <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
                   {" "}
                   <g>
@@ -82,8 +70,7 @@ const Directions = ({ open, onClose }) => {
                   </g>{" "}
                 </g>
               </svg>{" "}
-              Daily Play page shows a single player each day and counts towards
-              the user's score on the{" "}
+              Daily Play page shows a single player each day and counts towards the user's score on the{" "}
               <svg
                 className="directionsPageButtons"
                 viewBox="0 -4 18 24"
@@ -93,22 +80,11 @@ const Directions = ({ open, onClose }) => {
                 fill="rgba(255, 255, 255, 0.75)"
               >
                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></g>
+                <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
                   {" "}
-                  <title>stats [#1367]</title> <desc>Created with Sketch.</desc>{" "}
-                  <defs> </defs>{" "}
-                  <g
-                    id="Page-1"
-                    stroke="none"
-                    strokeWidth="1"
-                    fill="rgba(255, 255, 255, 0.75)"
-                    fillRule="evenodd"
-                  >
+                  <title>stats [#1367]</title> <desc>Created with Sketch.</desc> <defs> </defs>{" "}
+                  <g id="Page-1" stroke="none" strokeWidth="1" fill="rgba(255, 255, 255, 0.75)" fillRule="evenodd">
                     {" "}
                     <g
                       id="Dribbble-Light-Preview"
@@ -116,10 +92,7 @@ const Directions = ({ open, onClose }) => {
                       fill="rgba(255, 255, 255, 0.75)"
                     >
                       {" "}
-                      <g
-                        id="icons"
-                        transform="translate(56.000000, 160.000000)"
-                      >
+                      <g id="icons" transform="translate(56.000000, 160.000000)">
                         {" "}
                         <path
                           d="M141.9,697 C141.9,697.552 141.4296,698 140.85,698 C140.2704,698 139.8,697.552 139.8,697 L139.8,683 C139.8,682.448 140.2704,682 140.85,682 C141.4296,682 141.9,682.448 141.9,683 L141.9,697 Z M141.9,680 L139.8,680 C138.63975,680 137.7,680.895 137.7,682 L137.7,698 C137.7,699.105 138.63975,700 139.8,700 L141.9,700 C143.06025,700 144,699.105 144,698 L144,682 C144,680.895 143.06025,680 141.9,680 L141.9,680 Z M134.55,697 C134.55,697.552 134.0796,698 133.5,698 C132.9204,698 132.45,697.552 132.45,697 L132.45,687 C132.45,686.448 132.9204,686 133.5,686 C134.0796,686 134.55,686.448 134.55,687 L134.55,697 Z M134.55,684 L132.45,684 C131.28975,684 130.35,684.895 130.35,686 L130.35,698 C130.35,699.105 131.28975,700 132.45,700 L134.55,700 C135.71025,700 136.65,699.105 136.65,698 L136.65,686 C136.65,684.895 135.71025,684 134.55,684 L134.55,684 Z M127.2,697 C127.2,697.552 126.7296,698 126.15,698 C125.5704,698 125.1,697.552 125.1,697 L125.1,693 C125.1,692.448 125.5704,692 126.15,692 C126.7296,692 127.2,692.448 127.2,693 L127.2,697 Z M127.2,690 L125.1,690 C123.93975,690 123,690.895 123,692 L123,698 C123,699.105 123.93975,700 125.1,700 L127.2,700 C128.36025,700 129.3,699.105 129.3,698 L129.3,692 C129.3,690.895 128.36025,690 127.2,690 L127.2,690 Z"
@@ -134,7 +107,7 @@ const Directions = ({ open, onClose }) => {
               </svg>{" "}
               Stats page.
             </div>
-            <br></br>
+            {/* <br></br>
             <div className="text">
               2. The{" "}
               <svg
@@ -174,7 +147,7 @@ const Directions = ({ open, onClose }) => {
               Free Play page generates a random player and an unlimited number
               of games can be played. These games don't count towards the user's
               score.
-            </div>
+            </div> */}
           </div>
           <br></br>
           <div className="directionsContainer">
@@ -185,22 +158,17 @@ const Directions = ({ open, onClose }) => {
               If you have any questions or feedback, please reach out via:
               <br />
               <br />
-              Email: <a className="link" href="mailto:baseballonezeroone@gmail.com">
+              Email:{" "}
+              <a className="link" href="mailto:baseballonezeroone@gmail.com">
                 baseballonezeroone@gmail.com
               </a>
               <br />
-              <br />
-              X (Twitter): <a 
-                href="https://x.com/baseballone0one" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="link"
-              >
-              Baseball 101
+              <br />X (Twitter):{" "}
+              <a href="https://x.com/baseballone0one" target="_blank" rel="noopener noreferrer" className="link">
+                Baseball 101
               </a>
             </div>
             <br></br>
-
           </div>
         </div>
       </div>
