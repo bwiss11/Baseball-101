@@ -1,5 +1,5 @@
 body {
-  font-family: Helvetica;
+  font-family: serif;
   margin: 0;
   min-height: 100vh;
   height: 100%;
@@ -171,6 +171,7 @@ button {
   border-style: solid;
   width: 30%;
   height: 15%;
+
 }
 
 #score {
@@ -263,7 +264,7 @@ button {
   -webkit-text-stroke: 0.09rem;
   -webkit-text-stroke-color: rgb(2, 80, 150, 100);
   font-family: helvetica;
-
+  margin-top: -0.5rem;
 }
 
 .shareHolder {
