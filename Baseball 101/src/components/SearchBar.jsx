@@ -15,7 +15,7 @@ const SearchBar = ({ setResults, input, setInput }) => {
   return (
     <div className="input-wrapper">
       <input
-        placeholder="Type to search..."
+        placeholder="Search..."
         value={input}
         autoComplete="new-password"
         onChange={(e) => handleChange(e.target.value)}

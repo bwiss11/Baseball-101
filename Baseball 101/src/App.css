@@ -1,5 +1,5 @@
 body {
-  font-family: serif;
+  font-family: Helvetica;
   margin: 0;
   min-height: 100vh;
   height: 100%;
@@ -254,7 +254,6 @@ button {
 }
 
 .answerHolder {
-  margin-bottom: 1rem;
   min-height: 40px;
   height: 40px;
   color: rgba(255, 255, 255, 0.85);
@@ -262,12 +261,12 @@ button {
   font-size: 36px;
   width: 100%;
   -webkit-text-stroke: 0.09rem;
-  -webkit-text-stroke-color: rgb(0, 0, 0, 0.8);
+  -webkit-text-stroke-color: rgb(2, 80, 150, 100);
   font-family: helvetica;
+
 }
 
 .shareHolder {
-  margin-bottom: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;

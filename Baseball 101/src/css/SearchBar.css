@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   margin-top: 2rem;
+  font-size: 16px;
 }
 
 input {
@@ -15,7 +16,7 @@ input {
   border: none;
   height: 100%;
   width: 100%;
-  font-size: 0.7rem;
+  font-size: 16px;
   margin-left: 5px;
 }
 
