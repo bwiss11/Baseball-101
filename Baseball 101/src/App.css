@@ -318,6 +318,12 @@ button {
   }
 }
 
+#shareContainerDailyPlay:active {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(55, 207, 81);
+}
+
 .clipboardMessageDailyPlay {  
   display: flex;
   width: 100%;
@@ -369,7 +375,7 @@ button {
   margin: auto;
   font-weight: 900;
   letter-spacing: -0.1rem;
-  color: rgb(102, 255, 102);
+  color: rgb(55, 207, 81);
   -webkit-text-stroke: 2px;
   /* -webkit-text-stroke-color: rgb(59, 237, 178); */
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.8);

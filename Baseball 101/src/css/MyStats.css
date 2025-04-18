@@ -145,22 +145,33 @@
   align-items: left;
 }
 
-@media (hover: hover) {
-  #shareContainer:hover {
-    display: flex;
-    flex-direction: row;
-    width: 30%;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
+#shareContainer {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
   border-left: 0.05rem solid white;
   background-color: white;
   color: rgb(2, 80, 150, 100);
   -webkit-text-stroke: 0.5px;
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.3);
+}
+
+@media (hover: hover) {
+  #shareContainer:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
   }
 }
 
+#shareContainer:active {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(55, 207, 81);
+}
 
 #shareButton {
   width: 60%;

@@ -116,11 +116,19 @@
   }
 }
 
+#shareContainer:active {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(55, 207, 81);
+}
+
 #shareButton {
   width: 60%;
   margin-left: 5;
   padding-left: 5;
 }
+
+
 
 .scoreTBD {
   font-family: Helvetica;
