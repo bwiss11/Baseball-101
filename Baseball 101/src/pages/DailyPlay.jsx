@@ -299,9 +299,7 @@ const DailyPlay = () => {
 
   // Runs only when page is reloaded
   useEffect(() => {
-    console.log("attempting player-fetch in DailyPlay");
     playerFetch(curDate).then((res) => {
-      console.log("playerFetch in DailyPlay is complete", res);
       setData(res);
       localStorage.setItem("data", JSON.stringify(res));
       setAnswer(res[0][0].player.fullName);
@@ -437,13 +435,13 @@ const DailyPlay = () => {
         </div>
         <div className={answerReveal}>
           <div className="shareHolder" onClick={shareScore}>
-            <div
+            <button
               id="shareContainerDailyPlay"
               className={`shareHolder ${answerReveal == "answerReveal" ? "" : "disabled"}`}
             >
               <FaShareFromSquare />
               &nbsp;<div>Share</div>
-            </div>
+            </button>
           </div>
         </div>
         <div id="score" className={scoreFinal}>

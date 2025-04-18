@@ -11,6 +11,12 @@ body {
     rgb(0, 0, 0, 100)
   ); */
 
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(120, 100, 252, 100),
+    rgb(2, 190, 252, 100)
+  );
+
   /* background-image: linear-gradient(
     to bottom,
     rgb(2, 190, 252, 0.75),
@@ -18,11 +24,11 @@ body {
 
   ); */
 
-background-image: linear-gradient(
+/* background-image: linear-gradient(
   to bottom,
   rgb(60, 145, 252, 0.75), /* Adjusted to be closer to the second color */
   rgb(80, 130, 252, 0.75)  /* Adjusted to be closer to the first color */
-);
+); */
 }
 
 
@@ -198,10 +204,12 @@ button {
   transition: none;
 }
 
-.hintButton:hover {
-  cursor: pointer;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.3);
+@media (hover: hover) {
+  .hintButton:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 }
 
 .revealButton {
@@ -225,10 +233,12 @@ button {
   transition: none;
 }
 
-.revealButton:hover {
-  color: white;
-  background-color: rgba(0, 0, 0, 0.3);
-  cursor: pointer;
+@media (hover: hover) {
+  .revealButton:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
 }
 
 #IP {
@@ -286,8 +296,7 @@ button {
   font-size: 1rem;
   flex-direction: row;
   min-height: 2rem;
-  min-width: 6rem;
-  max-width: 30rem;
+  max-width: 6rem;
   align-content: center;
   align-items: center;
   justify-content: center;
@@ -298,12 +307,15 @@ button {
   color: rgb(2, 80, 150, 100);
   -webkit-text-stroke: 0.5px;
   -webkit-text-stroke-color: rgba(0, 0, 0, 0.3);
+  
 }
 
-#shareContainerDailyPlay:hover {
-  cursor: pointer;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.3);
+@media (hover: hover) {
+  #shareContainerDailyPlay:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 }
 
 .clipboardMessageDailyPlay {  
