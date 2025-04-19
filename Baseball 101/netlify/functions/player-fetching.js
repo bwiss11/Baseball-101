@@ -60,7 +60,6 @@ export const handler = async (event) => {
   const curDate = new Date(today);
   const difference = Math.floor((curDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
 
-  console.log("difference is " + difference);
   let dailyPlayer = players[difference];
 
   // Try to get cached data first
@@ -73,33 +72,34 @@ export const handler = async (event) => {
     };
   }
 
-  async function fetchData(playerName) {
-    let suffixSet = new Set(["Jr.", "Sr.", "II", "III", "IV", "V"]);
-    let lastName = suffixSet.has(playerName.split(" ").slice(-1)[0])
-      ? playerName.split(" ")[1]
-      : playerName.split(" ").slice(-1)[0];
+  async function fetchData(playerObject) {
+    let playerName = playerObject.name;
+    let playerMLBId = playerObject.MLBId;
+    // let suffixSet = new Set(["Jr.", "Sr.", "II", "III", "IV", "V"]);
+    // let lastName = suffixSet.has(playerName.split(" ").slice(-1)[0])
+    //   ? playerName.split(" ")[1]
+    //   : playerName.split(" ").slice(-1)[0];
 
-    async function getPlayer() {
-      let response2 = await fetch("https://statsapi.mlb.com/api/v1/people/search?names=" + lastName);
-      let data2 = await response2.json();
-      let id = "";
-      if (playerName == "Will Smith") {
-        return 669257;
-      }
-      for (let i = 0; i < data2.people.length; i++) {
-        if (data2.people[i].fullName.normalize("NFD").replace(/\p{Diacritic}/gu, "") == playerName) {
-          id = data2.people[i].id;
-          return id;
-        }
-      }
-    }
+    // async function getPlayer() {
+    //   let response2 = await fetch("https://statsapi.mlb.com/api/v1/people/search?names=" + lastName);
+    //   let data2 = await response2.json();
+    //   let id = "";
+    //   if (playerName == "Will Smith") {
+    //     return 669257;
+    //   }
+    //   for (let i = 0; i < data2.people.length; i++) {
+    //     if (data2.people[i].fullName.normalize("NFD").replace(/\p{Diacritic}/gu, "") == playerName) {
+    //       id = data2.people[i].id;
+    //       return id;
+    //     }
+    //   }
+    // }
 
-    let MLBId = playerName in specialCases ? specialCases[playerName] : await getPlayer();
+    let MLBId = playerName in specialCases ? specialCases[playerName] : playerMLBId;
     let ESPNId = MLBtoESPNID[MLBId];
     let headshotURL = await getHeadshot(ESPNId);
     console.log("uploading image to S3");
     const AWSheadshoturl = await uploadImageToS3(headshotURL, `${playerName}.png`);
-    console.log("headshottest is " + AWSheadshoturl);
 
     async function getPlayerInfo() {
       console.log("making request to MLB API");
@@ -122,6 +122,41 @@ export const handler = async (event) => {
   }
 
   let res = await fetchData(dailyPlayer);
+
+  //   async function getPlayer2(playerName) {
+  //     let suffixSet = new Set(["Jr.", "Sr.", "II", "III", "IV", "V"]);
+  //     let lastName = suffixSet.has(playerName.split(" ").slice(-1)[0])
+  //       ? playerName.split(" ")[1]
+  //       : playerName.split(" ").slice(-1)[0];
+  //     let response2 = await fetch("https://statsapi.mlb.com/api/v1/people/search?names=" + lastName);
+  //     let data2 = await response2.json();
+  //     let id = "";
+  //     if (playerName == "Will Smith") {
+  //       return 669257;
+  //     }
+  //     for (let i = 0; i < data2.people.length; i++) {
+  //       if (data2.people[i].fullName.normalize("NFD").replace(/\p{Diacritic}/gu, "") == playerName) {
+  //         id = data2.people[i].id;
+  //         return id;
+  //       }
+  //     }
+  //   }
+  //   let newJSON = [];
+  //   for (let i = 0; i < players.length; i++) {
+  //     let MLBId = await getPlayer2(players[i].name);
+  //     newJSON.push({ name: players[i].name, MLBId: String(MLBId) });
+  //   }
+  //   //   console.log("newJSON first entry is " + newJSON[0].name, newJSON[0].MLBId, newJSON[0]);
+  //   //   for (let i = 0; i < newJSON.length; i++) {
+  //   //     console.log("newJSON[" + i + "] is " + JSON.stringify(newJSON[i]));
+  //   //   }
+  //   // Stringify the newJSON array with pretty-printing
+  //   const jsonString = JSON.stringify(newJSON, null, 2);
+
+  //   // Write the JSON string to a new file
+  //   fs.writeFileSync("newanswerlist.json", jsonString);
+
+  //   console.log("JSON data has been written to newanswerlist.json");
 
   await setCachedData(today, res);
 
